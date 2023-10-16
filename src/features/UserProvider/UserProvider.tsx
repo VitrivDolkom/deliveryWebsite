@@ -12,7 +12,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const login = () => {
     setIsAuth(true)
-    // navigate(routes.main)
   }
 
   const logout = () => {
@@ -21,7 +20,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       token: '',
       email: ''
     })
-    // navigate(routes.main)
   }
 
   return <UserContext.Provider value={{ isAuth, user, login, logout }}>{children}</UserContext.Provider>
