@@ -1,0 +1,75 @@
+.btn {
+  transition: all .3s linear;
+  width: 100%;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+}
+
+.outlined.success {
+  color: var(--success-primary);
+  border: 1px solid var(--success-primary);
+  background-color: var(--success-bg);
+}
+
+.outlined.success:hover {
+  color: var(--neutral-10);
+  background-color: var(--success-hover);
+}
+
+
+.outlined.info {
+  color: var(--info-primary);
+  border: 1px solid var(--info-primary);
+  background-color: var(--info-bg);
+}
+
+.outlined.info:hover {
+  color: var(--neutral-10);
+  background-color: var(--info-hover);
+}
+
+.outlined.danger {
+  color: var(--danger-primary);
+  border: 1px solid var(--danger-primary);
+  background-color: var(--danger-bg);
+}
+
+.outlined.danger:hover {
+  color: var(--neutral-10);
+  background-color: var(--danger-hover);
+}
+
+.solid.success {
+  color: var(--neutral-10);
+  border: 2px solid var(--success-hover);
+  background-color: var(--success-hover);
+}
+
+.solid.success:hover {
+  background-color: var(--success-primary);
+}
+
+.solid.info {
+  color: var(--neutral-10);
+  border: 2px solid var(--info-hover);
+  background-color: var(--info-hover);
+}
+
+.solid.info:hover {
+  background-color: var(--info-primary);
+}
+
+.solid.danger {
+  color: var(--neutral-10);
+  border: 2px solid var(--danger-hover);
+  background-color: var(--danger-hover);
+}
+
+.solid.danger:hover {
+  background-color: var(--danger-primary);
+}
