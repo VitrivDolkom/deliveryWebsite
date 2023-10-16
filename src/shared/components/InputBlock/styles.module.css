@@ -5,11 +5,23 @@
   margin: 10px 0;
 }
 
+.block {
+  display: flex;
+}
+
+.block.row {
+  align-items: center;
+}
+
+.block.column {
+  flex-direction: column;
+}
+
 .input {
   width: 100%;
   border-radius: 8px;
-  border: 1px solid var(--light-grey);
-  background-color: var(--white);
+  border: 1px solid var(--neutral-100, #000);
+  background-color: var(--neutral-10, #fff);
   padding: 12px;
   margin-top: 10px;
 }
@@ -20,13 +32,6 @@
   font-weight: 500;
 }
 
-.error {
-  color: var(--light-red, #F55A5A);
-}
-
 .errorMessage {
   margin: 2px 0px 0px 5px;
-  color: var(--light-red, #F55A5A);
-  font-size: 14px;
-  font-weight: 500;
 }

@@ -1,1 +1,1 @@
-export * from './ValidatedInput'
+export * from './InputBlock'
