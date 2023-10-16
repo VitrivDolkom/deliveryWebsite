@@ -1,4 +1,4 @@
-import { Button } from './shared/uikit/Button/Button'
+import { Button } from '@/shared/uikit'
 
 function App() {
   return (

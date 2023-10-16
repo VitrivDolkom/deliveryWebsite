@@ -1,5 +1,7 @@
+import { ReactNode } from 'react'
+
 export interface TypographyProps {
-  text?: string
+  children?: ReactNode
   className?: string
   variant?:
     | 't1'
@@ -19,13 +21,13 @@ export interface TypographyProps {
 }
 
 export const Typography = ({
-  text,
+  children,
   variant = 't1',
   className = '',
   tag: Wrapper = 'div',
   ...props
 }: TypographyProps) => (
   <Wrapper className={`${variant} ${className}`} {...props}>
-    {text}
+    {children}
   </Wrapper>
 )
