@@ -12,10 +12,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const login = () => {
     setIsAuth(true)
-<<<<<<< HEAD
-    // navigate(routes.main)
-=======
->>>>>>> origin/task-18889
   }
 
   const logout = () => {
@@ -24,10 +20,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       token: '',
       email: ''
     })
-<<<<<<< HEAD
-    // navigate(routes.main)
-=======
->>>>>>> origin/task-18889
   }
 
   return <UserContext.Provider value={{ isAuth, user, login, logout }}>{children}</UserContext.Provider>

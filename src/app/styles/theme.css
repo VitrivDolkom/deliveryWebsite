@@ -1,0 +1,32 @@
+body {
+  --success-hover: #568F55;
+  --success-bg: #F1FAF0;
+  --success-primary: #198754;
+
+  --info-hover: #2B6DD1;
+  --info-bg: #E7EDF6;
+  --info-primary: #0150C8;
+
+  --danger-hover: #E1676C;
+  --danger-bg: #FEEDEE;
+  --danger-primary: #DC3545;
+
+  --primary-hover: #9C55F6;
+  --primary-focus: #D7C9FF;
+  --primary-main: #5632A1;
+  --primary-border: #C0BBF4;
+
+  --neutral-10: #fff;
+  --neutral-20: #F5F5F5;
+  --neutral-30: #EDEDED;
+  --neutral-40: #E0E0E0;
+  --neutral-50: #C2C2C2;
+  --neutral-60: #9E9E9E;
+  --neutral-70: #757575;
+  --neutral-80: #616161;
+  --neutral-90: #424242;
+  --neutral-100: #0A0A0A;
+}
+
+
+body.dark {}
