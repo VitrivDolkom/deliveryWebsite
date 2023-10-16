@@ -27,11 +27,8 @@ export const Button = ({
     disabled={isLoading || props.disabled}
     className={`${props.className} ${cx({
       btn: true,
-      outlined: styleType === 'outlined',
-      solid: styleType === 'solid',
-      success: alertType === 'success',
-      danger: alertType === 'danger',
-      info: alertType === 'info'
+      [`${styleType}`]: true,
+      [`${alertType}`]: true
     })}`}
   >
     {!isLoading && children}
