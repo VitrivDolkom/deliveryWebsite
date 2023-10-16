@@ -1,4 +1,6 @@
+import classNames from 'classnames/bind'
 import { ReactNode } from 'react'
+import s from './styles.module.css'
 
 export interface TypographyProps {
   children?: ReactNode
@@ -20,6 +22,8 @@ export interface TypographyProps {
   tag?: keyof JSX.IntrinsicElements
 }
 
+const cx = classNames.bind(s)
+
 export const Typography = ({
   children,
   variant = 't1',
@@ -27,7 +31,7 @@ export const Typography = ({
   tag: Wrapper = 'div',
   ...props
 }: TypographyProps) => (
-  <Wrapper className={`${variant} ${className}`} {...props}>
+  <Wrapper className={cx({ [`${variant}`]: true, [`${className}`]: true })} {...props}>
     {children}
   </Wrapper>
 )
