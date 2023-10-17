@@ -2,6 +2,16 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { InputBlock } from '@/shared/components'
 import { Button, Select, Typography } from '@/shared/uikit'
 
+enum GenderEnum {
+  Male = 'Мужчина',
+  Female = 'Женщина'
+}
+
+const genderOptions = [
+  { label: 'Мужчина', value: 'Male' },
+  { label: 'Женщина', value: 'Female' }
+]
+
 export const FormExample = () => {
   const {
     register,
@@ -29,11 +39,8 @@ export const FormExample = () => {
         />
 
         <Select
-          options={[
-            { label: 'Мужчина', value: 'Male' as Gender },
-            { label: 'Женщина', value: 'Female' as Gender }
-          ]}
-          value={{ label: watch('gender'), value: watch('gender') }}
+          options={genderOptions}
+          value={{ label: GenderEnum[watch('gender')], value: watch('gender') }}
           onChange={(newValue) => setValue('gender', (newValue?.value || 'Male') as Gender)}
         />
 

@@ -20,6 +20,17 @@ export const InputBlock = forwardRef<HTMLInputElement, InputBlockProps>(
     const { label, error, blockType = 'column', constValue = '' } = props
     const inputId = useId()
 
+    const telOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      e.currentTarget.value = getValidatedPhoneNumber(
+        e.currentTarget.value,
+        e.currentTarget.selectionStart
+      )
+
+      if (props.onChange) {
+        props.onChange(e)
+      }
+    }
+
     return (
       <div className={s.wrapper}>
         <div className={cx({ block: true, [`${blockType}`]: true })}>
@@ -31,17 +42,7 @@ export const InputBlock = forwardRef<HTMLInputElement, InputBlockProps>(
             <input
               className={s.input}
               {...props}
-              onChange={
-                props.type === 'tel'
-                  ? (e: React.ChangeEvent<HTMLInputElement>) => {
-                      e.currentTarget.value = getValidatedPhoneNumber(
-                        e.currentTarget.value,
-                        e.currentTarget.selectionStart
-                      )
-                      if (props.onChange) props.onChange(e)
-                    }
-                  : props.onChange
-              }
+              onChange={props.type === 'tel' ? telOnChange : props.onChange}
               ref={ref}
               id={inputId}
             />

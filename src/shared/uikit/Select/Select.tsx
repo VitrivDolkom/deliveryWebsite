@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import s from './style.module.css'
 
-export type SelectOption = {
+export type SelectOption<T = string> = {
   label: string
-  value: string | number
+  value: T
 }
 
 type MultipleSelectProps = {

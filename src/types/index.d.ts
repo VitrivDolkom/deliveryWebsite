@@ -6,6 +6,7 @@ declare global {
   type Id = string
   type AddressId = string
   type Gender = 'Male' | 'Female'
+
   type OrderStatus = 'InProcess' | 'Delivered'
   type DishCategory = 'Wok' | 'Pizza' | 'Soup' | 'Dessert' | 'Drink'
   type DishSorting = 'NameAsc' | 'NameDesc' | 'PriceAsc' | 'PriceDesc' | 'RatingAsc' | 'RatingDesc'
