@@ -1,1 +1,7 @@
-export const App = () => null
+import { FormExample } from '@/features/FormExample'
+
+export const App = () => (
+  <div>
+    <FormExample />
+  </div>
+)

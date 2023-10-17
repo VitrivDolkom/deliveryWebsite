@@ -26,6 +26,10 @@
   margin-top: 10px;
 }
 
+.input:focus {
+  border-color: var(--info-primary);
+}
+
 .label {
   color: var(--brown-second);
   font-size: 20px;

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+export {}
 
-export namespace global {
+declare global {
   type Nullable<T> = T | null
   type Id = string
   type AddressId = string
