@@ -1,9 +1,10 @@
 import { SelectAddressObject, SelectLocation } from '@/features'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import Select from 'react-select'
 import { InputBlock } from '@/shared/components'
 import { GenderEnum, genderOptions } from '@/shared/lib/const'
-import { Button, Select } from '@/shared/uikit'
+import { Button } from '@/shared/uikit'
 
 export const RegistrationPage = () => {
   const [addressObjects, setAddressObjects] = React.useState<SelectAddressObject[]>([])
@@ -36,7 +37,7 @@ export const RegistrationPage = () => {
         <Select
           options={genderOptions}
           value={{ label: GenderEnum[watch('gender')], value: watch('gender') }}
-          onChange={(newValue) => setValue('gender', (newValue?.value || 'Male') as Gender)}
+          onChange={(newValue) => setValue('gender', newValue?.value || 'Male')}
         />
 
         <InputBlock
@@ -52,7 +53,6 @@ export const RegistrationPage = () => {
             }).ref
           }
         />
-
         <InputBlock
           label="Дата рождения"
           error={errors.birthDate?.message}
@@ -69,7 +69,6 @@ export const RegistrationPage = () => {
           {...register('email', { required: { value: true, message: 'Заполните поле' } })}
           ref={register('email', { required: { value: true, message: 'Заполните поле' } }).ref}
         />
-
         <InputBlock
           label="Пароль"
           type="password"
@@ -77,7 +76,6 @@ export const RegistrationPage = () => {
           {...register('password', { required: { value: true, message: 'Заполните поле' } })}
           ref={register('password', { required: { value: true, message: 'Заполните поле' } }).ref}
         />
-
         <Button styleType="solid" alertType="info">
           Зарегестрироваться
         </Button>
