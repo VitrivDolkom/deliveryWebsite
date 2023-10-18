@@ -2,9 +2,12 @@ import { SelectAddressObject, SelectLocation } from '@/features'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import Select from 'react-select'
+import { registrationRequest } from '@/shared/api'
 import { InputBlock } from '@/shared/components'
 import { GenderEnum, genderOptions } from '@/shared/lib/const'
-import { Button } from '@/shared/uikit'
+import { useUserSwitcherContext } from '@/shared/lib/contexts'
+import { useRequest } from '@/shared/lib/hooks'
+import { Button, Typography } from '@/shared/uikit'
 import s from './styles.module.css'
 
 export const RegistrationPage = () => {
@@ -16,14 +19,27 @@ export const RegistrationPage = () => {
     setValue,
     watch
   } = useForm<UserRegisterModel>()
+  const {
+    data: tokenResponse,
+    isLoading,
+    error,
+    requestHandler
+  } = useRequest<TokenResponse, UserRegisterModel>(false)
+  const { login } = useUserSwitcherContext()
 
-  const onFormSubmit: SubmitHandler<UserRegisterModel> = (userInfo) => {
+  const onFormSubmit: SubmitHandler<UserRegisterModel> = async (userInfo) => {
     const objectId = addressObjects.at(addressObjects.length - 1)?.object?.address.objectGuid
     if (!objectId) return
 
     userInfo.addressId = objectId
-    // do request and redirect
+    requestHandler(registrationRequest(userInfo))
   }
+
+  React.useEffect(() => {
+    if (!tokenResponse) return
+
+    login({ email: watch('email'), token: tokenResponse.token })
+  }, [tokenResponse])
 
   return (
     <div>
@@ -54,6 +70,7 @@ export const RegistrationPage = () => {
             }).ref
           }
         />
+
         <InputBlock
           label="Дата рождения"
           error={errors.birthDate?.message}
@@ -70,6 +87,7 @@ export const RegistrationPage = () => {
           {...register('email', { required: { value: true, message: 'Заполните поле' } })}
           ref={register('email', { required: { value: true, message: 'Заполните поле' } }).ref}
         />
+
         <InputBlock
           label="Пароль"
           type="password"
@@ -77,9 +95,16 @@ export const RegistrationPage = () => {
           {...register('password', { required: { value: true, message: 'Заполните поле' } })}
           ref={register('password', { required: { value: true, message: 'Заполните поле' } }).ref}
         />
-        <Button styleType="solid" alertType="info">
+
+        <Button styleType="solid" alertType="info" isLoading={isLoading} loader={<div>...</div>}>
           Зарегестрироваться
         </Button>
+
+        {!!error && (
+          <Typography tag="p" variant="err1">
+            Ошибка создания пользователя
+          </Typography>
+        )}
       </form>
     </div>
   )
