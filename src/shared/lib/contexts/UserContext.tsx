@@ -1,4 +1,4 @@
-import { createContext } from 'react'
+import { createContext, useContext } from 'react'
 
 export interface UserContextInfo {
   token: string
@@ -18,3 +18,6 @@ export const UserContext = createContext<IUserContext>({
   login: () => {},
   logout: () => {}
 })
+
+export const useUserContext = () => useContext(UserContext)
+export const useUserSwitcherContext = () => useContext(UserContext)

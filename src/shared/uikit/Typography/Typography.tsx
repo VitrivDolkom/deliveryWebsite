@@ -5,6 +5,7 @@ import s from './styles.module.css'
 export interface TypographyProps {
   children?: ReactNode
   className?: string
+  isLink?: boolean
   variant?:
     | 't1'
     | 't2'
@@ -28,10 +29,11 @@ export const Typography = ({
   children,
   variant = 't1',
   className = '',
+  isLink = false,
   tag: Wrapper = 'div',
   ...props
 }: TypographyProps) => (
-  <Wrapper className={cx({ [`${variant}`]: true, [`${className}`]: true })} {...props}>
+  <Wrapper className={cx({ [`${variant}`]: true, [`${className}`]: true, link: isLink })} {...props}>
     {children}
   </Wrapper>
 )

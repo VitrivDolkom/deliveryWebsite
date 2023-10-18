@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import styles from './style.module.css'
+import s from './style.module.css'
 
-export type SelectOption = {
+export type SelectOption<T = string> = {
   label: string
-  value: string | number
+  value: T
 }
 
 type MultipleSelectProps = {
@@ -83,7 +83,7 @@ export function Select({ multiple, value, onChange, options }: SelectProps) {
     return () => {
       containerRef.current?.removeEventListener('keydown', handler)
     }
-  }, [isOpen, highlightedIndex, options])
+  }, [isOpen, highlightedIndex, options, selectOption])
 
   return (
     <div
@@ -91,9 +91,9 @@ export function Select({ multiple, value, onChange, options }: SelectProps) {
       onBlur={() => setIsOpen(false)}
       onClick={() => setIsOpen((prev) => !prev)}
       tabIndex={0}
-      className={styles.container}
+      className={s.container}
     >
-      <span className={styles.value}>
+      <span className={s.value}>
         {multiple
           ? value.map((v) => (
               <button
@@ -102,10 +102,10 @@ export function Select({ multiple, value, onChange, options }: SelectProps) {
                   e.stopPropagation()
                   selectOption(v)
                 }}
-                className={styles['option-badge']}
+                className={s['option-badge']}
               >
                 {v.label}
-                <span className={styles['remove-btn']}>&times;</span>
+                <span className={s['remove-btn']}>&times;</span>
               </button>
             ))
           : value?.label}
@@ -115,13 +115,13 @@ export function Select({ multiple, value, onChange, options }: SelectProps) {
           e.stopPropagation()
           clearOptions()
         }}
-        className={styles['clear-btn']}
+        className={s['clear-btn']}
       >
         &times;
       </button>
-      <div className={styles.divider}></div>
-      <div className={styles.caret}></div>
-      <ul className={`${styles.options} ${isOpen ? styles.show : ''}`}>
+      <div className={s.divider}></div>
+      <div className={s.caret}></div>
+      <ul className={`${s.options} ${isOpen ? s.show : ''}`}>
         {options.map((option, index) => (
           <li
             onClick={(e) => {
@@ -131,8 +131,8 @@ export function Select({ multiple, value, onChange, options }: SelectProps) {
             }}
             onMouseEnter={() => setHighlightedIndex(index)}
             key={option.value}
-            className={`${styles.option} ${isOptionSelected(option) ? styles.selected : ''} ${
-              index === highlightedIndex ? styles.highlighted : ''
+            className={`${s.option} ${isOptionSelected(option) ? s.selected : ''} ${
+              index === highlightedIndex ? s.highlighted : ''
             }`}
           >
             {option.label}
