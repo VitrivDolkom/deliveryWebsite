@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+export {}
 
-export namespace global {
+declare global {
   type Nullable<T> = T | null
   type Id = string
   type AddressId = string
   type Gender = 'Male' | 'Female'
+
   type OrderStatus = 'InProcess' | 'Delivered'
   type DishCategory = 'Wok' | 'Pizza' | 'Soup' | 'Dessert' | 'Drink'
   type DishSorting = 'NameAsc' | 'NameDesc' | 'PriceAsc' | 'PriceDesc' | 'RatingAsc' | 'RatingDesc'

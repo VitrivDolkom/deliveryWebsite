@@ -1,0 +1,1 @@
+export { getValidatedPhoneNumber } from './getValidatedPhoneNumber'
