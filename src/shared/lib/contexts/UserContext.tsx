@@ -8,7 +8,7 @@ export interface UserContextInfo {
 export interface IUserContext {
   isAuth: boolean
   user: UserContextInfo
-  login: () => void
+  login: (userInfo: UserContextInfo) => void
   logout: () => void
 }
 
