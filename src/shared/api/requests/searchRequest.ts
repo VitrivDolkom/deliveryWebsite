@@ -6,7 +6,7 @@ interface AddressSearchRequestParams {
 }
 
 export const addressSearchRequest = ({ parentObjectId, query }: AddressSearchRequestParams) =>
-  request<SearchAddressModel[]>({
+  request<never>({
     config: { method: 'get' },
     url: `/address/search?parentObjectId=${parentObjectId || 0}&query=${query || ''}`
   })
