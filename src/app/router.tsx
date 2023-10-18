@@ -1,3 +1,4 @@
+import { RegistrationPage } from '@/pages'
 import { createBrowserRouter } from 'react-router-dom'
 import { routes } from '@/shared/const'
 import { Layout } from './Layout/Layout'
@@ -16,7 +17,7 @@ export const router = createBrowserRouter([
       },
       {
         path: routes.registration(),
-        element: null
+        element: <RegistrationPage />
       },
       {
         path: routes.profile(),
