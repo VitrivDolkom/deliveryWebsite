@@ -62,10 +62,10 @@ export const HeaderHOC = () => {
           )}
           {!isAuth && (
             <>
-              <Button onClick={onRegisterClick} styleType="solid" alertType="info">
+              <Button onClick={onRegisterClick} className="btn" styleType="solid" alertType="info">
                 Регистрация
               </Button>
-              <Button onClick={onLoginClick} styleType="solid" alertType="info">
+              <Button onClick={onLoginClick} className="btn" styleType="solid" alertType="info">
                 Вход
               </Button>
             </>

@@ -8,7 +8,7 @@ import { GenderEnum, genderOptions } from '@/shared/lib/const'
 import { useUserSwitcherContext } from '@/shared/lib/contexts'
 import { useRequest } from '@/shared/lib/hooks'
 import { Button, Typography } from '@/shared/uikit'
-import s from './styles.module.css'
+import './styles.css'
 
 export const RegistrationPage = () => {
   const [addressObjects, setAddressObjects] = React.useState<SelectAddressObject[]>([])
@@ -43,7 +43,10 @@ export const RegistrationPage = () => {
 
   return (
     <div>
-      <form className={s.form} onSubmit={handleSubmit(onFormSubmit)}>
+      <Typography tag="h1" variant="h1">
+        Регистрация
+      </Typography>
+      <form className="form" onSubmit={handleSubmit(onFormSubmit)}>
         <InputBlock
           label="ФИО"
           error={errors.fullName?.message}
@@ -96,7 +99,13 @@ export const RegistrationPage = () => {
           ref={register('password', { required: { value: true, message: 'Заполните поле' } }).ref}
         />
 
-        <Button styleType="solid" alertType="info" isLoading={isLoading} loader={<div>...</div>}>
+        <Button
+          className="btn"
+          styleType="solid"
+          alertType="info"
+          isLoading={isLoading}
+          loader={<div>...</div>}
+        >
           Зарегестрироваться
         </Button>
 

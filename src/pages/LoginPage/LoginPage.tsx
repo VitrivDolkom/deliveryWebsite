@@ -48,7 +48,7 @@ export const LoginPage = () => {
           ref={register('password', { required: { value: true, message: 'Заполните поле' } }).ref}
         />
 
-        <Button styleType="solid" alertType="info" isLoading={isLoading}>
+        <Button className="btn" styleType="solid" alertType="info" isLoading={isLoading}>
           Войти
         </Button>
       </form>

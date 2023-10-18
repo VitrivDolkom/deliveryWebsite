@@ -25,3 +25,8 @@
   flex: 1 1 auto;
   overflow-y: auto;
 }
+
+.btn {
+  width: auto;
+  padding: 16px;
+}

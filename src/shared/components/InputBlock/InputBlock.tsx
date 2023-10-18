@@ -35,7 +35,9 @@ export const InputBlock = forwardRef<HTMLInputElement, InputBlockProps>(
       <div className={s.wrapper}>
         <div className={cx({ block: true, [`${blockType}`]: true })}>
           <label className={cx({ t1: true, err1: !!error })} htmlFor={inputId}>
-            {label}
+            <Typography tag="span" variant="t1" className={!!error ? 'err1' : ''}>
+              {label}
+            </Typography>
           </label>
           {!!constValue && <span>{constValue}</span>}
           {!constValue && (
