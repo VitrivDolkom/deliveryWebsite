@@ -1,34 +1,40 @@
 .t1 {
+  color: var(--neutral-100, #000);
   font-size: 17px;
   font-style: normal;
   font-weight: 400;
 }
 
 .t2 {
+  color: var(--neutral-100, #000);
   font-size: 21px;
   font-style: normal;
   font-weight: 400;
 }
 
 .t3 {
+  color: var(--neutral-100, #000);
   font-size: 26px;
   font-style: normal;
   font-weight: 400;
 }
 
 .t4 {
+  color: var(--neutral-100, #000);
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
 }
 
 .t5 {
+  color: var(--neutral-100, #000);
   font-size: 19px;
   font-style: normal;
   font-weight: 400;
 }
 
 .t6 {
+  color: var(--neutral-100, #000);
   font-size: 26px;
   font-style: normal;
   font-weight: 600;

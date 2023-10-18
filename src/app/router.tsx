@@ -1,11 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { routes } from '@/shared/const'
-import { Layout } from './Layout'
+import { Layout } from './Layout/Layout'
 
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
+      {
+        path: routes.root(),
+        element: <div></div>
+      },
       {
         path: routes.login(),
         element: null
