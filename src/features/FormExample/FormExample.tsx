@@ -1,16 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { InputBlock } from '@/shared/components'
+import { GenderEnum, genderOptions } from '@/shared/lib/const'
 import { Button, Select, Typography } from '@/shared/uikit'
-
-enum GenderEnum {
-  Male = 'Мужчина',
-  Female = 'Женщина'
-}
-
-const genderOptions = [
-  { label: 'Мужчина', value: 'Male' },
-  { label: 'Женщина', value: 'Female' }
-]
 
 export const FormExample = () => {
   const {

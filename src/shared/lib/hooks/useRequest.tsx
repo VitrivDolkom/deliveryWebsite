@@ -1,34 +1,23 @@
+import axios, { AxiosRequestConfig } from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 
-interface RequestConfig {
-  headers: HeadersInit | undefined
-  method: 'get' | 'put' | 'delete' | 'post'
-  body?: Record<string, string>
-  url: string
-}
-
-export const useRequest = <T,>(onMount: boolean = false, configData?: RequestConfig) => {
+export const useRequest = <T,>(onMount: boolean = false, config?: AxiosRequestConfig<T>) => {
   const [data, setData] = useState<T | null>(null)
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  const requestHandler = useCallback(async (configData: RequestConfig) => {
+  const requestHandler = useCallback(async (config: AxiosRequestConfig<T>) => {
     setIsLoading(true)
     setError('')
 
     try {
-      const response = await fetch(configData.url, {
-        method: configData.method,
-        body: configData.body ? JSON.stringify(configData.body) : null,
-        headers: configData.headers
-      })
+      const response = await axios(config)
 
-      if (!response.ok) {
+      if (response.status >= 300) {
         throw new Error('Something went Wrong')
       }
 
-      const result = await response.json()
-      setData(result)
+      setData(response.data)
     } catch (error: unknown) {
       setError((error as Response).message || '')
     }
@@ -36,8 +25,8 @@ export const useRequest = <T,>(onMount: boolean = false, configData?: RequestCon
   }, [])
 
   useEffect(() => {
-    if (onMount && configData) {
-      requestHandler(configData)
+    if (onMount && config) {
+      requestHandler(config)
     }
   }, [])
 
