@@ -1,3 +1,11 @@
+.link {
+  transition: all .3s linear;
+}
+
+.link:hover {
+  color: var(--neutral-80, #000);
+}
+
 .t1 {
   color: var(--neutral-100, #000);
   font-size: 17px;

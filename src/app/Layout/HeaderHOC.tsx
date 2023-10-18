@@ -25,7 +25,7 @@ export const HeaderHOC = () => {
           </Typography>
 
           <Link to={routes.root()}>
-            <Typography tag="span" variant="t1">
+            <Typography tag="span" variant="t1" isLink={true}>
               Меню
             </Typography>
           </Link>
@@ -33,12 +33,12 @@ export const HeaderHOC = () => {
           {isAuth && (
             <>
               <Link to={routes.orders()}>
-                <Typography tag="span" variant="t2">
+                <Typography tag="span" variant="t1" isLink={true}>
                   Заказы
                 </Typography>
               </Link>
               <Link to={routes.cart()}>
-                <Typography tag="span" variant="t2">
+                <Typography tag="span" variant="t1" isLink={true}>
                   Корзина
                 </Typography>
               </Link>
