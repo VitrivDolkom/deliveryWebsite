@@ -1,3 +1,4 @@
+import { LoginPage } from '@/pages'
 import { createBrowserRouter } from 'react-router-dom'
 import { routes } from '@/shared/const'
 import { Layout } from './Layout/Layout'
@@ -12,7 +13,7 @@ export const router = createBrowserRouter([
       },
       {
         path: routes.login(),
-        element: null
+        element: <LoginPage />
       },
       {
         path: routes.registration(),
