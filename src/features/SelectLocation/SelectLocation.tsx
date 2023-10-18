@@ -1,8 +1,14 @@
+import React from 'react'
 import Select from 'react-select'
-import { useSelectLocation } from './useSelectLocation'
+import { SelectAddressObject, useSelectLocation } from './useSelectLocation'
 
-export const SelectLocation = () => {
-  const { addressObjects, onSelectChange } = useSelectLocation()
+interface SelectLocationProps {
+  addressObjects: SelectAddressObject[]
+  setAddressObjects: React.Dispatch<React.SetStateAction<SelectAddressObject[]>>
+}
+
+export const SelectLocation = ({ addressObjects, setAddressObjects }: SelectLocationProps) => {
+  const { onSelectChange } = useSelectLocation({ addressObjects, setAddressObjects })
 
   return (
     <div>
