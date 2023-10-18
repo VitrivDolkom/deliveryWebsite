@@ -7,9 +7,11 @@ export const Layout = () => (
   <UserProvider>
     <div className="wrapper">
       <HeaderHOC />
-      <div className="box">
-        <Outlet />
-      </div>
+      <main className="content">
+        <div className="box">
+          <Outlet />
+        </div>
+      </main>
       <Footer />
     </div>
   </UserProvider>
