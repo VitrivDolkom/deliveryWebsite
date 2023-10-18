@@ -1,0 +1,4 @@
+.addressBlock {
+  border: 1px solid var(neutral-50, #C2C2C2);
+  padding: 10px;
+}

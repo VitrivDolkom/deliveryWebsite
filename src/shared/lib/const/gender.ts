@@ -3,7 +3,7 @@ export enum GenderEnum {
   Female = 'Женщина'
 }
 
-export const genderOptions = [
-  { label: 'Мужчина', value: 'Male' },
-  { label: 'Женщина', value: 'Female' }
+export const genderOptions: { label: GenderEnum; value: Gender }[] = [
+  { label: GenderEnum.Male, value: 'Male' },
+  { label: GenderEnum.Female, value: 'Female' }
 ]
