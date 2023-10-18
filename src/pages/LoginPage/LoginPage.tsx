@@ -1,18 +1,34 @@
+import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { loginRequest } from '@/shared/api'
 import { InputBlock } from '@/shared/components'
+import { useUserSwitcherContext } from '@/shared/lib/contexts'
+import { useRequest } from '@/shared/lib/hooks'
 import { Button } from '@/shared/uikit'
 
 export const LoginPage = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors }
+    formState: { errors },
+    watch
   } = useForm<LoginCredentials>()
+  const { login } = useUserSwitcherContext()
+  const {
+    data: tokenResponse,
+    isLoading,
+    requestHandler
+  } = useRequest<TokenResponse, LoginCredentials>(false)
 
   const onFormSubmit: SubmitHandler<LoginCredentials> = async (userInfo) => {
-    // api request
-    console.log(userInfo)
+    requestHandler(loginRequest(userInfo))
   }
+
+  React.useEffect(() => {
+    if (!tokenResponse) return
+
+    login({ email: watch('email'), token: tokenResponse.token })
+  }, [tokenResponse])
 
   return (
     <div>
@@ -32,7 +48,7 @@ export const LoginPage = () => {
           ref={register('password', { required: { value: true, message: 'Заполните поле' } }).ref}
         />
 
-        <Button styleType="solid" alertType="info">
+        <Button styleType="solid" alertType="info" isLoading={isLoading}>
           Войти
         </Button>
       </form>

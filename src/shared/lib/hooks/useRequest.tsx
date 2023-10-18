@@ -1,12 +1,12 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 
-export const useRequest = <T,>(onMount: boolean = false, config?: AxiosRequestConfig<T>) => {
+export const useRequest = <T, D = never>(onMount: boolean = false, config?: AxiosRequestConfig<D>) => {
   const [data, setData] = useState<T | null>(null)
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  const requestHandler = useCallback(async (config: AxiosRequestConfig<T>) => {
+  const requestHandler = useCallback(async (config: AxiosRequestConfig<D>) => {
     setIsLoading(true)
     setError('')
 
