@@ -3,20 +3,24 @@ import { SingleValue } from 'react-select'
 import { addressSearchRequest } from '@/shared/api'
 import { useRequest } from '@/shared/lib/hooks'
 
+export interface SelectAddressObject {
+  options: SelectAddress[]
+  object: SelectAddress | null
+  title: string
+}
+
 interface SelectAddress {
   address: SearchAddressModel
   value: string
   label: string
 }
 
-interface SelectAddressObject {
-  options: SelectAddress[]
-  object: SelectAddress | null
-  title: string
+interface UseSelectLocationParams {
+  addressObjects: SelectAddressObject[]
+  setAddressObjects: React.Dispatch<React.SetStateAction<SelectAddressObject[]>>
 }
 
-export const useSelectLocation = () => {
-  const [addressObjects, setAddressObjects] = React.useState<SelectAddressObject[]>([])
+export const useSelectLocation = ({ addressObjects, setAddressObjects }: UseSelectLocationParams) => {
   const { data: addressSearch, requestHandler: fetchAddressSearch } =
     useRequest<SearchAddressModel[]>(false)
 
