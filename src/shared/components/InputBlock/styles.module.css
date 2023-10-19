@@ -24,6 +24,11 @@
   background-color: var(--neutral-10);
   border-radius: 4px;
   border: 1px solid var(--neutral-50);
+  transition: all .3s linear;
+}
+
+.input:hover {
+  border-color: var(--neutral-60);
 }
 
 .input:focus {
