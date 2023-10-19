@@ -1,0 +1,28 @@
+.loader {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid #1c93e3;
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  animation: rotation .8s linear infinite;
+}
+
+.white {
+  border-top-color: var(--neutral-10);
+}
+
+.red {
+  border-top-color: var(--danger-primary);
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

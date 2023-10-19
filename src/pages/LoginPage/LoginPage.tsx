@@ -1,7 +1,7 @@
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { loginRequest } from '@/shared/api'
-import { InputBlock } from '@/shared/components'
+import { ButtonLoader, InputBlock } from '@/shared/components'
 import { validations } from '@/shared/const'
 import { useUserSwitcherContext } from '@/shared/lib/contexts'
 import { useRequest } from '@/shared/lib/hooks'
@@ -49,7 +49,13 @@ export const LoginPage = () => {
           ref={register('password', validations.password).ref}
         />
 
-        <Button className="btn" styleType="solid" alertType="info" isLoading={isLoading}>
+        <Button
+          className="btn"
+          styleType="solid"
+          alertType="info"
+          isLoading={isLoading}
+          loader={<ButtonLoader />}
+        >
           Войти
         </Button>
       </form>
