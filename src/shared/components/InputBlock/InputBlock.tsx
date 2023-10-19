@@ -34,8 +34,8 @@ export const InputBlock = forwardRef<HTMLInputElement, InputBlockProps>(
     return (
       <div className={s.wrapper}>
         <div className={cx({ block: true, [`${blockType}`]: true })}>
-          <label className={cx({ t1: true, err1: !!error })} htmlFor={inputId}>
-            <Typography tag="span" variant="t1" className={!!error ? 'err1' : ''}>
+          <label htmlFor={inputId}>
+            <Typography tag="span" variant="t1">
               {label}
             </Typography>
           </label>

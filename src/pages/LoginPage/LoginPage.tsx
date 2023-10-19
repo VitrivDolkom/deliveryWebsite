@@ -2,6 +2,7 @@ import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { loginRequest } from '@/shared/api'
 import { InputBlock } from '@/shared/components'
+import { validations } from '@/shared/const'
 import { useUserSwitcherContext } from '@/shared/lib/contexts'
 import { useRequest } from '@/shared/lib/hooks'
 import { Button } from '@/shared/uikit'
@@ -36,16 +37,16 @@ export const LoginPage = () => {
         <InputBlock
           label="Email"
           error={errors.email?.message}
-          {...register('email', { required: { value: true, message: 'Заполните поле' } })}
-          ref={register('email', { required: { value: true, message: 'Заполните поле' } }).ref}
+          {...register('email', validations.email)}
+          ref={register('email', validations.email).ref}
         />
 
         <InputBlock
           label="Пароль"
           type="password"
           error={errors.password?.message}
-          {...register('password', { required: { value: true, message: 'Заполните поле' } })}
-          ref={register('password', { required: { value: true, message: 'Заполните поле' } }).ref}
+          {...register('password', validations.password)}
+          ref={register('password', validations.password).ref}
         />
 
         <Button className="btn" styleType="solid" alertType="info" isLoading={isLoading}>

@@ -1,9 +1,10 @@
-export interface InputValidations {
+interface InputValidations {
   fullName: Validation
   phone: Validation
   email: Validation
   birthDate: Validation
   orderTime: Validation
+  password: Validation
 }
 
 interface Validation {
@@ -18,18 +19,17 @@ export const validations: InputValidations = {
     required: { value: true, message: 'Заполните поле' },
     maxLength: { value: 30, message: 'Длина от 2 до 30' },
     minLength: { value: 2, message: 'Длина от 2 до 30' },
-    pattern: { value: /^[A-Za-z]+$/i, message: 'Некорректное имя' }
+    pattern: { value: /^[A-Za-z]+\s[A-Za-z]+\s[A-Za-z]+$/, message: 'Некорректное имя' }
   },
   phone: {
     required: { value: true, message: 'Заполните поле' },
     maxLength: { value: 11, message: 'Длина 11' },
-    pattern: { value: /^(\\+7) [0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}/i, message: 'Некорректный телефон' }
+    pattern: { value: /^(\\+7) [0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}/, message: 'Некорректный телефон' }
   },
   email: {
     required: { value: true, message: 'Заполните поле' },
     pattern: {
-      value:
-        /^[\\w]+@.*[a-zA-Z0-9]([a-zA-Z0-9-]?[a-zA-Z0-9])*(.[a-zA-Z0-9]([a-zA-Z0-9-]?[a-zA-Z0-9])*)*(\\.[a-z]{2,4})/i,
+      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
       message: 'Некорректный email'
     }
   },
@@ -38,5 +38,9 @@ export const validations: InputValidations = {
   },
   orderTime: {
     required: { value: true, message: 'Заполните поле' }
+  },
+  password: {
+    required: { value: true, message: 'Заполните поле' },
+    minLength: { value: 6, message: 'Минимальная длина 6 символов' }
   }
 }

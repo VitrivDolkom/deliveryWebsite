@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import Select from 'react-select'
 import { registrationRequest } from '@/shared/api'
 import { InputBlock } from '@/shared/components'
+import { validations } from '@/shared/const'
 import { GenderEnum, genderOptions } from '@/shared/lib/const'
 import { useUserSwitcherContext } from '@/shared/lib/contexts'
 import { useRequest } from '@/shared/lib/hooks'
@@ -50,8 +51,8 @@ export const RegistrationPage = () => {
         <InputBlock
           label="ФИО"
           error={errors.fullName?.message}
-          {...register('fullName', { required: { value: true, message: 'Заполните поле' } })}
-          ref={register('fullName', { required: { value: true, message: 'Заполните поле' } }).ref}
+          {...register('fullName', validations.birthDate)}
+          ref={register('fullName', validations.birthDate).ref}
         />
 
         <Select
@@ -62,24 +63,18 @@ export const RegistrationPage = () => {
 
         <InputBlock
           error={errors.phoneNumber?.message}
-          {...register('phoneNumber', {
-            required: { value: true, message: 'Заполните поле' }
-          })}
+          {...register('phoneNumber', validations.phone)}
           type="tel"
           label="Номер телефона"
-          ref={
-            register('phoneNumber', {
-              required: { value: true, message: 'Заполните поле' }
-            }).ref
-          }
+          ref={register('phoneNumber', validations.phone).ref}
         />
 
         <InputBlock
           label="Дата рождения"
           error={errors.birthDate?.message}
-          {...register('birthDate', { required: { value: true, message: 'Заполните поле' } })}
+          {...register('birthDate', validations.birthDate)}
           type="date"
-          ref={register('birthDate', { required: { value: true, message: 'Заполните поле' } }).ref}
+          ref={register('birthDate', validations.birthDate).ref}
         />
 
         <SelectLocation addressObjects={addressObjects} setAddressObjects={setAddressObjects} />
@@ -87,16 +82,16 @@ export const RegistrationPage = () => {
         <InputBlock
           label="Email (будет использоваться для входа в систему)"
           error={errors.email?.message}
-          {...register('email', { required: { value: true, message: 'Заполните поле' } })}
-          ref={register('email', { required: { value: true, message: 'Заполните поле' } }).ref}
+          {...register('email', validations.email)}
+          ref={register('email', validations.email).ref}
         />
 
         <InputBlock
           label="Пароль"
           type="password"
           error={errors.password?.message}
-          {...register('password', { required: { value: true, message: 'Заполните поле' } })}
-          ref={register('password', { required: { value: true, message: 'Заполните поле' } }).ref}
+          {...register('password', validations.password)}
+          ref={register('password', validations.password).ref}
         />
 
         <Button
