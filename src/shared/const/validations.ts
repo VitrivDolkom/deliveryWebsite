@@ -23,8 +23,8 @@ export const validations: InputValidations = {
   },
   phone: {
     required: { value: true, message: 'Заполните поле' },
-    maxLength: { value: 11, message: 'Длина 11' },
-    pattern: { value: /^(\\+7) [0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}/, message: 'Некорректный телефон' }
+    maxLength: { value: 16, message: 'Длина 11' },
+    pattern: { value: /^(\+7) [0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}/, message: 'Некорректный телефон' }
   },
   email: {
     required: { value: true, message: 'Заполните поле' },

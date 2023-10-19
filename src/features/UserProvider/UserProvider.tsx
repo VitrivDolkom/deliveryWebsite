@@ -13,17 +13,10 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     email: ''
   })
 
-  React.useEffect(() => {
-    if (isAuth) {
-      navigate(routes.root())
-    } else {
-      navigate(routes.login())
-    }
-  }, [isAuth])
-
   const login = (userInfo: UserContextInfo) => {
     setIsAuth(true)
     setUser({ ...userInfo })
+    navigate(routes.root())
   }
 
   const logout = () => {
@@ -32,6 +25,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       token: '',
       email: ''
     })
+    navigate(routes.login())
   }
 
   return <UserContext.Provider value={{ isAuth, user, login, logout }}>{children}</UserContext.Provider>
