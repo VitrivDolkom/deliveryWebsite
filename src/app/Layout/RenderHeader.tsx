@@ -1,12 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Header } from '@/shared/components'
 import { routes } from '@/shared/const'
-import { useUserContext } from '@/shared/lib/contexts'
+import { useUserContext, useUserSwitcherContext } from '@/shared/lib/contexts'
 import { Button, Typography } from '@/shared/uikit'
 
-export const HeaderHOC = () => {
+export const RenderHeader = () => {
   const navigate = useNavigate()
   const { isAuth, user } = useUserContext()
+  const { logout } = useUserSwitcherContext()
 
   const onLoginClick = () => {
     navigate(routes.login())
@@ -14,6 +15,11 @@ export const HeaderHOC = () => {
 
   const onRegisterClick = () => {
     navigate(routes.registration())
+  }
+
+  const onLogoutClick = () => {
+    logout()
+    navigate(routes.login())
   }
 
   return (
@@ -56,7 +62,7 @@ export const HeaderHOC = () => {
             </Link>
           )}
           {isAuth && (
-            <Button styleType="outlined" alertType="danger">
+            <Button styleType="outlined" alertType="danger" onClick={onLogoutClick}>
               Выйти
             </Button>
           )}

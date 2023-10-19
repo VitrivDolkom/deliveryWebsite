@@ -1,12 +1,12 @@
 import { UserProvider } from '@/features/UserProvider'
 import { Outlet } from 'react-router-dom'
 import { Footer } from '@/shared/components'
-import { HeaderHOC } from './HeaderHOC'
+import { RenderHeader } from './RenderHeader'
 
 export const Layout = () => (
   <UserProvider>
     <div className="wrapper">
-      <HeaderHOC />
+      <RenderHeader />
       <main className="content">
         <div className="box">
           <Outlet />
