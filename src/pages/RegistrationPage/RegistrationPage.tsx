@@ -3,7 +3,7 @@ import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import Select from 'react-select'
 import { registrationRequest } from '@/shared/api'
-import { InputBlock } from '@/shared/components'
+import { ButtonLoader, InputBlock } from '@/shared/components'
 import { validations } from '@/shared/const'
 import { GenderEnum, genderOptions } from '@/shared/lib/const'
 import { useUserSwitcherContext } from '@/shared/lib/contexts'
@@ -99,7 +99,7 @@ export const RegistrationPage = () => {
           styleType="solid"
           alertType="info"
           isLoading={isLoading}
-          loader={<div>...</div>}
+          loader={<ButtonLoader />}
         >
           Зарегестрироваться
         </Button>
