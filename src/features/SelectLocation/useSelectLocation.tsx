@@ -2,6 +2,7 @@ import React from 'react'
 import { SingleValue } from 'react-select'
 import { addressSearchRequest } from '@/shared/api'
 import { useRequest } from '@/shared/lib/hooks'
+import { selectAddressFromSearchModel } from './selectAddressFromSearchModel'
 
 export interface SelectAddressObject {
   options: SelectAddress[]
@@ -31,14 +32,7 @@ export const useSelectLocation = ({ addressObjects, setAddressObjects }: UseSele
   React.useEffect(() => {
     if (!addressSearch || !addressSearch.length) return
 
-    setAddressObjects((prev) => [
-      ...prev,
-      {
-        object: null,
-        options: addressSearch.map((address) => ({ address, value: address.text, label: address.text })),
-        title: addressSearch[0].objectLevelText
-      }
-    ])
+    setAddressObjects((prev) => [...prev, selectAddressFromSearchModel(addressSearch)])
   }, [addressSearch])
 
   const onSelectChange = (newValue: SingleValue<SelectAddress>, index: number) => {
