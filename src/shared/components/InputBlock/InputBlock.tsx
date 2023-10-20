@@ -17,7 +17,7 @@ const cx = classNames.bind(s)
 
 export const InputBlock = forwardRef<HTMLInputElement, InputBlockProps>(
   (props: InputBlockProps, ref: ForwardedRef<HTMLInputElement>) => {
-    const { label, error, blockType = 'column', constValue = '' } = props
+    const { label, error, blockType = 'column', constValue } = props
     const inputId = useId()
 
     const telOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,8 +39,8 @@ export const InputBlock = forwardRef<HTMLInputElement, InputBlockProps>(
               {label}
             </Typography>
           </label>
-          {!!constValue && <span>{constValue}</span>}
-          {!constValue && (
+          {constValue !== undefined && <span>{constValue}</span>}
+          {constValue === undefined && (
             <input
               className={s.input}
               {...props}
