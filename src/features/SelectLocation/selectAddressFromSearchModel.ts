@@ -1,6 +1,6 @@
-import { SelectAddressObject } from './useSelectLocation'
+import { SelectAddress, SelectAddressObject } from './useSelectLocation'
 
-export const selectAddressFromSearchModel = (
+export const selectAddressObjectFromSearchModel = (
   addressSearch: SearchAddressModel[],
   setDefault: boolean = false
 ): SelectAddressObject => {
@@ -18,3 +18,6 @@ export const selectAddressFromSearchModel = (
     title: addressSearch[0].objectLevelText
   }
 }
+
+export const selectAddressFromSearchModel = (addressSearch: SearchAddressModel[]): SelectAddress[] =>
+  addressSearch.map((address) => ({ address: address, label: address.text, value: address.text }))

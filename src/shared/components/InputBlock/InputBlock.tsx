@@ -39,8 +39,9 @@ export const InputBlock = forwardRef<HTMLInputElement, InputBlockProps>(
               {label}
             </Typography>
           </label>
-          {constValue !== undefined && <span>{constValue}</span>}
-          {constValue === undefined && (
+          {constValue !== undefined ? (
+            <span>{constValue}</span>
+          ) : (
             <input
               className={s.input}
               {...props}
