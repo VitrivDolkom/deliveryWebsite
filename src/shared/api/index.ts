@@ -1,4 +1,5 @@
 export { request } from './request'
+export { authHeaders } from './authHeaders'
 export * from './requests/searchRequest'
 export * from './requests/registrationRequest'
 export * from './requests/loginRequest'
