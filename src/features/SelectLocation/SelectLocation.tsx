@@ -14,12 +14,13 @@ export const SelectLocation = ({ addressObjects, setAddressObjects }: SelectLoca
   return (
     <div>
       {addressObjects?.map((select, index) => (
-        <div key={index} onClick={() => onSelectClick(index - 1)}>
+        <div key={index}>
           <Typography variant="t1">{select.title}</Typography>
           <Select
             value={addressObjects[index].object}
             options={select.options}
             onChange={(newValue) => onSelectChange(newValue, index)}
+            onMenuOpen={() => onSelectClick(index - 1)}
           />
         </div>
       ))}

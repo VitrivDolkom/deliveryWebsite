@@ -9,14 +9,16 @@ export const ProfilePage = () => {
   const {
     setAddressObjects,
     addressLoading,
+    updateProfileLoading,
+    updateProfileError,
     addressObjects,
     error,
     errors,
     handleSubmit,
     isLoading,
+    userInfo,
     onFormSubmit,
-    register,
-    watch
+    register
   } = useProfilePage()
 
   return (
@@ -33,14 +35,7 @@ export const ProfilePage = () => {
           ref={register('fullName', validations.fullName).ref}
         />
 
-        <InputBlock
-          label="Email"
-          constValue={watch('email')}
-          blockType="row"
-          error={errors.email?.message}
-          {...register('email', validations.email)}
-          ref={register('email', validations.email).ref}
-        />
+        <InputBlock label="Email" constValue={userInfo?.email} blockType="row" />
 
         <InputBlock
           label="Дата рождения"
@@ -51,12 +46,7 @@ export const ProfilePage = () => {
           ref={register('birthDate', validations.birthDate).ref}
         />
 
-        <InputBlock
-          label="Пол"
-          blockType="row"
-          constValue={GenderEnum[watch('gender')] || GenderEnum.Male}
-          error={errors.email?.message}
-        />
+        <InputBlock label="Пол" blockType="row" constValue={GenderEnum[userInfo?.gender || 'Male']} />
 
         <InputBlock
           label="Телефон"
@@ -73,7 +63,7 @@ export const ProfilePage = () => {
           className="btn"
           styleType="solid"
           alertType="info"
-          isLoading={isLoading || addressLoading}
+          isLoading={isLoading || addressLoading || updateProfileLoading}
           loader={<ButtonLoader />}
         >
           Обновить
@@ -81,7 +71,12 @@ export const ProfilePage = () => {
 
         {!!error && (
           <Typography tag="p" variant="err1">
-            {error}
+            Ошибка получения профиля
+          </Typography>
+        )}
+        {!!updateProfileError && (
+          <Typography tag="p" variant="err1">
+            Ошибка обновления профиля, проверьте корректность выбора адреса и введенных данных
           </Typography>
         )}
       </form>

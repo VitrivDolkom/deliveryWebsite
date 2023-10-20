@@ -40,18 +40,21 @@ export const useSelectLocation = ({ addressObjects, setAddressObjects }: UseSele
   React.useEffect(() => {
     if (!singleAddressSearch || !singleAddressSearch.length) return
 
-    const objectLevel = singleAddressSearch[0].objectLevel
+    let index = 0
+
+    for (let i = 0; i < addressObjects.length; i++) {
+      const addressObject = addressObjects[i]
+      const found = singleAddressSearch.some(
+        (address) => address.objectId === addressObject.object?.address.objectId
+      )
+
+      if (found) {
+        index = i
+      }
+    }
 
     setAddressObjects((prev) => {
       const copy = [...prev]
-      let index = 0
-
-      for (let i = 0; i < copy.length; i++) {
-        const address = copy[i]
-        if (address.object?.address.objectLevel === objectLevel) {
-          index = i
-        }
-      }
 
       const newOptions = selectAddressFromSearchModel(singleAddressSearch)
       copy[index] = { ...copy[index], options: newOptions }
@@ -61,7 +64,8 @@ export const useSelectLocation = ({ addressObjects, setAddressObjects }: UseSele
   }, [singleAddressSearch])
 
   const onSelectClick = (index: number) => {
-    debugger
+    if (index < 0) return
+
     fetchSingleAddressSearch(
       addressSearchRequest({
         parentObjectId: addressObjects[index].object?.address.objectId,
@@ -84,7 +88,7 @@ export const useSelectLocation = ({ addressObjects, setAddressObjects }: UseSele
 
       fetchAddressSearch(
         addressSearchRequest({
-          parentObjectId: copy[index].object?.address.objectId,
+          parentObjectId: newValue?.address.objectId,
           query: ''
         })
       )
