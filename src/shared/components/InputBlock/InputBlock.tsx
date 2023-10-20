@@ -17,7 +17,7 @@ const cx = classNames.bind(s)
 
 export const InputBlock = forwardRef<HTMLInputElement, InputBlockProps>(
   (props: InputBlockProps, ref: ForwardedRef<HTMLInputElement>) => {
-    const { label, error, blockType = 'column', constValue } = props
+    const { label, error, blockType, constValue, ...inputProps } = props
     const inputId = useId()
 
     const telOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +44,7 @@ export const InputBlock = forwardRef<HTMLInputElement, InputBlockProps>(
           ) : (
             <input
               className={s.input}
-              {...props}
+              {...inputProps}
               onChange={props.type === 'tel' ? telOnChange : props.onChange}
               ref={ref}
               id={inputId}

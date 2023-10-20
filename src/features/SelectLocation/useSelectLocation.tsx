@@ -2,10 +2,7 @@ import React from 'react'
 import { SingleValue } from 'react-select'
 import { addressSearchRequest } from '@/shared/api'
 import { useRequest } from '@/shared/lib/hooks'
-import {
-  selectAddressFromSearchModel,
-  selectAddressObjectFromSearchModel
-} from './selectAddressFromSearchModel'
+import { selectAddressFromSearchModel, selectAddressObjectFromSearchModel } from './helpers'
 
 export interface SelectAddressObject {
   options: SelectAddress[]
@@ -63,7 +60,7 @@ export const useSelectLocation = ({ addressObjects, setAddressObjects }: UseSele
     })
   }, [singleAddressSearch])
 
-  const onSelectFocus = (index: number) => {
+  const onSelectClick = (index: number) => {
     debugger
     fetchSingleAddressSearch(
       addressSearchRequest({
@@ -96,5 +93,5 @@ export const useSelectLocation = ({ addressObjects, setAddressObjects }: UseSele
     })
   }
 
-  return { addressObjects, onSelectChange, onSelectFocus }
+  return { addressObjects, onSelectChange, onSelectClick }
 }

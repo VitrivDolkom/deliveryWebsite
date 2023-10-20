@@ -3,7 +3,7 @@ import { ButtonLoader, InputBlock } from '@/shared/components'
 import { validations } from '@/shared/const'
 import { GenderEnum } from '@/shared/lib/const'
 import { Button, Typography } from '@/shared/uikit'
-import { useProfile } from './useProfile'
+import { useProfilePage } from './useProfilePage'
 
 export const ProfilePage = () => {
   const {
@@ -17,7 +17,7 @@ export const ProfilePage = () => {
     onFormSubmit,
     register,
     watch
-  } = useProfile()
+  } = useProfilePage()
 
   return (
     <div>
@@ -56,8 +56,6 @@ export const ProfilePage = () => {
           blockType="row"
           constValue={GenderEnum[watch('gender')] || GenderEnum.Male}
           error={errors.email?.message}
-          {...register('gender', validations.email)}
-          ref={register('gender', validations.email).ref}
         />
 
         <InputBlock

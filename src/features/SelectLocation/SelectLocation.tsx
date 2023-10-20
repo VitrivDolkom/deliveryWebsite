@@ -9,12 +9,12 @@ interface SelectLocationProps {
 }
 
 export const SelectLocation = ({ addressObjects, setAddressObjects }: SelectLocationProps) => {
-  const { onSelectChange, onSelectFocus } = useSelectLocation({ addressObjects, setAddressObjects })
+  const { onSelectChange, onSelectClick } = useSelectLocation({ addressObjects, setAddressObjects })
 
   return (
     <div>
       {addressObjects?.map((select, index) => (
-        <div key={index} onClick={() => onSelectFocus(index - 1)}>
+        <div key={index} onClick={() => onSelectClick(index - 1)}>
           <Typography variant="t1">{select.title}</Typography>
           <Select
             value={addressObjects[index].object}

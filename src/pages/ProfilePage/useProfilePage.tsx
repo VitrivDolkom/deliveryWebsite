@@ -1,4 +1,4 @@
-import { selectAddressFromSearchModel, SelectAddressObject } from '@/features'
+import { SelectAddressObject, selectAddressObjectFromSearchModel } from '@/features'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { getAddressChainConfig, getProfileConfig } from '@/shared/api'
@@ -6,7 +6,9 @@ import { useUserContext } from '@/shared/lib/contexts'
 import { getDateFromDateTime } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 
-export const useProfile = () => {
+type UserProfile = Omit<UserDto, 'id'>
+
+export const useProfilePage = () => {
   const [addressObjects, setAddressObjects] = React.useState<SelectAddressObject[]>([])
   const {
     handleSubmit,
@@ -14,7 +16,7 @@ export const useProfile = () => {
     formState: { errors },
     watch,
     reset
-  } = useForm<UserDto>()
+  } = useForm<UserProfile>()
   const { user } = useUserContext()
   const {
     data: userInfo,
@@ -38,16 +40,15 @@ export const useProfile = () => {
   React.useEffect(() => {
     if (!addressChain) return
 
-    setAddressObjects(addressChain.map((address) => selectAddressFromSearchModel([address], true)))
+    setAddressObjects(addressChain.map((address) => selectAddressObjectFromSearchModel([address], true)))
   }, [addressChain])
 
-  const onFormSubmit: SubmitHandler<UserDto> = async (userInfo) => {
+  const onFormSubmit: SubmitHandler<UserProfile> = async (userInfo) => {
     console.log(userInfo)
   }
 
   return {
     handleSubmit,
-    onFormSubmit,
     addressChain,
     addressLoading,
     userInfo,
@@ -55,6 +56,7 @@ export const useProfile = () => {
     error,
     register,
     watch,
+    onFormSubmit,
     errors,
     addressObjects,
     setAddressObjects
