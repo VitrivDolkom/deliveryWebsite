@@ -12,5 +12,5 @@ export const getDishesConfig = ({ categories = [], page, sorting, vegetarian }: 
     config: { method: 'get' },
     url: `/dish?${categories
       .map((category) => `categories=${category}&`)
-      .join('')}vegetarian=${vegetarian}&sorting=${sorting}&page=${page}`
+      .join('')}vegetarian=${vegetarian}${!sorting ? '' : `&sorting=${sorting}`}&page=${page}`
   })

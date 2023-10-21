@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { MultiValue, SingleValue } from 'react-select'
 import { getDishesConfig } from '@/shared/api'
@@ -13,13 +12,12 @@ export const useMenuPage = () => {
   const sorting = searchParams.get('sorting') || ''
   const page = searchParams.get('page') || '1'
 
-  const { data: dishPagedList, requestHandler: fetchDishes } = useRequest<DishPagedListDto>(false)
-
-  React.useEffect(() => {
-    fetchDishes(getDishesConfig({ categories, page, sorting, vegetarian }))
-
-    setSearchParams(searchParams)
-  }, [])
+  const {
+    data: dishPagedList,
+    isLoading,
+    error,
+    requestHandler: fetchDishes
+  } = useRequest<DishPagedListDto>(true, getDishesConfig({ categories, page, sorting, vegetarian }))
 
   const onSortingChange = (selectedOption: SingleValue<DishSortingOption>) => {
     setSearchParams((prev) => {
@@ -46,14 +44,21 @@ export const useMenuPage = () => {
     setSearchParams(searchParams)
   }
 
+  const onFiltersApply = () => {
+    fetchDishes(getDishesConfig({ categories, page, sorting, vegetarian }))
+  }
+
   return {
     categories,
     vegetarian,
     sorting,
+    isLoading,
     page,
     dishPagedList,
+    error,
     onSortingChange,
     onCategoriesChange,
-    onVegetarianChange
+    onVegetarianChange,
+    onFiltersApply
   }
 }

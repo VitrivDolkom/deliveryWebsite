@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
-import { InputBlock, Pagination } from '@/shared/components'
+import { InputBlock } from '@/shared/components'
 import {
   DishCategoryEnum,
   dishCategoryOptions,
@@ -8,7 +8,7 @@ import {
   dishSortingOptions
 } from '@/shared/lib/const'
 import { Button } from '@/shared/uikit'
-import { MenuDishCard } from './MenuDishCard/MenuDishCard'
+import { MenuDishesList } from './MenuDishesList/MenuDishesList'
 import { useMenuPage } from './useMenuPage'
 import s from './styles.module.css'
 
@@ -18,14 +18,13 @@ export const MenuPage = () => {
     categories,
     sorting,
     dishPagedList,
+    isLoading,
+    error,
     onSortingChange,
     onCategoriesChange,
-    onVegetarianChange
+    onVegetarianChange,
+    onFiltersApply
   } = useMenuPage()
-
-  if (!dishPagedList) {
-    return <div>Loading</div>
-  }
 
   return (
     <div className={s.wrapper}>
@@ -56,22 +55,17 @@ export const MenuPage = () => {
             label="Показать только вегатерианские"
             blockType="row"
             type="checkbox"
-            value={vegetarian}
+            checked={vegetarian === 'true'}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               onVegetarianChange(e.currentTarget.checked)
             }
           />
         </div>
-        <Button styleType="solid" alertType="info" className="btn">
+        <Button styleType="solid" alertType="info" className="btn" onClick={onFiltersApply}>
           Применить
         </Button>
       </div>
-      <div className={s.list}>
-        {dishPagedList.dishes.map((dish) => (
-          <MenuDishCard key={dish.id} dish={dish} />
-        ))}
-      </div>
-      <Pagination pagination={dishPagedList.pagination} />
+      <MenuDishesList dishPagedList={dishPagedList} error={error} isLoading={isLoading} />
     </div>
   )
 }
