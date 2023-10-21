@@ -27,7 +27,7 @@ const test: DishDto[] = [
 export const MenuPage = () => (
   <div className={s.list}>
     {test.map((dish) => (
-      <MenuDishCard dish={dish} />
+      <MenuDishCard key={dish.id} dish={dish} />
     ))}
   </div>
 )

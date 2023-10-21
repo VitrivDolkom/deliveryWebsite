@@ -1,5 +1,5 @@
 .card {
-  flex: 0 0 25%;
+  flex: 0 0 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,8 +14,13 @@
 }
 
 .content {
-  margin: 8px 0;
+  flex: 1 1 auto;
+  margin: 20px 0;
   padding: 0 10px;
+}
+
+.description {
+  margin-top: 8px;
 }
 
 .name {
@@ -37,5 +42,5 @@
   justify-content: space-around;
   align-items: center;
   background-color: var(--neutral-40);
-  padding: 8px 0;
+  padding: 10px 0;
 }

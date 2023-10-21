@@ -1,3 +1,4 @@
+import { DishRating } from '@/features'
 import { Button, Typography } from '@/shared/uikit'
 import s from './styles.module.css'
 
@@ -19,8 +20,8 @@ export const MenuDishCard = ({ dish }: MenuDishCardProps) => (
       </Typography>
     </div>
     <main className={s.content}>
-      <div className="rate"></div>
-      <Typography tag="p" variant="t1">
+      <DishRating rating={dish.rating} />
+      <Typography tag="p" variant="t1" className={s.description}>
         {dish.description}
       </Typography>
     </main>
