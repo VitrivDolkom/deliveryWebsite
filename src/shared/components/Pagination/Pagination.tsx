@@ -18,6 +18,7 @@ export const Pagination = ({ pagination }: PaginationProps) => (
 
       return (
         <Button
+          key={currentPage}
           className={s.btn}
           styleType={pagination.current === currentPage ? 'solid' : 'outlined'}
           alertType="info"

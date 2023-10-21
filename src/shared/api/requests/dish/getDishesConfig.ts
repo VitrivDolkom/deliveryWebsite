@@ -1,16 +1,16 @@
 import { request } from '@/shared/api'
 
-interface GetDishesParams {
-  categories: DishCategory[]
-  vegetarian: boolean
-  sorting: DishSorting
-  page: number
+export interface GetDishesParams {
+  categories?: string[]
+  vegetarian?: string
+  sorting?: string
+  page?: string
 }
 
-export const getDishesConfig = ({ categories, page, sorting, vegetarian }: GetDishesParams) =>
+export const getDishesConfig = ({ categories = [], page, sorting, vegetarian }: GetDishesParams) =>
   request<never>({
     config: { method: 'get' },
-    url: `/dish?parentObjectId=${categories.map(
-      (category) => `categories=${category}&`
-    )}vegetarian=${vegetarian}&sorting=${sorting}&page=${page}`
+    url: `/dish?${categories
+      .map((category) => `categories=${category}&`)
+      .join('')}vegetarian=${vegetarian}&sorting=${sorting}&page=${page}`
   })

@@ -6,7 +6,12 @@ export enum DishCategoryEnum {
   Drink = 'Напиток'
 }
 
-export const dishCategoryOptions: { label: DishCategoryEnum; value: DishCategory }[] = [
+export interface DishCategoryOption {
+  label: DishCategoryEnum
+  value: string
+}
+
+export const dishCategoryOptions: DishCategoryOption[] = [
   { label: DishCategoryEnum.Wok, value: 'Wok' },
   { label: DishCategoryEnum.Pizza, value: 'Pizza' },
   { label: DishCategoryEnum.Soup, value: 'Soup' },
@@ -23,7 +28,12 @@ export enum DishSortingEnum {
   RatingDesc = 'Рейтинг ↓'
 }
 
-export const dishSortingOptions: { label: DishSortingEnum; value: DishSorting }[] = [
+export interface DishSortingOption {
+  label: DishSortingEnum
+  value: string
+}
+
+export const dishSortingOptions: DishSortingOption[] = [
   { label: DishSortingEnum.NameAsc, value: 'NameAsc' },
   { label: DishSortingEnum.NameDesc, value: 'NameDesc' },
   { label: DishSortingEnum.PriceAsc, value: 'PriceAsc' },

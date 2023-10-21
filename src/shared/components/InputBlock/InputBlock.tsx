@@ -34,7 +34,7 @@ export const InputBlock = forwardRef<HTMLInputElement, InputBlockProps>(
     const renderInput = () =>
       props.type === 'checkbox' ? (
         <label className={s.switch}>
-          <input className={s.switcher} type="checkbox" id={inputId} />
+          <input className={s.switcher} {...props} type="checkbox" id={inputId} />
           <span className={cx({ slider: true, round: true })}></span>
         </label>
       ) : (
