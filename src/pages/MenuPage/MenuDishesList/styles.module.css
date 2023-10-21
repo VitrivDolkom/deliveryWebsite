@@ -1,3 +1,9 @@
+.wrapper {
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+}
+
 .list {
   display: flex;
   flex-wrap: wrap;
@@ -63,4 +69,14 @@
 
 .vegan img {
   max-width: 100%;
+}
+
+.preloader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  flex: 1 1 auto;
 }

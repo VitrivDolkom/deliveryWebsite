@@ -23,7 +23,11 @@ export const useMenuPage = () => {
     isLoading,
     error,
     requestHandler: fetchDishes
-  } = useRequest<DishPagedListDto>(true, getDishesConfig({ categories, page, sorting, vegetarian }))
+  } = useRequest<DishPagedListDto>({
+    onMount: true,
+    config: getDishesConfig({ categories, page, sorting, vegetarian }),
+    duration: 800
+  })
 
   React.useEffect(() => {
     setSearchParams(searchParams)
@@ -59,7 +63,6 @@ export const useMenuPage = () => {
   }
 
   const onPageChange = (pageNumber: number) => {
-    debugger
     searchParams.set('page', pageNumber.toString())
     setSearchParams(searchParams)
   }

@@ -1,3 +1,4 @@
+import preloader from '@/assets/gifs/search.gif'
 import { Pagination } from '@/shared/components'
 import { Typography } from '@/shared/uikit'
 import { MenuDishCard } from './MenuDishCard'
@@ -16,30 +17,31 @@ export const MenuDishesList = ({
   isLoading,
   onPageChange
 }: MenuDishesListProps) => {
-  if (isLoading) {
+  if (!!error) {
     return (
-      <Typography tag="div" variant="t3">
-        Подождите, блюда загружаются ...
-      </Typography>
-    )
-  }
-
-  if (!dishPagedList || !!error) {
-    return (
-      <Typography tag="div" variant="err1">
+      <Typography tag="div" variant="err2">
         Ошибка получения блюд, извините
       </Typography>
     )
   }
 
   return (
-    <>
-      <div className={s.list}>
-        {dishPagedList.dishes.map((dish) => (
-          <MenuDishCard key={dish.id} dish={dish} />
-        ))}
+    <div className={s.wrapper}>
+      <div className={s.content}>
+        {isLoading && (
+          <div className={s.preloader}>
+            <img src={preloader} alt="Загрузка..." />
+          </div>
+        )}
+        {!isLoading && (
+          <div className={s.list}>
+            {dishPagedList?.dishes.map((dish) => <MenuDishCard key={dish.id} dish={dish} />)}
+          </div>
+        )}
       </div>
-      <Pagination pagination={dishPagedList.pagination} onPageChange={onPageChange} />
-    </>
+      {!!dishPagedList && (
+        <Pagination pagination={dishPagedList.pagination} onPageChange={onPageChange} />
+      )}
+    </div>
   )
 }

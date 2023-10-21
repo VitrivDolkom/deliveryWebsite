@@ -1,7 +1,17 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 
-export const useRequest = <T, D = never>(onMount: boolean = false, config?: AxiosRequestConfig<D>) => {
+interface UseRequestParams<D> {
+  onMount?: boolean
+  config?: AxiosRequestConfig<D>
+  duration?: number
+}
+
+export const useRequest = <T, D = never>({
+  onMount = false,
+  config = {},
+  duration = 0
+}: UseRequestParams<D>) => {
   const [data, setData] = useState<T | null>(null)
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -21,7 +31,10 @@ export const useRequest = <T, D = never>(onMount: boolean = false, config?: Axio
     } catch (error: unknown) {
       setError((error as Response).message || '')
     }
-    setIsLoading(false)
+
+    setTimeout(() => {
+      setIsLoading(false)
+    }, duration)
   }, [])
 
   useEffect(() => {
