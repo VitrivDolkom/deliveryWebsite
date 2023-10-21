@@ -23,7 +23,8 @@ export const MenuPage = () => {
     onSortingChange,
     onCategoriesChange,
     onVegetarianChange,
-    onFiltersApply
+    onFiltersApply,
+    onPageChange
   } = useMenuPage()
 
   return (
@@ -65,7 +66,12 @@ export const MenuPage = () => {
           Применить
         </Button>
       </div>
-      <MenuDishesList dishPagedList={dishPagedList} error={error} isLoading={isLoading} />
+      <MenuDishesList
+        dishPagedList={dishPagedList}
+        error={error}
+        isLoading={isLoading}
+        onPageChange={onPageChange}
+      />
     </div>
   )
 }

@@ -7,9 +7,15 @@ interface MenuDishesListProps {
   isLoading: boolean
   error: string
   dishPagedList: DishPagedListDto | null
+  onPageChange: (page: number) => void
 }
 
-export const MenuDishesList = ({ dishPagedList, error, isLoading }: MenuDishesListProps) => {
+export const MenuDishesList = ({
+  dishPagedList,
+  error,
+  isLoading,
+  onPageChange
+}: MenuDishesListProps) => {
   if (isLoading) {
     return (
       <Typography tag="div" variant="t3">
@@ -20,7 +26,7 @@ export const MenuDishesList = ({ dishPagedList, error, isLoading }: MenuDishesLi
 
   if (!dishPagedList || !!error) {
     return (
-      <Typography tag="div" variant="err2">
+      <Typography tag="div" variant="err1">
         Ошибка получения блюд, извините
       </Typography>
     )
@@ -33,7 +39,7 @@ export const MenuDishesList = ({ dishPagedList, error, isLoading }: MenuDishesLi
           <MenuDishCard key={dish.id} dish={dish} />
         ))}
       </div>
-      <Pagination pagination={dishPagedList.pagination} />
+      <Pagination pagination={dishPagedList.pagination} onPageChange={onPageChange} />
     </>
   )
 }

@@ -1,3 +1,4 @@
+import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { MultiValue, SingleValue } from 'react-select'
 import { getDishesConfig } from '@/shared/api'
@@ -5,7 +6,12 @@ import { DishCategoryOption, DishSortingOption } from '@/shared/lib/const'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const useMenuPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams({
+    categories: [],
+    vegetarian: 'false',
+    sorting: '',
+    page: '1'
+  })
 
   const categories = searchParams.getAll('categories') || []
   const vegetarian = searchParams.get('vegetarian') || 'false'
@@ -19,18 +25,22 @@ export const useMenuPage = () => {
     requestHandler: fetchDishes
   } = useRequest<DishPagedListDto>(true, getDishesConfig({ categories, page, sorting, vegetarian }))
 
+  React.useEffect(() => {
+    setSearchParams(searchParams)
+  }, [])
+
+  React.useEffect(() => {
+    fetchDishes(getDishesConfig({ categories, page, sorting, vegetarian }))
+  }, [page])
+
   const onSortingChange = (selectedOption: SingleValue<DishSortingOption>) => {
-    setSearchParams((prev) => {
-      prev.set('sorting', selectedOption?.value || '')
-      return prev
-    })
+    searchParams.set('sorting', selectedOption?.value || '')
+    setSearchParams(searchParams)
   }
 
   const onVegetarianChange = (newValue: boolean) => {
-    setSearchParams((prev) => {
-      prev.set('vegetarian', newValue.toString())
-      return prev
-    })
+    searchParams.set('vegetarian', newValue.toString())
+    setSearchParams(searchParams)
   }
 
   const onCategoriesChange = (selectedOptions: MultiValue<DishCategoryOption>) => {
@@ -48,6 +58,11 @@ export const useMenuPage = () => {
     fetchDishes(getDishesConfig({ categories, page, sorting, vegetarian }))
   }
 
+  const onPageChange = (pageNumber: number) => {
+    searchParams.set('page', pageNumber.toString())
+    setSearchParams(searchParams)
+  }
+
   return {
     categories,
     vegetarian,
@@ -59,6 +74,7 @@ export const useMenuPage = () => {
     onSortingChange,
     onCategoriesChange,
     onVegetarianChange,
-    onFiltersApply
+    onFiltersApply,
+    onPageChange
   }
 }

@@ -3,13 +3,19 @@ import s from './styles.module.css'
 
 interface PaginationProps {
   pagination: PageInfoModel
+  onPageChange: (page: number) => void
 }
 
 const shifts = [-1, 0, 1]
 
-export const Pagination = ({ pagination }: PaginationProps) => (
+export const Pagination = ({ pagination, onPageChange }: PaginationProps) => (
   <div className={s.wrapper}>
-    <Button className={s.btn} styleType="outlined" alertType="info">
+    <Button
+      className={s.btn}
+      styleType="outlined"
+      alertType="info"
+      onClick={() => onPageChange(pagination.current - 1)}
+    >
       «
     </Button>
     {shifts.map((shift) => {
@@ -22,6 +28,7 @@ export const Pagination = ({ pagination }: PaginationProps) => (
           className={s.btn}
           styleType={pagination.current === currentPage ? 'solid' : 'outlined'}
           alertType="info"
+          onClick={() => onPageChange(currentPage)}
         >
           {currentPage}
         </Button>
@@ -42,7 +49,12 @@ export const Pagination = ({ pagination }: PaginationProps) => (
       </Button>
     )}
 
-    <Button className={s.btn} styleType="outlined" alertType="info">
+    <Button
+      className={s.btn}
+      styleType="outlined"
+      alertType="info"
+      onClick={() => onPageChange(pagination.current + 1)}
+    >
       »
     </Button>
   </div>
