@@ -1,0 +1,1 @@
+export { DishRating } from './DishRating'

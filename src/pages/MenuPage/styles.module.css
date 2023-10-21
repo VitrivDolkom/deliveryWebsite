@@ -1,0 +1,20 @@
+.top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  gap: 20px;
+  border-bottom: 1px solid var(--neutral-50);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.select {
+  width: 250px;
+}
