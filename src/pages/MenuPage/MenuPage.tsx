@@ -1,3 +1,7 @@
+import Select from 'react-select'
+import { InputBlock } from '@/shared/components'
+import { dishCategoryOptions, dishSortingOptions } from '@/shared/lib/const'
+import { Button } from '@/shared/uikit'
 import { MenuDishCard } from './MenuDishCard/MenuDishCard'
 import s from './styles.module.css'
 
@@ -25,9 +29,21 @@ const test: DishDto[] = [
 ]
 
 export const MenuPage = () => (
-  <div className={s.list}>
-    {test.map((dish) => (
-      <MenuDishCard key={dish.id} dish={dish} />
-    ))}
+  <div className="wrapper">
+    <div className={s.top}>
+      <Select options={dishCategoryOptions} isSearchable={false} isMulti className={s.select} />
+      <Select options={dishSortingOptions} isSearchable={false} className={s.select} />
+      <div className="vegan">
+        <InputBlock label="Показать только вегатерианские" blockType="row" type="checkbox" />
+      </div>
+      <Button styleType="solid" alertType="info" className="btn">
+        Применить
+      </Button>
+    </div>
+    <div className={s.list}>
+      {test.map((dish) => (
+        <MenuDishCard key={dish.id} dish={dish} />
+      ))}
+    </div>
   </div>
 )
