@@ -1,4 +1,6 @@
 export { request } from './request'
-export * from './requests/searchRequest'
-export * from './requests/registrationRequest'
+export * from './requests/dish/getDishConfig'
+export * from './requests/dish/getDishesConfig'
 export * from './requests/loginRequest'
+export * from './requests/registrationRequest'
+export * from './requests/searchRequest'
