@@ -1,4 +1,4 @@
-import { LoginPage, RegistrationPage } from '@/pages'
+import { LoginPage, MenuPage, RegistrationPage } from '@/pages'
 import { createBrowserRouter } from 'react-router-dom'
 import { routes } from '@/shared/const'
 import { Layout } from './Layout/Layout'
@@ -9,7 +9,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: routes.root(),
-        element: <div></div>
+        element: <MenuPage />
       },
       {
         path: routes.login(),
