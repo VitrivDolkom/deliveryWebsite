@@ -31,11 +31,11 @@ const test: DishDto[] = [
 const pagination: PageInfoModel = {
   size: 5,
   count: 4,
-  current: 1
+  current: 2
 }
 
 export const MenuPage = () => (
-  <div className="wrapper">
+  <div className={s.wrapper}>
     <div className={s.top}>
       <Select options={dishCategoryOptions} isSearchable={false} isMulti className={s.select} />
       <Select options={dishSortingOptions} isSearchable={false} className={s.select} />

@@ -1,4 +1,4 @@
-import { Button } from '@/shared/uikit'
+import { Button, Typography } from '@/shared/uikit'
 import s from './styles.module.css'
 
 interface PaginationProps {
@@ -26,6 +26,21 @@ export const Pagination = ({ pagination }: PaginationProps) => (
         </Button>
       )
     })}
+    {pagination.current < pagination.count - 2 && (
+      <Typography tag="div" variant="h1">
+        ...
+      </Typography>
+    )}
+    {pagination.current < pagination.count - 1 && (
+      <Button
+        className={s.btn}
+        styleType={pagination.current === pagination.count ? 'solid' : 'outlined'}
+        alertType="info"
+      >
+        {pagination.count}
+      </Button>
+    )}
+
     <Button className={s.btn} styleType="outlined" alertType="info">
       »
     </Button>
