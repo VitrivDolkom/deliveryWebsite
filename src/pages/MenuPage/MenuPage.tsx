@@ -1,5 +1,5 @@
 import Select from 'react-select'
-import { InputBlock } from '@/shared/components'
+import { InputBlock, Pagination } from '@/shared/components'
 import { dishCategoryOptions, dishSortingOptions } from '@/shared/lib/const'
 import { Button } from '@/shared/uikit'
 import { MenuDishCard } from './MenuDishCard/MenuDishCard'
@@ -28,6 +28,12 @@ const test: DishDto[] = [
   }
 ]
 
+const pagination: PageInfoModel = {
+  size: 5,
+  count: 4,
+  current: 1
+}
+
 export const MenuPage = () => (
   <div className="wrapper">
     <div className={s.top}>
@@ -45,5 +51,6 @@ export const MenuPage = () => (
         <MenuDishCard key={dish.id} dish={dish} />
       ))}
     </div>
+    <Pagination pagination={pagination} />
   </div>
 )
