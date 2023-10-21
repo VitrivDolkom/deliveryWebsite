@@ -14,13 +14,14 @@ export const Pagination = ({ pagination, onPageChange }: PaginationProps) => (
       className={s.btn}
       styleType="outlined"
       alertType="info"
+      disabled={pagination.current === 1}
       onClick={() => onPageChange(pagination.current - 1)}
     >
       «
     </Button>
     {shifts.map((shift) => {
       const currentPage = pagination.current + shift
-      if (!currentPage) return null
+      if (!currentPage || currentPage > pagination.count) return null
 
       return (
         <Button
@@ -44,6 +45,7 @@ export const Pagination = ({ pagination, onPageChange }: PaginationProps) => (
         className={s.btn}
         styleType={pagination.current === pagination.count ? 'solid' : 'outlined'}
         alertType="info"
+        onClick={() => onPageChange(pagination.count)}
       >
         {pagination.count}
       </Button>
@@ -53,6 +55,7 @@ export const Pagination = ({ pagination, onPageChange }: PaginationProps) => (
       className={s.btn}
       styleType="outlined"
       alertType="info"
+      disabled={pagination.current === pagination.count}
       onClick={() => onPageChange(pagination.current + 1)}
     >
       »

@@ -16,7 +16,7 @@
   background-color: var(--success-bg, #F1FAF0);
 }
 
-.outlined.success:hover {
+.outlined.success:hover:enabled {
   color: var(--neutral-10, #fff);
   background-color: var(--success-hover, #568F55);
 }
@@ -28,7 +28,7 @@
   background-color: var(--info-bg, #E7EDF6);
 }
 
-.outlined.info:hover {
+.outlined.info:hover:enabled {
   color: var(--neutral-10, #fff);
   background-color: var(--info-hover, #2B6DD1);
 }
@@ -39,7 +39,7 @@
   background-color: var(--danger-bg, #FEEDEE);
 }
 
-.outlined.danger:hover {
+.outlined.danger:hover:enabled {
   color: var(--neutral-10, #fff);
   background-color: var(--danger-hover, #E1676C);
 }
@@ -50,7 +50,7 @@
   background-color: var(--success-hover, #568F55);
 }
 
-.solid.success:hover {
+.solid.success:hover:enabled {
   background-color: var(--success-primary, #198754);
 }
 
@@ -60,7 +60,7 @@
   background-color: var(--info-hover, #2B6DD1);
 }
 
-.solid.info:hover {
+.solid.info:hover:enabled {
   background-color: var(--info-primary, #0150C8);
 }
 
@@ -70,6 +70,6 @@
   background-color: var(--danger-hover, #E1676C);
 }
 
-.solid.danger:hover {
+.solid.danger:hover:enabled {
   background-color: var(--danger-primary, #DC3545);
 }

@@ -59,6 +59,7 @@ export const useMenuPage = () => {
   }
 
   const onPageChange = (pageNumber: number) => {
+    debugger
     searchParams.set('page', pageNumber.toString())
     setSearchParams(searchParams)
   }
