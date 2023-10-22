@@ -1,3 +1,4 @@
+export * from './CartPage'
 export * from './LoginPage'
 export * from './MenuPage'
 export * from './ProfilePage'
