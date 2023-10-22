@@ -3,7 +3,6 @@ import { request } from '../../request'
 
 interface GetRatingCheckParams {
   id: string
-  ratingScore: number
   token: TokenResponse
 }
 
