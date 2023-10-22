@@ -1,4 +1,5 @@
 export * from './LoginPage'
+export * from './MenuItemPage'
 export * from './MenuPage'
 export * from './ProfilePage'
 export * from './RegistrationPage'
