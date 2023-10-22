@@ -1,35 +1,10 @@
-import React from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { loginRequest } from '@/shared/api'
 import { ButtonLoader, InputBlock } from '@/shared/components'
 import { validations } from '@/shared/const'
-import { useUserSwitcherContext } from '@/shared/lib/contexts'
-import { useRequest } from '@/shared/lib/hooks'
 import { Button } from '@/shared/uikit'
+import { useLoginPage } from './useLoginPage'
 
 export const LoginPage = () => {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-    watch
-  } = useForm<LoginCredentials>()
-  const { login } = useUserSwitcherContext()
-  const {
-    data: tokenResponse,
-    isLoading,
-    requestHandler
-  } = useRequest<TokenResponse, LoginCredentials>(false)
-
-  const onFormSubmit: SubmitHandler<LoginCredentials> = async (userInfo) => {
-    requestHandler(loginRequest(userInfo))
-  }
-
-  React.useEffect(() => {
-    if (!tokenResponse) return
-
-    login({ email: watch('email'), token: tokenResponse.token })
-  }, [tokenResponse])
+  const { errors, handleSubmit, isLoading, onFormSubmit, register } = useLoginPage()
 
   return (
     <div>
