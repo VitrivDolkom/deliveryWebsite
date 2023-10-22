@@ -19,7 +19,7 @@ export const MenuDishCard = ({ dish }: MenuDishCardProps) => (
       </Typography>
     </div>
     <main className={s.content}>
-      <DishRating rating={dish.rating} />
+      <DishRating rating={dish.rating} size="xs" />
       <Typography tag="p" variant="t1" className={s.description}>
         {dish.description}
       </Typography>

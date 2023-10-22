@@ -7,23 +7,34 @@ export const useMenuItemPage = () => {
   const { id } = useParams()
   const { user } = useUserContext()
 
-  const { data: dish, isLoading } = useRequest({
+  const { data: dish, isLoading } = useRequest<DishDto>({
     onMount: true,
     config: getDishConfig({ id: id || '' })
   })
 
-  const { data: availableRating } = useRequest({
+  const { data: availableRating } = useRequest<boolean>({
     onMount: true,
     config: getRatingCheckConfig({ id: id || '', token: { token: user.token } })
   })
 
-  const { isLoading: ratingLoading, error: ratingError, requestHandler: postRating } = useRequest({})
+  const {
+    isLoading: ratingLoading,
+    error: ratingError,
+    isSuccess: successRating,
+    requestHandler: postRating
+  } = useRequest<never>({})
 
   const onRatingClick = (ratingScore: number) => {
-    if (!availableRating) return
-
     postRating(postRatingConfig({ id: id || '', token: { token: user.token }, ratingScore }))
   }
 
-  return { dish, isLoading, availableRating, ratingLoading, ratingError, onRatingClick }
+  return {
+    dish,
+    isLoading,
+    availableRating,
+    ratingLoading,
+    ratingError,
+    onRatingClick,
+    successRating
+  }
 }
