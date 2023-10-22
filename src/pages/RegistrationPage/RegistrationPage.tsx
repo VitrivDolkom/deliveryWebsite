@@ -55,10 +55,14 @@ export const RegistrationPage = () => {
           ref={register('fullName', validations.birthDate).ref}
         />
 
+        <Typography tag="span" variant="t1">
+          Пол
+        </Typography>
         <Select
           options={genderOptions}
           value={{ label: GenderEnum[watch('gender')], value: watch('gender') }}
           onChange={(newValue) => setValue('gender', newValue?.value || 'Male')}
+          className="item"
         />
 
         <InputBlock
@@ -77,7 +81,10 @@ export const RegistrationPage = () => {
           ref={register('birthDate', validations.birthDate).ref}
         />
 
-        <SelectLocation addressObjects={addressObjects} setAddressObjects={setAddressObjects} />
+        <div className="addressBlock">
+          <Typography>Адрес проживания</Typography>
+          <SelectLocation addressObjects={addressObjects} setAddressObjects={setAddressObjects} />
+        </div>
 
         <InputBlock
           label="Email (будет использоваться для входа в систему)"
@@ -94,13 +101,7 @@ export const RegistrationPage = () => {
           ref={register('password', validations.password).ref}
         />
 
-        <Button
-          className="btn"
-          styleType="solid"
-          alertType="info"
-          isLoading={isLoading}
-          loader={<ButtonLoader />}
-        >
+        <Button styleType="solid" alertType="info" isLoading={isLoading} loader={<ButtonLoader />}>
           Зарегестрироваться
         </Button>
 

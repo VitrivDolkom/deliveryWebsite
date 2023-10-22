@@ -4,6 +4,16 @@
   border: 0;
 }
 
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 *,
 *:before,
 *:after {
@@ -36,6 +46,9 @@ body {
   font-size: 100%;
   line-height: 1;
   font-size: 14px;
+  margin: 0;
+  padding: 0;
+  border: none;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -86,6 +99,8 @@ h5,
 h6 {
   font-size: inherit;
   font-weight: 400;
+  margin: 0;
+  padding: 0;
 }
 
 input:focus,

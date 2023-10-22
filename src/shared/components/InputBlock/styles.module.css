@@ -7,14 +7,18 @@
 
 .block {
   display: flex;
+  flex-direction: column;
 }
 
 .block.row {
   align-items: center;
+  flex-direction: row;
 }
 
-.block.column {
-  flex-direction: column;
+.block.column {}
+
+.label {
+  flex: 1 0 20%;
 }
 
 .input {
@@ -44,6 +48,10 @@
 
 .errorMessage {
   margin: 2px 0px 0px 5px;
+}
+
+.constValue {
+  flex: 0 0 80%;
 }
 
 /* custom checkbox */
