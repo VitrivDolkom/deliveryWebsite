@@ -1,46 +1,25 @@
-import { SelectAddressObject, SelectLocation } from '@/features'
-import React from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { SelectLocation } from '@/features'
 import Select from 'react-select'
-import { registrationRequest } from '@/shared/api'
 import { ButtonLoader, InputBlock } from '@/shared/components'
 import { validations } from '@/shared/const'
 import { GenderEnum, genderOptions } from '@/shared/lib/const'
-import { useUserSwitcherContext } from '@/shared/lib/contexts'
-import { useRequest } from '@/shared/lib/hooks'
 import { Button, Typography } from '@/shared/uikit'
+import { useRegistrationPage } from './useRegistrationPage'
 import './styles.css'
 
 export const RegistrationPage = () => {
-  const [addressObjects, setAddressObjects] = React.useState<SelectAddressObject[]>([])
   const {
+    setAddressObjects,
+    addressObjects,
+    error,
+    errors,
     handleSubmit,
+    isLoading,
+    onFormSubmit,
     register,
-    formState: { errors },
     setValue,
     watch
-  } = useForm<UserRegisterModel>()
-  const {
-    data: tokenResponse,
-    isLoading,
-    error,
-    requestHandler
-  } = useRequest<TokenResponse, UserRegisterModel>(false)
-  const { login } = useUserSwitcherContext()
-
-  const onFormSubmit: SubmitHandler<UserRegisterModel> = async (userInfo) => {
-    const objectId = addressObjects.at(addressObjects.length - 1)?.object?.address.objectGuid
-    if (!objectId) return
-
-    userInfo.addressId = objectId
-    requestHandler(registrationRequest(userInfo))
-  }
-
-  React.useEffect(() => {
-    if (!tokenResponse) return
-
-    login({ email: watch('email'), token: tokenResponse.token })
-  }, [tokenResponse])
+  } = useRegistrationPage()
 
   return (
     <div>

@@ -22,19 +22,19 @@ export const useProfilePage = () => {
     data: userInfo,
     isLoading,
     error
-  } = useRequest<UserDto>(true, getProfileConfig({ token: user.token }))
+  } = useRequest<UserDto>({ onMount: true, config: getProfileConfig({ token: user.token }) })
 
   const {
     data: addressChain,
     isLoading: addressLoading,
     requestHandler: fetchAddressChain
-  } = useRequest<SearchAddressModel[]>(false)
+  } = useRequest<SearchAddressModel[]>({})
 
   const {
     isLoading: updateProfileLoading,
     error: updateProfileError,
     requestHandler: updateProfile
-  } = useRequest<Response, UserEditModel>(false)
+  } = useRequest<Response, UserEditModel>({})
 
   React.useEffect(() => {
     if (!userInfo) return

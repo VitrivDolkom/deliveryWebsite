@@ -1,6 +1,6 @@
 import React from 'react'
 import { SingleValue } from 'react-select'
-import { addressSearchRequest } from '@/shared/api'
+import { getSearchConfig } from '@/shared/api'
 import { useRequest } from '@/shared/lib/hooks'
 import { selectAddressFromSearchModel, selectAddressObjectFromSearchModel } from './helpers'
 
@@ -22,13 +22,15 @@ interface UseSelectLocationParams {
 }
 
 export const useSelectLocation = ({ addressObjects, setAddressObjects }: UseSelectLocationParams) => {
-  const { data: addressSearch, requestHandler: fetchAddressSearch } =
-    useRequest<SearchAddressModel[]>(false)
-  const { data: singleAddressSearch, requestHandler: fetchSingleAddressSearch } =
-    useRequest<SearchAddressModel[]>(false)
+  const { data: addressSearch, requestHandler: fetchAddressSearch } = useRequest<SearchAddressModel[]>(
+    {}
+  )
+  const { data: singleAddressSearch, requestHandler: fetchSingleAddressSearch } = useRequest<
+    SearchAddressModel[]
+  >({})
 
   React.useEffect(() => {
-    fetchAddressSearch(addressSearchRequest({}))
+    fetchAddressSearch(getSearchConfig({}))
   }, [])
 
   React.useEffect(() => {
@@ -67,7 +69,7 @@ export const useSelectLocation = ({ addressObjects, setAddressObjects }: UseSele
     if (index < 0) return
 
     fetchSingleAddressSearch(
-      addressSearchRequest({
+      getSearchConfig({
         parentObjectId: addressObjects[index].object?.address.objectId,
         query: ''
       })
@@ -87,7 +89,7 @@ export const useSelectLocation = ({ addressObjects, setAddressObjects }: UseSele
       copy.splice(index + 1)
 
       fetchAddressSearch(
-        addressSearchRequest({
+        getSearchConfig({
           parentObjectId: newValue?.address.objectId,
           query: ''
         })
