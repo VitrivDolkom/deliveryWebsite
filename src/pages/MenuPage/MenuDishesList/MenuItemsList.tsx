@@ -1,7 +1,7 @@
 import preloader from '@/assets/gifs/search.gif'
 import { Pagination } from '@/shared/components'
 import { Typography } from '@/shared/uikit'
-import { MenuDishCard } from './MenuDishCard'
+import { MenuDishCard } from './MenuItemCard'
 import s from './styles.module.css'
 
 interface MenuDishesListProps {

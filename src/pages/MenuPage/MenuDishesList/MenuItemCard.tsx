@@ -1,5 +1,5 @@
 import { DishRating } from '@/features'
-import leaves from '@/assets/icons/leaves.png'
+import { MenuItemImage } from '@/shared/components'
 import { Button, Typography } from '@/shared/uikit'
 import s from './styles.module.css'
 
@@ -9,14 +9,7 @@ interface MenuDishCardProps {
 
 export const MenuDishCard = ({ dish }: MenuDishCardProps) => (
   <div className={s.card}>
-    <div className={s.img}>
-      <img src={dish.image} alt="Картинка блюда" />
-      {dish.vegetarian && (
-        <div className={s.vegan}>
-          <img src={leaves} alt="Вегатерианское блюдо" />
-        </div>
-      )}
-    </div>
+    <MenuItemImage image={dish.image} vegetarian={dish.vegetarian} />
     <div className={s.top}>
       <Typography tag="h2" variant="t3" className={s.name}>
         {dish.name}
