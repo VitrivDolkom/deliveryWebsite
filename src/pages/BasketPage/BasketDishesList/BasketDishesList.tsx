@@ -5,11 +5,11 @@ import s from './styles.module.css'
 const cx = classNames.bind(s)
 
 interface BasketDishesListProps {
-  dishes: DishBasketDto[]
+  basket: DishBasketDto[]
 }
-export const BasketDishesList = ({ dishes }: BasketDishesListProps) => (
+export const BasketDishesList = ({ basket }: BasketDishesListProps) => (
   <div className={s.list}>
-    {dishes.map((dish, index) => (
+    {basket.map((dish, index) => (
       <div key={dish.id} className={s.dish}>
         <Typography tag="p" variant="t1">
           {index + 1}.

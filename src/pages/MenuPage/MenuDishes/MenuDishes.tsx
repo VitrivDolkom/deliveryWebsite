@@ -4,19 +4,18 @@ import { Typography } from '@/shared/uikit'
 import { MenuDishCard } from './MenuDishCard'
 import s from './styles.module.css'
 
-interface MenuDishesListProps {
+interface MenuDishesProps {
   isLoading: boolean
+  addDishLoading: boolean
   error: string
   dishPagedList: DishPagedListDto | null
   onPageChange: (page: number) => void
+  onDishAdd?: (dishId: string) => void
 }
 
-export const MenuDishesList = ({
-  dishPagedList,
-  error,
-  isLoading,
-  onPageChange
-}: MenuDishesListProps) => {
+export const MenuDishes = (props: MenuDishesProps) => {
+  const { dishPagedList, error, isLoading, onPageChange, onDishAdd, addDishLoading } = props
+
   if (!!error) {
     return (
       <Typography tag="div" variant="err2">
@@ -35,7 +34,9 @@ export const MenuDishesList = ({
         )}
         {!isLoading && (
           <div className={s.list}>
-            {dishPagedList?.dishes.map((dish) => <MenuDishCard key={dish.id} dish={dish} />)}
+            {dishPagedList?.dishes.map((dish) => (
+              <MenuDishCard key={dish.id} dish={dish} onDishAdd={onDishAdd} isLoading={addDishLoading} />
+            ))}
           </div>
         )}
       </div>

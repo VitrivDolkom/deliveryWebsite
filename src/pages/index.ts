@@ -1,4 +1,4 @@
-export * from './CartPage'
+export * from './BasketPage'
 export * from './LoginPage'
 export * from './MenuPage'
 export * from './ProfilePage'

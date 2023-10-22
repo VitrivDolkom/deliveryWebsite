@@ -2,7 +2,7 @@ import { getBasketConfig } from '@/shared/api'
 import { useUserContext } from '@/shared/lib/contexts'
 import { useRequest } from '@/shared/lib/hooks'
 
-export const useCartPage = () => {
+export const useBasketPage = () => {
   const { user } = useUserContext()
 
   const {
