@@ -2,6 +2,7 @@ import React from 'react'
 import Select from 'react-select'
 import { Typography } from '@/shared/uikit'
 import { SelectAddressObject, useSelectLocation } from './useSelectLocation'
+import s from './styles.module.css'
 
 interface SelectLocationProps {
   addressObjects: SelectAddressObject[]
@@ -14,13 +15,14 @@ export const SelectLocation = ({ addressObjects, setAddressObjects }: SelectLoca
   return (
     <div>
       {addressObjects?.map((select, index) => (
-        <div key={index}>
+        <div key={index} className={s.item}>
           <Typography variant="t1">{select.title}</Typography>
           <Select
             value={addressObjects[index].object}
             options={select.options}
             onChange={(newValue) => onSelectChange(newValue, index)}
             onMenuOpen={() => onSelectClick(index - 1)}
+            className="item"
           />
         </div>
       ))}

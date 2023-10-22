@@ -53,7 +53,7 @@ export const MenuPage = () => {
         />
         <div className="vegan">
           <InputBlock
-            label="Показать только вегатерианские"
+            label="Только вегатерианские"
             blockType="row"
             type="checkbox"
             checked={vegetarian === 'true'}
@@ -62,6 +62,7 @@ export const MenuPage = () => {
             }
           />
         </div>
+
         <Button styleType="solid" alertType="info" className="btn" onClick={onFiltersApply}>
           Применить
         </Button>

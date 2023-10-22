@@ -57,7 +57,10 @@ export const ProfilePage = () => {
           ref={register('phoneNumber', validations.phone).ref}
         />
 
-        <SelectLocation addressObjects={addressObjects} setAddressObjects={setAddressObjects} />
+        <div className="addressBlock">
+          <Typography>Адрес проживания</Typography>
+          <SelectLocation addressObjects={addressObjects} setAddressObjects={setAddressObjects} />
+        </div>
 
         <Button
           className="btn"

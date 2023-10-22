@@ -1,8 +1,5 @@
-.form {
-  margin-top: 20px;
-}
-
 .addressBlock {
-  border: 1px solid var(neutral-50, #C2C2C2);
-  padding: 10px;
+  margin: 20px 0;
+  padding: 15px 10px;
+  border: 1px solid var(--neutral-40);
 }
