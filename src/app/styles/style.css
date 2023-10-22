@@ -2,8 +2,9 @@
 @import './fonts.css';
 @import './theme.css';
 
+
 .wrapper {
-  min-height: 100vh;
+  min-height: calc(100vh - 3px);
   width: 100%;
   font-family: Nunito;
   color: var(--neutral-100, #0A0A0A);
