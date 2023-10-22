@@ -47,10 +47,6 @@
   position: relative;
 }
 
-.img img {
-  max-width: 100%;
-}
-
 .footer {
   width: 100%;
   display: flex;
@@ -65,10 +61,6 @@
   position: absolute;
   right: 10px;
   bottom: 10px;
-}
-
-.vegan img {
-  max-width: 100%;
 }
 
 .preloader {

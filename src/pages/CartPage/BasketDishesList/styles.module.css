@@ -1,0 +1,55 @@
+.dish {
+  padding: 20px 10px;
+  display: flex;
+  border: 1px solid var(--neutral-50);
+  border-radius: 2px;
+  align-items: center;
+  gap: 20px;
+}
+
+.info {
+  flex: 1 1 300px;
+  width: 300px;
+}
+
+.name {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.img {
+  width: 100px;
+  border-radius: 30px;
+  overflow: hidden;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.change {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  width: 40px;
+  border-radius: 0;
+  font-size: 15px;
+}
+
+@media screen and (max-width: 776px) {
+  .dish {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dish * {
+    flex: 0 0 auto;
+  }
+
+  .info {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -12,6 +12,7 @@ export interface TypographyProps {
     | 't3'
     | 't4'
     | 't5'
+    | 't6'
     | 'sub1'
     | 'sub2'
     | 'btn1'
