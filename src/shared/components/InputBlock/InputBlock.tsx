@@ -31,6 +31,22 @@ export const InputBlock = forwardRef<HTMLInputElement, InputBlockProps>(
       }
     }
 
+    const renderInput = () =>
+      props.type === 'checkbox' ? (
+        <label className={s.switch}>
+          <input className={s.switcher} {...inputProps} type="checkbox" id={inputId} />
+          <span className={cx({ slider: true, round: true })}></span>
+        </label>
+      ) : (
+        <input
+          className={s.input}
+          {...inputProps}
+          onChange={props.type === 'tel' ? telOnChange : props.onChange}
+          ref={ref}
+          id={inputId}
+        />
+      )
+
     return (
       <div className={s.wrapper}>
         <div className={cx({ block: true, [`${blockType}`]: true })}>
@@ -39,17 +55,8 @@ export const InputBlock = forwardRef<HTMLInputElement, InputBlockProps>(
               {label}
             </Typography>
           </label>
-          {constValue !== undefined ? (
-            <span>{constValue}</span>
-          ) : (
-            <input
-              className={s.input}
-              {...inputProps}
-              onChange={props.type === 'tel' ? telOnChange : props.onChange}
-              ref={ref}
-              id={inputId}
-            />
-          )}
+          {!!constValue && <span>{constValue}</span>}
+          {!constValue && renderInput()}
         </div>
         {!!error && (
           <Typography tag="span" variant="err1" className={s.errorMessage}>

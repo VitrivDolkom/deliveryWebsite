@@ -4,7 +4,6 @@
 
 .wrapper {
   min-height: 100vh;
-  overflow-y: hidden;
   width: 100%;
   font-family: Nunito;
   color: var(--neutral-100, #0A0A0A);
@@ -17,13 +16,11 @@
   margin: 0 auto;
   padding: 0 20px;
   max-width: 1200px;
-  /* border: 1px solid var(--neutral-60); */
 }
 
 
 .content {
   flex: 1 1 auto;
-  overflow-y: auto;
 }
 
 .btn {

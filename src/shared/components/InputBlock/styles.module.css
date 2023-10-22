@@ -45,3 +45,64 @@
 .errorMessage {
   margin: 2px 0px 0px 5px;
 }
+
+/* custom checkbox */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--neutral-50);
+  transition: all 0.3s linear;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--neutral-10);
+  transition: all 0.3s linear;
+}
+
+input:checked+.slider {
+  background-color: var(--info-primary);
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px var(--info-hover);
+}
+
+input:checked+.slider:before {
+  transform: translateX(13px);
+}
+
+.slider.round {
+  border-radius: 27px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.textOfLength {
+  display: flex;
+}
