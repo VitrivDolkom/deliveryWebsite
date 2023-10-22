@@ -19,6 +19,23 @@ export const Pagination = ({ pagination, onPageChange }: PaginationProps) => (
     >
       «
     </Button>
+
+    {pagination.current > 2 && (
+      <Button
+        className={s.btn}
+        styleType={pagination.current === pagination.count ? 'solid' : 'outlined'}
+        alertType="info"
+        onClick={() => onPageChange(1)}
+      >
+        1
+      </Button>
+    )}
+    {pagination.current > 3 && (
+      <Typography tag="div" variant="h1">
+        ...
+      </Typography>
+    )}
+
     {shifts.map((shift) => {
       const currentPage = pagination.current + shift
       if (!currentPage || currentPage > pagination.count) return null
@@ -35,6 +52,7 @@ export const Pagination = ({ pagination, onPageChange }: PaginationProps) => (
         </Button>
       )
     })}
+
     {pagination.current < pagination.count - 2 && (
       <Typography tag="div" variant="h1">
         ...
