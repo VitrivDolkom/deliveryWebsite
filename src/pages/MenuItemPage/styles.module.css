@@ -9,8 +9,16 @@
 
 }
 
-.wrapper div {
+.name {
   margin-top: 20px;
+}
+
+.category {
+  margin: 15px 0;
+}
+
+.description {
+  margin: 25px 0;
 }
 
 .img {

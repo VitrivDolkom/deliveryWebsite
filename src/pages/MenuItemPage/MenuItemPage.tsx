@@ -19,19 +19,17 @@ export const MenuItemPage = () => (
     <div className={s.img}>
       <MenuItemImage image={dish.image} vegetarian={dish.vegetarian} />
     </div>
-    <div className={s.top}>
-      <Typography tag="h2" variant="t3" className={s.name}>
-        {dish.name}
-      </Typography>
-      <Typography tag="p" variant="t1">
-        Категория блюда - {dish.category}
-      </Typography>
-    </div>
+    <Typography tag="h2" variant="t6" className={s.name}>
+      {dish.name}
+    </Typography>
+    <Typography tag="p" variant="t2" className={s.category}>
+      Категория блюда - {dish.category}
+    </Typography>
     <DishRating rating={dish.rating} />
     <Typography tag="p" variant="t1" className={s.description}>
       {dish.description}
     </Typography>
-    <Typography tag="p" variant="t1">
+    <Typography tag="p" variant="t4">
       Цена - {dish.price}р/шт
     </Typography>
   </div>
