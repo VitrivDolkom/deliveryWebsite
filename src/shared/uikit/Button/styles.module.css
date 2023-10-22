@@ -67,9 +67,10 @@
 .solid.danger {
   color: var(--neutral-10, #fff);
   border: 2px solid var(--danger-hover, #E1676C);
-  background-color: var(--danger-hover, #E1676C);
+  background-color: var(--danger-primary, #DC3545);
+
 }
 
 .solid.danger:hover:enabled {
-  background-color: var(--danger-primary, #DC3545);
+  background-color: var(--danger-hover, #E1676C);
 }
