@@ -43,22 +43,6 @@ module.exports = {
     'import/no-internal-modules': ['off'],
     // allow double negation
     'no-extra-boolean-cast': 'off',
-    indent: 'off',
-    '@typescript-eslint/indent': [
-      'error',
-      2,
-      {
-        CallExpression: {
-          arguments: 'first'
-        },
-        FunctionDeclaration: {
-          parameters: 'first'
-        },
-        FunctionExpression: {
-          parameters: 'first'
-        },
-        offsetTernaryExpressions: true
-      }
-    ]
+    'react-hooks/exhaustive-deps': 'off'
   }
 }
