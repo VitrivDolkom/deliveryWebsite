@@ -1,4 +1,4 @@
-import { request } from '@/shared/api'
+import { request } from '../../request'
 
 export interface GetDishesParams {
   categories?: string[]
