@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapper * {
+  text-align: center;
+
+}
+
+.wrapper div {
+  margin-top: 20px;
+}
+
+.img {
+  width: 450px;
+}
+
+@media screen and (max-width: 992px) {
+  .img {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .img {
+    width: 200px;
+  }
+}

@@ -19,7 +19,6 @@
   border: 1px solid var(--neutral-50);
   border-radius: 10px;
   overflow: hidden;
-
 }
 
 .top {
@@ -41,16 +40,6 @@
   margin-top: 5px;
 }
 
-.img {
-  margin: 0 auto;
-  width: 300px;
-  position: relative;
-}
-
-.img img {
-  max-width: 100%;
-}
-
 .footer {
   width: 100%;
   display: flex;
@@ -58,17 +47,6 @@
   align-items: center;
   background-color: var(--neutral-40);
   padding: 10px 0;
-}
-
-.vegan {
-  width: 30px;
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-}
-
-.vegan img {
-  max-width: 100%;
 }
 
 .preloader {
