@@ -9,7 +9,7 @@ interface SelectLocationProps {
 }
 
 export const SelectLocation = ({ addressObjects, setAddressObjects }: SelectLocationProps) => {
-  const { onSelectChange } = useSelectLocation({ addressObjects, setAddressObjects })
+  const { onSelectChange, onSelectClick } = useSelectLocation({ addressObjects, setAddressObjects })
 
   return (
     <div>
@@ -20,6 +20,7 @@ export const SelectLocation = ({ addressObjects, setAddressObjects }: SelectLoca
             value={addressObjects[index].object}
             options={select.options}
             onChange={(newValue) => onSelectChange(newValue, index)}
+            onMenuOpen={() => onSelectClick(index - 1)}
           />
         </div>
       ))}

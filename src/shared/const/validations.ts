@@ -19,7 +19,10 @@ export const validations: InputValidations = {
     required: { value: true, message: 'Заполните поле' },
     maxLength: { value: 30, message: 'Длина от 2 до 30' },
     minLength: { value: 2, message: 'Длина от 2 до 30' },
-    pattern: { value: /^[A-Za-z]+\s[A-Za-z]+\s[A-Za-z]+$/, message: 'Некорректное имя' }
+    pattern: {
+      value: /^[А-Яа-яA-Za-z]+\s*[А-Яа-яA-Za-z]*\s*[А-Яа-яA-Za-z]*$/,
+      message: 'Некорректное имя'
+    }
   },
   phone: {
     required: { value: true, message: 'Заполните поле' },

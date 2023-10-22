@@ -1,4 +1,8 @@
 export { request } from './request'
+export { authHeaders } from './authHeaders'
 export * from './requests/searchRequest'
 export * from './requests/registrationRequest'
 export * from './requests/loginRequest'
+export * from './requests/account/getProfileConfig'
+export * from './requests/account/putProfileConfig'
+export * from './requests/getAddressChainConfig'

@@ -1,5 +1,6 @@
 import { LoginPage, RegistrationPage } from '@/pages'
 import { createBrowserRouter } from 'react-router-dom'
+import { ProfilePage } from '@/pages/ProfilePage'
 import { routes } from '@/shared/const'
 import { Layout } from './Layout/Layout'
 
@@ -21,7 +22,7 @@ export const router = createBrowserRouter([
       },
       {
         path: routes.profile(),
-        element: null
+        element: <ProfilePage />
       },
       {
         path: routes.item(),
