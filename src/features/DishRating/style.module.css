@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.img {
+  cursor: pointer;
+}
+
 .img.xs {
   width: 24px;
 }

@@ -1,5 +1,7 @@
+import { useNavigate } from 'react-router-dom'
 import preloader from '@/assets/gifs/search.gif'
 import { ButtonLoader, ChangeBasketDishAmount, Pagination } from '@/shared/components'
+import { routes } from '@/shared/const'
 import { Button, Typography } from '@/shared/uikit'
 import { MenuDishCard } from './MenuDishCard'
 import s from './styles.module.css'
@@ -27,6 +29,8 @@ export const MenuDishes = (props: MenuDishesProps) => {
     onDishDelete
   } = props
 
+  const navigate = useNavigate()
+
   if (!!error) {
     return (
       <Typography tag="div" variant="err2">
@@ -47,7 +51,10 @@ export const MenuDishes = (props: MenuDishesProps) => {
         styleType="solid"
         alertType="success"
         className="btn"
-        onClick={() => onDishAdd(dishId)}
+        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+          e.stopPropagation()
+          onDishAdd(dishId)
+        }}
         disabled={isLoading}
         loader={<ButtonLoader />}
       >
@@ -56,8 +63,8 @@ export const MenuDishes = (props: MenuDishesProps) => {
     ) : (
       <ChangeBasketDishAmount
         dish={foundDish}
-        onDecreaseCLick={onDishDelete}
-        onIncreaseCLick={() => onDishAdd(dishId)}
+        onDecreaseClick={onDishDelete}
+        onIncreaseClick={onDishAdd}
       />
     )
 
@@ -84,11 +91,12 @@ export const MenuDishes = (props: MenuDishesProps) => {
                 key={dish.id}
                 dish={dish}
                 renderUserActions={() => renderUserActions(dish.id)}
+                onClick={() => navigate(routes.item(dish.id))}
               />
             ))}
           </div>
         )}
-        {!!dishPagedList && (
+        {!!dishPagedList && !isLoading && (
           <Pagination pagination={dishPagedList.pagination} onPageChange={onPageChange} />
         )}
       </div>

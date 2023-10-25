@@ -46,7 +46,7 @@ export const RenderHeader = () => {
               </Link>
               <Link to={routes.cart()}>
                 <Typography tag="span" variant="t1" isLink={true}>
-                  Корзина{basket?.length && ` (${basket.length})`}
+                  Корзина{!!basket?.length && ` (${basket.length})`}
                 </Typography>
               </Link>
             </>

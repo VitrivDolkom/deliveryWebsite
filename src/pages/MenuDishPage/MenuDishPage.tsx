@@ -4,7 +4,7 @@ import { Typography } from '@/shared/uikit'
 import { useMenuDishPage } from './useMenuDishPage'
 import s from './styles.module.css'
 
-export const MenuItemPage = () => {
+export const MenuDishPage = () => {
   const { dish, onRatingClick, successRating, ratingError, availableRating } = useMenuDishPage()
 
   if (!dish) {

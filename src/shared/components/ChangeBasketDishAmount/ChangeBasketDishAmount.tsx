@@ -2,15 +2,15 @@ import { Button } from '@/shared/uikit'
 import s from './styles.module.css'
 
 interface ChangeBasketDishAmountProps {
-  onDecreaseCLick: (dishId: string) => void
-  onIncreaseCLick: (dishId: string) => void
+  onDecreaseClick: (dishId: string) => void
+  onIncreaseClick: (dishId: string) => void
   dish: DishBasketDto
 }
 
 export const ChangeBasketDishAmount = ({
   dish,
-  onDecreaseCLick,
-  onIncreaseCLick
+  onDecreaseClick,
+  onIncreaseClick
 }: ChangeBasketDishAmountProps) => (
   <div className={s.change}>
     <Button
@@ -18,7 +18,10 @@ export const ChangeBasketDishAmount = ({
       alertType="info"
       disabled={dish.amount === 1}
       className={s.btn}
-      onClick={() => onDecreaseCLick(dish.id)}
+      onClick={(e) => {
+        e.stopPropagation()
+        onDecreaseClick(dish.id)
+      }}
     >
       -
     </Button>
@@ -29,7 +32,10 @@ export const ChangeBasketDishAmount = ({
       styleType="outlined"
       alertType="info"
       className={s.btn}
-      onClick={() => onIncreaseCLick(dish.id)}
+      onClick={(e) => {
+        e.stopPropagation()
+        onIncreaseClick(dish.id)
+      }}
     >
       +
     </Button>

@@ -32,11 +32,13 @@ export const useRequest = <T, D = never>({
       if (response.status >= 300) {
         throw new Error('Something went Wrong')
       }
+
       if (response.data) {
         setData(response.data)
       } else {
         setData(null)
       }
+
       setIsSuccess(true)
     } catch (catchReason: unknown) {
       const reason = catchReason as AxiosError<Response>
