@@ -29,7 +29,7 @@ export const BasketDishesList = ({ basket, onDishDelete, onDishAdd }: BasketDish
             Цена/шт: {dish.price}руб.
           </Typography>
         </div>
-        <ChangeBasketDishAmount dish={dish} onDecreaseCLick={onDishDelete} onIncreaseCLick={onDishAdd} />
+        <ChangeBasketDishAmount dish={dish} onDecreaseClick={onDishDelete} onIncreaseClick={onDishAdd} />
         <Button
           styleType="solid"
           alertType="danger"

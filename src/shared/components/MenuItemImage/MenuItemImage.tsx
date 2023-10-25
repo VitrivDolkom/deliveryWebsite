@@ -3,10 +3,10 @@ import s from './styles.module.css'
 
 interface MenuItemImageProps {
   image: string
-  vegetarian: boolean
+  vegetarian?: boolean
 }
 
-export const MenuItemImage = ({ image, vegetarian }: MenuItemImageProps) => (
+export const MenuItemImage = ({ image, vegetarian = false }: MenuItemImageProps) => (
   <div className={s.img}>
     <img src={image} alt="Картинка блюда" />
     {vegetarian && (
