@@ -1,17 +1,13 @@
-import { getBasketConfig } from '@/shared/api'
-import { useUserContext } from '@/shared/lib/contexts'
+import React from 'react'
+import { useBasketContext, useBasketSwitcherContext } from '@/shared/lib/contexts'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const useBasketPage = () => {
-  const { user } = useUserContext()
+  const { fetchBasket } = useBasketSwitcherContext()
+  const { basket, basketError, basketLoading: isLoading } = useBasketContext()
 
-  const {
-    data: basket,
-    isLoading,
-    error: basketError
-  } = useRequest<DishBasketDto[]>({
-    onMount: true,
-    config: getBasketConfig({ token: { token: user.token } })
+  React.useEffect(() => {
+    fetchBasket()
   })
 
   const {
