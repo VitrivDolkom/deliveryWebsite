@@ -9,7 +9,9 @@ export const usePurchasePage = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit
+    handleSubmit,
+    setError,
+    clearErrors
   } = useForm<OrderCreateDto>()
 
   const [addressObjects, setAddressObjects] = React.useState<SelectAddressObject[]>([])
@@ -23,9 +25,24 @@ export const usePurchasePage = () => {
 
   // const { requestHandler: createOrder } = useRequest<UserDto>({})
 
-  const onFormSubmit: SubmitHandler<OrderCreateDto> = async (data) => {
-    // createOrder(postOrderConfig({ token: user.token, ...data }))
-    console.log(data)
+  const checkLocation = () => {
+    const addressId = addressObjects[addressObjects.length - 1]?.object?.address.objectGuid
+
+    if (!addressId) {
+      setError('addressId', { message: 'Выберите адрес' })
+      return
+    }
+
+    clearErrors('addressId')
+  }
+
+  const onFormSubmit: SubmitHandler<OrderCreateDto> = async (deliveryInfo) => {
+    const addressId = addressObjects[addressObjects.length - 1]?.object?.address.objectGuid
+
+    if (!addressId) return
+
+    deliveryInfo.addressId = addressId || ''
+    console.log(deliveryInfo)
   }
 
   return {
@@ -37,6 +54,7 @@ export const usePurchasePage = () => {
     errors,
     addressObjects,
     setAddressObjects,
-    basket
+    basket,
+    checkLocation
   }
 }

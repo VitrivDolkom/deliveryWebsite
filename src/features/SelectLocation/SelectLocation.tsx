@@ -7,9 +7,10 @@ import s from './styles.module.css'
 interface SelectLocationProps {
   addressObjects: SelectAddressObject[]
   setAddressObjects: React.Dispatch<React.SetStateAction<SelectAddressObject[]>>
+  error?: string
 }
 
-export const SelectLocation = ({ addressObjects, setAddressObjects }: SelectLocationProps) => {
+export const SelectLocation = ({ addressObjects, setAddressObjects, error }: SelectLocationProps) => {
   const { onSelectChange, onSelectClick } = useSelectLocation({ addressObjects, setAddressObjects })
 
   return (
@@ -26,6 +27,11 @@ export const SelectLocation = ({ addressObjects, setAddressObjects }: SelectLoca
           />
         </div>
       ))}
+      {!!error && (
+        <Typography tag="p" variant="err1">
+          {error}
+        </Typography>
+      )}
     </div>
   )
 }

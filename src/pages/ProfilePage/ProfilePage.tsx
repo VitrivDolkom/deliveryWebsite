@@ -59,7 +59,11 @@ export const ProfilePage = () => {
 
         <div className="addressBlock">
           <Typography>Адрес проживания</Typography>
-          <SelectLocation addressObjects={addressObjects} setAddressObjects={setAddressObjects} />
+          <SelectLocation
+            error={errors.addressId?.message}
+            addressObjects={addressObjects}
+            setAddressObjects={setAddressObjects}
+          />
         </div>
 
         <Button
