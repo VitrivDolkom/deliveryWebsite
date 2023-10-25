@@ -13,7 +13,8 @@ export const useProfilePage = () => {
     register,
     formState: { errors },
     watch,
-    reset
+    reset,
+    setError
   } = useForm<UserEditModel>()
 
   const { user } = useUserContext()
@@ -60,6 +61,7 @@ export const useProfilePage = () => {
   const onFormSubmit: SubmitHandler<UserEditModel> = async (userInfo) => {
     const objectId = addressObjects.at(addressObjects.length - 1)?.object?.address.objectGuid
     if (!objectId) {
+      setError('addressId', { message: 'Выберите адрес' })
       return
     }
 

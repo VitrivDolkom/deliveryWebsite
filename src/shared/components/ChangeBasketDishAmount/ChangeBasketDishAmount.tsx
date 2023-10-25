@@ -2,7 +2,7 @@ import { Button } from '@/shared/uikit'
 import s from './styles.module.css'
 
 interface ChangeBasketDishAmountProps {
-  onDecreaseClick: (dishId: string) => void
+  onDecreaseClick: (dishId: string, increase?: boolean) => void
   onIncreaseClick: (dishId: string) => void
   dish: DishBasketDto
 }

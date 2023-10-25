@@ -12,7 +12,8 @@ export const useRegistrationPage = () => {
     register,
     formState: { errors },
     setValue,
-    watch
+    watch,
+    setError
   } = useForm<UserRegisterModel>()
 
   const {
@@ -26,7 +27,10 @@ export const useRegistrationPage = () => {
 
   const onFormSubmit: SubmitHandler<UserRegisterModel> = async (userInfo) => {
     const objectId = addressObjects.at(addressObjects.length - 1)?.object?.address.objectGuid
-    if (!objectId) return
+    if (!objectId) {
+      setError('addressId', { message: 'Выберите адрес' })
+      return
+    }
 
     userInfo.addressId = objectId
     requestHandler(postRegisterConfig(userInfo))

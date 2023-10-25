@@ -3,7 +3,7 @@ interface InputValidations {
   phone: Validation
   email: Validation
   birthDate: Validation
-  orderTime: Validation
+  deliveryTime: Validation
   password: Validation
 }
 
@@ -39,7 +39,7 @@ export const validations: InputValidations = {
   birthDate: {
     required: { value: true, message: 'Заполните поле' }
   },
-  orderTime: {
+  deliveryTime: {
     required: { value: true, message: 'Заполните поле' }
   },
   password: {
