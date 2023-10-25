@@ -8,7 +8,7 @@ import {
   dishSortingOptions
 } from '@/shared/lib/const'
 import { Button } from '@/shared/uikit'
-import { MenuDishesList } from './MenuDishesList/MenuItemsList'
+import { MenuDishes } from './MenuDishes/MenuDishes'
 import { useMenuPage } from './useMenuPage'
 import s from './styles.module.css'
 
@@ -24,7 +24,11 @@ export const MenuPage = () => {
     onCategoriesChange,
     onVegetarianChange,
     onFiltersApply,
-    onPageChange
+    onPageChange,
+    onDishAdd,
+    actionLoading,
+    basket,
+    onDishDelete
   } = useMenuPage()
 
   return (
@@ -67,11 +71,15 @@ export const MenuPage = () => {
           Применить
         </Button>
       </div>
-      <MenuDishesList
+      <MenuDishes
+        basket={basket}
         dishPagedList={dishPagedList}
         error={error}
         isLoading={isLoading}
+        onDishAdd={onDishAdd}
         onPageChange={onPageChange}
+        actionLoading={actionLoading}
+        onDishDelete={onDishDelete}
       />
     </div>
   )

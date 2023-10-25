@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { MultiValue, SingleValue } from 'react-select'
 import { getDishesConfig } from '@/shared/api'
 import { DishCategoryOption, DishSortingOption } from '@/shared/lib/const'
+import { useBasketContext, useBasketSwitcherContext, useUserContext } from '@/shared/lib/contexts'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const useMenuPage = () => {
@@ -17,6 +18,10 @@ export const useMenuPage = () => {
   const vegetarian = searchParams.get('vegetarian') || 'false'
   const sorting = searchParams.get('sorting') || ''
   const page = searchParams.get('page') || '1'
+
+  const { isAuth } = useUserContext()
+  const { actionLoading, basket } = useBasketContext()
+  const { addDish, deleteDish } = useBasketSwitcherContext()
 
   const {
     data: dishPagedList,
@@ -67,7 +72,11 @@ export const useMenuPage = () => {
     setSearchParams(searchParams)
   }
 
+  const onDishAdd = isAuth ? (dishId: string) => addDish(dishId) : undefined
+  const onDishDelete = (dishId: string, increase?: boolean) => deleteDish(dishId, increase)
+
   return {
+    basket,
     categories,
     vegetarian,
     sorting,
@@ -79,6 +88,9 @@ export const useMenuPage = () => {
     onCategoriesChange,
     onVegetarianChange,
     onFiltersApply,
-    onPageChange
+    onPageChange,
+    onDishAdd,
+    actionLoading,
+    onDishDelete
   }
 }

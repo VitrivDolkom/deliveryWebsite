@@ -42,6 +42,7 @@ module.exports = {
     'no-duplicate-imports': 'error',
     'import/no-internal-modules': ['off'],
     // allow double negation
-    'no-extra-boolean-cast': 'off'
+    'no-extra-boolean-cast': 'off',
+    'react-hooks/exhaustive-deps': 'off'
   }
 }

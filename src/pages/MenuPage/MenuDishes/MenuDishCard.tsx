@@ -1,14 +1,15 @@
 import { DishRating } from '@/features'
 import { MenuItemImage } from '@/shared/components'
-import { Button, Typography } from '@/shared/uikit'
+import { Typography } from '@/shared/uikit'
 import s from './styles.module.css'
 
 interface MenuDishCardProps {
   dish: DishDto
   onClick: () => void
+  renderUserActions: () => JSX.Element
 }
 
-export const MenuDishCard = ({ dish, onClick }: MenuDishCardProps) => (
+export const MenuDishCard = ({ dish, onClick, renderUserActions }: MenuDishCardProps) => (
   <div className={s.card} onClick={onClick}>
     <MenuItemImage image={dish.image} vegetarian={dish.vegetarian} />
     <div className={s.top}>
@@ -29,9 +30,7 @@ export const MenuDishCard = ({ dish, onClick }: MenuDishCardProps) => (
       <Typography tag="p" variant="t1">
         Цена - {dish.price}р
       </Typography>
-      <Button styleType="solid" alertType="success" className="btn">
-        В корзину
-      </Button>
+      {renderUserActions?.()}
     </footer>
   </div>
 )

@@ -1,13 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Header } from '@/shared/components'
 import { routes } from '@/shared/const'
-import { useUserContext, useUserSwitcherContext } from '@/shared/lib/contexts'
+import { useBasketContext, useUserContext, useUserSwitcherContext } from '@/shared/lib/contexts'
 import { Button, Typography } from '@/shared/uikit'
 
 export const RenderHeader = () => {
   const navigate = useNavigate()
   const { isAuth, user } = useUserContext()
   const { logout } = useUserSwitcherContext()
+  const { basket } = useBasketContext()
 
   const onLoginClick = () => {
     navigate(routes.login())
@@ -45,7 +46,7 @@ export const RenderHeader = () => {
               </Link>
               <Link to={routes.cart()}>
                 <Typography tag="span" variant="t1" isLink={true}>
-                  Корзина
+                  Корзина{basket?.length && ` (${basket.length})`}
                 </Typography>
               </Link>
             </>

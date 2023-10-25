@@ -1,3 +1,4 @@
+export * from './BasketPage'
 export * from './LoginPage'
 export * from './MenuDishPage'
 export * from './MenuPage'
