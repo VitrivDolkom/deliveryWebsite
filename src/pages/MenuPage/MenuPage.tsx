@@ -8,7 +8,7 @@ import {
   dishSortingOptions
 } from '@/shared/lib/const'
 import { Button } from '@/shared/uikit'
-import { MenuDishesList } from './MenuDishesList/MenuDishesList'
+import { MenuDishesList } from './MenuDishesList/MenuItemsList'
 import { useMenuPage } from './useMenuPage'
 import s from './styles.module.css'
 
