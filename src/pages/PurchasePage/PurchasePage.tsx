@@ -1,6 +1,6 @@
 import { SelectLocation } from '@/features'
 import classNames from 'classnames/bind'
-import { DishBasketCard, InputBlock } from '@/shared/components'
+import { ButtonLoader, DishBasketCard, InputBlock } from '@/shared/components'
 import { validations } from '@/shared/const'
 import { Button, Typography } from '@/shared/uikit'
 import { usePurchasePage } from './usePurchasePage'
@@ -18,7 +18,8 @@ export const PurchasePage = () => {
     addressObjects,
     setAddressObjects,
     basket,
-    checkLocation
+    checkLocation,
+    createOrderLoading
   } = usePurchasePage()
 
   return (
@@ -82,6 +83,8 @@ export const PurchasePage = () => {
             checkLocation()
             handleSubmit(onFormSubmit)()
           }}
+          isLoading={createOrderLoading}
+          loader={<ButtonLoader />}
         >
           Подтвердить заказ
         </Button>

@@ -17,19 +17,12 @@ export const useRequests = () => {
   })
 
   const {
-    isLoading: createOrderLoading,
-    error: createOrderError,
-    requestHandler: createOrder
-  } = useRequest<never, OrderCreateDto>({})
-
-  const {
     isLoading: confirmOrderLoading,
     error: confirmOrderError,
     requestHandler: confirmOrder
   } = useRequest<never>({})
 
   React.useEffect(() => {
-    // createOrder(postOrderConfig({ dto: {}, token: { token: user.token } }))
     // confirmOrder(postOrderStatusConfig({ id: '', dto: {}, token: { token: user.token } }))
   }, [])
 
@@ -37,9 +30,7 @@ export const useRequests = () => {
     orders,
     isLoading,
     error,
-    createOrderLoading,
     confirmOrderLoading,
-    createOrderError,
     confirmOrderError
   }
 }

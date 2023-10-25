@@ -1,7 +1,7 @@
 import { SelectAddressObject } from '@/features'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { getProfileConfig } from '@/shared/api'
+import { getProfileConfig, postOrderConfig } from '@/shared/api'
 import { useBasketContext, useUserContext } from '@/shared/lib/contexts'
 import { useRequest } from '@/shared/lib/hooks'
 
@@ -23,7 +23,18 @@ export const usePurchasePage = () => {
     config: getProfileConfig({ token: user.token })
   })
 
-  // const { requestHandler: createOrder } = useRequest<UserDto>({})
+  const {
+    isLoading: createOrderLoading,
+    error: createOrderError,
+    requestHandler: createOrder,
+    isSuccess: successCreateOrder
+  } = useRequest<never, OrderCreateDto>({})
+
+  React.useEffect(() => {
+    if (successCreateOrder) {
+      // navigate(routes.orders())
+    }
+  }, [successCreateOrder])
 
   const checkLocation = () => {
     const addressId = addressObjects[addressObjects.length - 1]?.object?.address.objectGuid
@@ -42,7 +53,7 @@ export const usePurchasePage = () => {
     if (!addressId) return
 
     deliveryInfo.addressId = addressId || ''
-    console.log(deliveryInfo)
+    createOrder(postOrderConfig({ dto: deliveryInfo, token: { token: user.token } }))
   }
 
   return {
@@ -55,6 +66,8 @@ export const usePurchasePage = () => {
     addressObjects,
     setAddressObjects,
     basket,
-    checkLocation
+    checkLocation,
+    createOrderLoading,
+    createOrderError
   }
 }
