@@ -1,5 +1,7 @@
+import { useNavigate } from 'react-router-dom'
 import preloader from '@/assets/gifs/search.gif'
 import { Pagination } from '@/shared/components'
+import { routes } from '@/shared/const'
 import { Typography } from '@/shared/uikit'
 import { MenuDishCard } from './MenuItemCard'
 import s from './styles.module.css'
@@ -17,6 +19,8 @@ export const MenuDishesList = ({
   isLoading,
   onPageChange
 }: MenuDishesListProps) => {
+  const navigate = useNavigate()
+
   if (!!error) {
     return (
       <Typography tag="div" variant="err2">
@@ -35,7 +39,9 @@ export const MenuDishesList = ({
         )}
         {!isLoading && (
           <div className={s.list}>
-            {dishPagedList?.dishes.map((dish) => <MenuDishCard key={dish.id} dish={dish} />)}
+            {dishPagedList?.dishes.map((dish) => (
+              <MenuDishCard key={dish.id} dish={dish} onClick={() => navigate(routes.item(dish.id))} />
+            ))}
           </div>
         )}
       </div>
