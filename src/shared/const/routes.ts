@@ -3,9 +3,9 @@ export const routes = {
   login: () => '/login',
   registration: () => '/registration',
   profile: () => '/profile',
-  item: (itemId?: string) => `/item/${itemId || ':orderId'}`,
+  item: (itemId?: string) => `/item/${itemId || ':id'}`,
   cart: () => 'cart',
   orders: () => 'orders',
-  order: (orderId?: string) => `/order/${orderId || ':orderId'}`,
+  order: (orderId?: string) => `/order/${orderId || ':id'}`,
   purchase: () => 'purchase'
 }

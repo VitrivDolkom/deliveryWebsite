@@ -1,3 +1,15 @@
 .list {
   display: flex;
 }
+
+.img.xs {
+  width: 24px;
+}
+
+.img.s {
+  width: 32px;
+}
+
+.img img {
+  width: 100%;
+}
