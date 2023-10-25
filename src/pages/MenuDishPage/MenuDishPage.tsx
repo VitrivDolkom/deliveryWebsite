@@ -14,7 +14,7 @@ const dish: DishDto = {
   id: 'e4698ac7-7d9e-456e-2741-08dbc899a338'
 }
 
-export const MenuItemPage = () => (
+export const MenuDishPage = () => (
   <div className={s.wrapper}>
     <div className={s.img}>
       <MenuItemImage image={dish.image} vegetarian={dish.vegetarian} />

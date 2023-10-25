@@ -3,7 +3,7 @@ import { getDishConfig, getRatingCheckConfig, postRatingConfig } from '@/shared/
 import { useUserContext } from '@/shared/lib/contexts'
 import { useRequest } from '@/shared/lib/hooks'
 
-export const useMenuItemPage = () => {
+export const useMenuDishPage = () => {
   const { id } = useParams()
   const { user } = useUserContext()
 
