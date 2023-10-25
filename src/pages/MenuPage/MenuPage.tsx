@@ -26,7 +26,7 @@ export const MenuPage = () => {
     onFiltersApply,
     onPageChange,
     onDishAdd,
-    addDishLoading,
+    actionLoading,
     basket,
     onDishDelete
   } = useMenuPage()
@@ -78,7 +78,7 @@ export const MenuPage = () => {
         isLoading={isLoading}
         onDishAdd={onDishAdd}
         onPageChange={onPageChange}
-        addDishLoading={addDishLoading}
+        actionLoading={actionLoading}
         onDishDelete={onDishDelete}
       />
     </div>

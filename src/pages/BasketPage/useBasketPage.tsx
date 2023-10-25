@@ -1,30 +1,14 @@
-import { useBasketContext } from '@/shared/lib/contexts'
-import { useRequest } from '@/shared/lib/hooks'
+import { useBasketContext, useBasketSwitcherContext } from '@/shared/lib/contexts'
 
 export const useBasketPage = () => {
   const { basket, basketError, basketLoading: isLoading } = useBasketContext()
-
-  const {
-    isLoading: deleteDishLoading,
-    error: deleteDishError,
-    requestHandler: deleteDish
-  } = useRequest<DishBasketDto[]>({})
-
-  const {
-    isLoading: addDishLoading,
-    error: addDishError,
-    requestHandler: addDish
-  } = useRequest<DishBasketDto[]>({})
+  const { addDish: onDishAdd, deleteDish: onDishDelete } = useBasketSwitcherContext()
 
   return {
     basket,
     basketError,
     isLoading,
-    deleteDish,
-    deleteDishError,
-    deleteDishLoading,
-    addDish,
-    addDishError,
-    addDishLoading
+    onDishDelete,
+    onDishAdd
   }
 }

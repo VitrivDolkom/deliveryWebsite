@@ -4,7 +4,7 @@ interface IBasketContext {
   basket: DishBasketDto[] | null
   basketError: string
   basketLoading: boolean
-  addDishLoading: boolean
+  actionLoading: boolean
   fetchBasket: () => void
   deleteDish: (dishId: string, increase?: boolean) => void
   addDish: (dishId: string) => void
@@ -14,7 +14,7 @@ export const BasketContext = createContext<IBasketContext>({
   basket: [],
   basketError: '',
   basketLoading: false,
-  addDishLoading: false,
+  actionLoading: false,
   fetchBasket: () => {},
   deleteDish: () => {},
   addDish: () => {}

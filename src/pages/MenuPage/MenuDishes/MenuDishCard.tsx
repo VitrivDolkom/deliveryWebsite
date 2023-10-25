@@ -5,8 +5,6 @@ import s from './styles.module.css'
 
 interface MenuDishCardProps {
   dish: DishDto
-  onDishAdd?: (dishId: string) => void
-  isLoading: boolean
   renderUserActions: () => JSX.Element
 }
 

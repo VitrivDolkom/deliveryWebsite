@@ -6,13 +6,13 @@ import s from './styles.module.css'
 
 interface MenuDishesProps {
   isLoading: boolean
-  addDishLoading: boolean
+  actionLoading: boolean
   error: string
   dishPagedList: DishPagedListDto | null
   basket: DishBasketDto[] | null
   onPageChange: (page: number) => void
   onDishAdd?: (dishId: string) => void
-  onDishDelete?: (dishId: string, increase?: boolean) => void
+  onDishDelete: (dishId: string, increase?: boolean) => void
 }
 
 export const MenuDishes = (props: MenuDishesProps) => {
@@ -22,7 +22,7 @@ export const MenuDishes = (props: MenuDishesProps) => {
     isLoading,
     onPageChange,
     onDishAdd,
-    addDishLoading,
+    actionLoading,
     basket,
     onDishDelete
   } = props
@@ -30,7 +30,7 @@ export const MenuDishes = (props: MenuDishesProps) => {
   if (!!error) {
     return (
       <Typography tag="div" variant="err2">
-        Ошибка получения блюд, извините
+        Ошибка получения блюд
       </Typography>
     )
   }
@@ -38,7 +38,7 @@ export const MenuDishes = (props: MenuDishesProps) => {
   const renderUserActions = (dishId: string): JSX.Element => {
     let userActions: JSX.Element = <></>
 
-    if (!onDishAdd || !onDishDelete) return userActions
+    if (!onDishAdd) return userActions
 
     const foundDish = basket?.find((currentDish) => currentDish.id === dishId)
 
@@ -72,14 +72,17 @@ export const MenuDishes = (props: MenuDishesProps) => {
             <img src={preloader} alt="Загрузка..." />
           </div>
         )}
+        {actionLoading && (
+          <div className={s.actionLoader}>
+            <ButtonLoader />
+          </div>
+        )}
         {!isLoading && (
           <div className={s.list}>
             {dishPagedList?.dishes.map((dish) => (
               <MenuDishCard
                 key={dish.id}
                 dish={dish}
-                onDishAdd={onDishAdd}
-                isLoading={addDishLoading}
                 renderUserActions={() => renderUserActions(dish.id)}
               />
             ))}

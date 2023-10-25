@@ -7,9 +7,11 @@ const cx = classNames.bind(s)
 
 interface BasketDishesListProps {
   basket: DishBasketDto[]
+  onDishAdd: (dishId: string) => void
+  onDishDelete: (dishId: string, increase?: boolean) => void
 }
 
-export const BasketDishesList = ({ basket }: BasketDishesListProps) => (
+export const BasketDishesList = ({ basket, onDishDelete, onDishAdd }: BasketDishesListProps) => (
   <div className={s.list}>
     {basket.map((dish, index) => (
       <div key={dish.id} className={s.dish}>
@@ -27,8 +29,13 @@ export const BasketDishesList = ({ basket }: BasketDishesListProps) => (
             Цена/шт: {dish.price}руб.
           </Typography>
         </div>
-        <ChangeBasketDishAmount dish={dish} />
-        <Button styleType="solid" alertType="danger" className="btn">
+        <ChangeBasketDishAmount dish={dish} onDecreaseCLick={onDishDelete} onIncreaseCLick={onDishAdd} />
+        <Button
+          styleType="solid"
+          alertType="danger"
+          className="btn"
+          onClick={() => onDishDelete(dish.id, false)}
+        >
           Удалить
         </Button>
       </div>

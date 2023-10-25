@@ -20,7 +20,7 @@ export const useMenuPage = () => {
   const page = searchParams.get('page') || '1'
 
   const { isAuth } = useUserContext()
-  const { addDishLoading, basket } = useBasketContext()
+  const { actionLoading, basket } = useBasketContext()
   const { addDish, deleteDish } = useBasketSwitcherContext()
 
   const {
@@ -73,9 +73,7 @@ export const useMenuPage = () => {
   }
 
   const onDishAdd = isAuth ? (dishId: string) => addDish(dishId) : undefined
-  const onDishDelete = isAuth
-    ? (dishId: string, increase?: boolean) => deleteDish(dishId, increase)
-    : undefined
+  const onDishDelete = (dishId: string, increase?: boolean) => deleteDish(dishId, increase)
 
   return {
     basket,
@@ -92,7 +90,7 @@ export const useMenuPage = () => {
     onFiltersApply,
     onPageChange,
     onDishAdd,
-    addDishLoading,
+    actionLoading,
     onDishDelete
   }
 }

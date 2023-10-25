@@ -28,6 +28,8 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
     isSuccess: addDishSuccess
   } = useRequest<DishBasketDto[]>({})
 
+  const actionLoading = addDishLoading || deleteDishLoading
+
   React.useEffect(() => {
     fetchBasket()
   }, [])
@@ -60,7 +62,7 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <BasketContext.Provider
-      value={{ basket, fetchBasket, basketLoading, basketError, deleteDish, addDish, addDishLoading }}
+      value={{ basket, fetchBasket, basketLoading, basketError, deleteDish, addDish, actionLoading }}
     >
       {children}
     </BasketContext.Provider>
