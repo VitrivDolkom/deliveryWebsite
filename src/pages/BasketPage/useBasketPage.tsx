@@ -1,14 +1,8 @@
-import React from 'react'
-import { useBasketContext, useBasketSwitcherContext } from '@/shared/lib/contexts'
+import { useBasketContext } from '@/shared/lib/contexts'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const useBasketPage = () => {
-  const { fetchBasket } = useBasketSwitcherContext()
   const { basket, basketError, basketLoading: isLoading } = useBasketContext()
-
-  React.useEffect(() => {
-    fetchBasket()
-  })
 
   const {
     isLoading: deleteDishLoading,

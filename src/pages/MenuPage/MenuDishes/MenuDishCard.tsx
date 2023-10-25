@@ -44,7 +44,7 @@ export const MenuDishCard = ({ dish, onDishAdd, isLoading }: MenuDishCardProps) 
           alertType="success"
           className="btn"
           onClick={() => onDishAdd(dish.id)}
-          isLoading={isLoading}
+          disabled={isLoading}
           loader={<ButtonLoader />}
         >
           В корзину

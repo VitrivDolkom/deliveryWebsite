@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { MultiValue, SingleValue } from 'react-select'
-import { getDishesConfig, postDishConfig } from '@/shared/api'
+import { getDishesConfig } from '@/shared/api'
 import { DishCategoryOption, DishSortingOption } from '@/shared/lib/const'
-import { useUserContext } from '@/shared/lib/contexts'
+import { useBasketContext, useBasketSwitcherContext, useUserContext } from '@/shared/lib/contexts'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const useMenuPage = () => {
@@ -20,6 +20,8 @@ export const useMenuPage = () => {
   const page = searchParams.get('page') || '1'
 
   const { user } = useUserContext()
+  const { addDishLoading } = useBasketContext()
+  const { addDish } = useBasketSwitcherContext()
 
   const {
     data: dishPagedList,
@@ -31,8 +33,6 @@ export const useMenuPage = () => {
     config: getDishesConfig({ categories, page, sorting, vegetarian }),
     duration: 800
   })
-
-  const { isLoading: addDishLoading, requestHandler: addDish } = useRequest<DishBasketDto[]>({})
 
   React.useEffect(() => {
     setSearchParams(searchParams)
@@ -72,11 +72,7 @@ export const useMenuPage = () => {
     setSearchParams(searchParams)
   }
 
-  const onDishAdd = !user.token
-    ? undefined
-    : (dishId: string) => {
-        addDish(postDishConfig({ dishId, token: { token: user.token } }))
-      }
+  const onDishAdd = !user.token ? undefined : (dishId: string) => addDish(dishId)
 
   return {
     categories,

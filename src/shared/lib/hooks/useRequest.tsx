@@ -15,10 +15,12 @@ export const useRequest = <T, D = never>({
   const [data, setData] = useState<T | null>(null)
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
 
   const requestHandler = useCallback(async (config: AxiosRequestConfig<D>) => {
     setIsLoading(true)
     setError('')
+    setIsSuccess(false)
 
     try {
       const response = await axios(config)
@@ -28,6 +30,7 @@ export const useRequest = <T, D = never>({
       }
 
       setData(response.data)
+      setIsSuccess(true)
     } catch (error: unknown) {
       setError((error as Response).message || '')
     }
@@ -47,6 +50,7 @@ export const useRequest = <T, D = never>({
     data,
     error,
     isLoading,
-    requestHandler
+    requestHandler,
+    isSuccess
   }
 }
