@@ -19,9 +19,9 @@ export const useMenuPage = () => {
   const sorting = searchParams.get('sorting') || ''
   const page = searchParams.get('page') || '1'
 
-  const { user } = useUserContext()
-  const { addDishLoading } = useBasketContext()
-  const { addDish } = useBasketSwitcherContext()
+  const { isAuth } = useUserContext()
+  const { addDishLoading, basket } = useBasketContext()
+  const { addDish, deleteDish } = useBasketSwitcherContext()
 
   const {
     data: dishPagedList,
@@ -72,9 +72,13 @@ export const useMenuPage = () => {
     setSearchParams(searchParams)
   }
 
-  const onDishAdd = !user.token ? undefined : (dishId: string) => addDish(dishId)
+  const onDishAdd = isAuth ? (dishId: string) => addDish(dishId) : undefined
+  const onDishDelete = isAuth
+    ? (dishId: string, increase?: boolean) => deleteDish(dishId, increase)
+    : undefined
 
   return {
+    basket,
     categories,
     vegetarian,
     sorting,
@@ -88,6 +92,7 @@ export const useMenuPage = () => {
     onFiltersApply,
     onPageChange,
     onDishAdd,
-    addDishLoading
+    addDishLoading,
+    onDishDelete
   }
 }

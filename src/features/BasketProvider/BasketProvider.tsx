@@ -51,15 +51,11 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
   const deleteDish = (dishId: string, increase?: boolean) => {
     fetchDeleteDish(
       deleteDishConfig({ token: { token: user.token }, dishId: dishId, increase: increase })
-    ).then(() => {
-      fetchBasket()
-    })
+    )
   }
 
   const addDish = (dishId: string) => {
-    fetchAddDish(postDishConfig({ token: { token: user.token }, dishId: dishId })).then(() => {
-      fetchBasket()
-    })
+    fetchAddDish(postDishConfig({ token: { token: user.token }, dishId: dishId }))
   }
 
   return (

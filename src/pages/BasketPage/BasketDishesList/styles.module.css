@@ -27,17 +27,6 @@
   flex-shrink: 0;
 }
 
-.change {
-  display: flex;
-  align-items: center;
-}
-
-.btn {
-  width: 40px;
-  border-radius: 0;
-  font-size: 15px;
-}
-
 @media screen and (max-width: 776px) {
   .dish {
     flex-direction: column;

@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind'
+import { ChangeBasketDishAmount } from '@/shared/components'
 import { Button, Typography } from '@/shared/uikit'
 import s from './styles.module.css'
 
@@ -7,6 +8,7 @@ const cx = classNames.bind(s)
 interface BasketDishesListProps {
   basket: DishBasketDto[]
 }
+
 export const BasketDishesList = ({ basket }: BasketDishesListProps) => (
   <div className={s.list}>
     {basket.map((dish, index) => (
@@ -25,17 +27,7 @@ export const BasketDishesList = ({ basket }: BasketDishesListProps) => (
             Цена/шт: {dish.price}руб.
           </Typography>
         </div>
-        <div className={s.change}>
-          <Button styleType="outlined" alertType="info" disabled={dish.amount === 1} className={s.btn}>
-            -
-          </Button>
-          <Button styleType="outlined" alertType="info" disabled={true} className={s.btn}>
-            {dish.amount}
-          </Button>
-          <Button styleType="outlined" alertType="info" className={s.btn}>
-            +
-          </Button>
-        </div>
+        <ChangeBasketDishAmount dish={dish} />
         <Button styleType="solid" alertType="danger" className="btn">
           Удалить
         </Button>

@@ -7,7 +7,7 @@ interface DeleteDishParams {
   increase?: boolean
 }
 
-export const deleteDishConfig = ({ dishId, token, increase = false }: DeleteDishParams) =>
+export const deleteDishConfig = ({ dishId, token, increase = true }: DeleteDishParams) =>
   request<never>({
     config: { method: 'delete', headers: { ...authHeaders(token) } },
     url: `/basket/dish/${dishId}?increase=${increase}`

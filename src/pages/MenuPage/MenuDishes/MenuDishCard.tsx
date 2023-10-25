@@ -1,16 +1,16 @@
 import { DishRating } from '@/features'
 import leaves from '@/assets/icons/leaves.png'
-import { ButtonLoader } from '@/shared/components'
-import { Button, Typography } from '@/shared/uikit'
+import { Typography } from '@/shared/uikit'
 import s from './styles.module.css'
 
 interface MenuDishCardProps {
   dish: DishDto
   onDishAdd?: (dishId: string) => void
   isLoading: boolean
+  renderUserActions: () => JSX.Element
 }
 
-export const MenuDishCard = ({ dish, onDishAdd, isLoading }: MenuDishCardProps) => (
+export const MenuDishCard = ({ dish, renderUserActions }: MenuDishCardProps) => (
   <div className={s.card}>
     <div className={s.img}>
       <img src={dish.image} alt="Картинка блюда" />
@@ -38,18 +38,7 @@ export const MenuDishCard = ({ dish, onDishAdd, isLoading }: MenuDishCardProps) 
       <Typography tag="p" variant="t1">
         Цена - {dish.price}р
       </Typography>
-      {!!onDishAdd && (
-        <Button
-          styleType="solid"
-          alertType="success"
-          className="btn"
-          onClick={() => onDishAdd(dish.id)}
-          disabled={isLoading}
-          loader={<ButtonLoader />}
-        >
-          В корзину
-        </Button>
-      )}
+      {renderUserActions?.()}
     </footer>
   </div>
 )

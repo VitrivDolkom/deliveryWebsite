@@ -6,7 +6,7 @@ interface IBasketContext {
   basketLoading: boolean
   addDishLoading: boolean
   fetchBasket: () => void
-  deleteDish: (dishId: string, increase: boolean) => void
+  deleteDish: (dishId: string, increase?: boolean) => void
   addDish: (dishId: string) => void
 }
 
