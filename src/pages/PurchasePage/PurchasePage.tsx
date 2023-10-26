@@ -1,12 +1,9 @@
 import { SelectLocation } from '@/features'
-import classNames from 'classnames/bind'
 import { ButtonLoader, DishBasketCard, InputBlock } from '@/shared/components'
 import { validations } from '@/shared/const'
 import { Button, Typography } from '@/shared/uikit'
 import { usePurchasePage } from './usePurchasePage'
 import s from './styles.module.css'
-
-const cx = classNames.bind(s)
 
 export const PurchasePage = () => {
   const {
@@ -78,7 +75,7 @@ export const PurchasePage = () => {
         <Button
           styleType="solid"
           alertType="success"
-          className={cx({ btn: true, block: true })}
+          className="btn big block"
           onClick={() => {
             checkLocation()
             handleSubmit(onFormSubmit)()

@@ -31,6 +31,10 @@
   max-width: 140px;
 }
 
+.btn.big {
+  max-width: 230px;
+}
+
 .item {
   margin-top: 10px;
 }

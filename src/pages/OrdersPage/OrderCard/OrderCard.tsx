@@ -9,7 +9,7 @@ interface OrderCardProps {
 
 export const OrderCard = ({ order }: OrderCardProps) => (
   <div className={s.card}>
-    <div className={s.info}>
+    <div className={s.left}>
       <Typography tag="p" variant="t4">
         Заказ от {getDateFromDateTime(order.orderTime)}
       </Typography>
@@ -23,9 +23,9 @@ export const OrderCard = ({ order }: OrderCardProps) => (
         {getDateFromDateTime(order.deliveryTime)} {getTimeFromDateTime(order.deliveryTime)}
       </Typography>
     </div>
-    <div className="">
+    <div className={s.right}>
       {order.status === 'InProcess' && (
-        <Button styleType="outlined" alertType="success" className="btn">
+        <Button styleType="outlined" alertType="success" className="btn big">
           Подтвердить доставку
         </Button>
       )}
