@@ -76,7 +76,7 @@ declare global {
     orderTime: string
     status: OrderStatus
     price: number
-    dishes: DishDto[]
+    dishes: DishBasketDto[]
     address: string
   }
 

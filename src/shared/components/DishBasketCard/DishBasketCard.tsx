@@ -25,6 +25,13 @@ export const DishBasketCard = ({ dish }: DishBasketCardProps) => (
         Количество: {dish.amount}шт.
       </Typography>
     </main>
-    <footer className={s.footer}>Стоимость: {dish.totalPrice}руб.</footer>
+    <footer className={s.footer}>
+      <Typography tag="p" variant="t4">
+        Стоимость:{' '}
+        <Typography tag="span" variant="t1">
+          {dish.totalPrice}руб.
+        </Typography>
+      </Typography>
+    </footer>
   </div>
 )
