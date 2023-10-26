@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import preloader from '@/assets/gifs/search.gif'
-import { ButtonLoader, ChangeBasketDishAmount, Pagination } from '@/shared/components'
+import { ButtonLoader, ChangeBasketDishAmount, Pagination, SearchLoader } from '@/shared/components'
 import { routes } from '@/shared/const'
 import { Button, Typography } from '@/shared/uikit'
 import { MenuDishCard } from './MenuDishCard'
@@ -74,11 +73,7 @@ export const MenuDishes = (props: MenuDishesProps) => {
   return (
     <div className={s.wrapper}>
       <div className={s.content}>
-        {isLoading && (
-          <div className={s.preloader}>
-            <img src={preloader} alt="Загрузка..." />
-          </div>
-        )}
+        {isLoading && <SearchLoader />}
         {actionLoading && (
           <div className={s.actionLoader}>
             <ButtonLoader />

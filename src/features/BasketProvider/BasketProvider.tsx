@@ -62,7 +62,16 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <BasketContext.Provider
-      value={{ basket, fetchBasket, basketLoading, basketError, deleteDish, addDish, actionLoading }}
+      value={{
+        basket,
+        fetchBasket,
+        basketLoading,
+        basketError,
+        deleteDish,
+        addDish,
+        actionLoading,
+        isEmpty: !basket?.length
+      }}
     >
       {children}
     </BasketContext.Provider>
