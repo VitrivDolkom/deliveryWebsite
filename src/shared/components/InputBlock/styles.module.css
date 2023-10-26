@@ -13,6 +13,7 @@
 .block.row {
   align-items: center;
   flex-direction: row;
+  gap: 10px;
 }
 
 .block.column {}
@@ -51,7 +52,7 @@
 }
 
 .constValue {
-  flex: 0 0 80%;
+  flex: 1 1 80%;
 }
 
 /* custom checkbox */

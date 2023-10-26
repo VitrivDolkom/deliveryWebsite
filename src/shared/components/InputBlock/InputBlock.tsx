@@ -56,7 +56,7 @@ export const InputBlock = forwardRef<HTMLInputElement, InputBlockProps>(
             </Typography>
           </label>
           {!!constValue && (
-            <Typography variant="t4" className={s.constValue}>
+            <Typography variant="t4" className={cx({ constValue: true, ellipsis: true })}>
               {constValue}
             </Typography>
           )}

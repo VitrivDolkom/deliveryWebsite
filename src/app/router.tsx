@@ -1,4 +1,12 @@
-import { BasketPage, LoginPage, MenuDishPage, MenuPage, OrdersPage, RegistrationPage } from '@/pages'
+import {
+  BasketPage,
+  LoginPage,
+  MenuDishPage,
+  MenuPage,
+  OrdersPage,
+  PurchasePage,
+  RegistrationPage
+} from '@/pages'
 import { createBrowserRouter } from 'react-router-dom'
 import { ProfilePage } from '@/pages/ProfilePage'
 import { routes } from '@/shared/const'
@@ -42,7 +50,7 @@ export const router = createBrowserRouter([
       },
       {
         path: routes.purchase(),
-        element: null
+        element: <PurchasePage />
       }
     ]
   }
