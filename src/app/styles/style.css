@@ -19,6 +19,9 @@
   max-width: 1200px;
 }
 
+.block {
+  margin-top: 20px;
+}
 
 .content {
   flex: 1 1 auto;

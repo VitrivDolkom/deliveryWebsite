@@ -1,8 +1,11 @@
-.top {
+.card {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   border: 1px solid var(--neutral-40);
   padding: 20px;
   border-radius: 10px;
+}
+
+.info {
+  flex: 1 1 auto;
 }
