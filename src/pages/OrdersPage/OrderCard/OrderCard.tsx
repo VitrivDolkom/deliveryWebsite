@@ -1,18 +1,22 @@
-import { OrderStatusEnum } from '@/shared/const'
+import { Link } from 'react-router-dom'
+import { OrderStatusEnum, routes } from '@/shared/const'
 import { getDateFromDateTime, getTimeFromDateTime } from '@/shared/lib/helpers'
 import { Button, Typography } from '@/shared/uikit'
 import s from './styles.module.css'
 
 interface OrderCardProps {
   order: OrderInfoDto
+  onOrderConfirmClick: (orderId: string) => void
 }
 
-export const OrderCard = ({ order }: OrderCardProps) => (
+export const OrderCard = ({ order, onOrderConfirmClick }: OrderCardProps) => (
   <div className={s.card}>
     <div className={s.left}>
-      <Typography tag="p" variant="t4">
-        Заказ от {getDateFromDateTime(order.orderTime)}
-      </Typography>
+      <Link to={routes.order(order.id)}>
+        <Typography tag="p" variant="t4" className={s.link}>
+          Заказ от {getDateFromDateTime(order.orderTime)}
+        </Typography>
+      </Link>
 
       <Typography tag="p" variant="t1">
         Статус заказа - {OrderStatusEnum[order.status]}
@@ -25,7 +29,12 @@ export const OrderCard = ({ order }: OrderCardProps) => (
     </div>
     <div className={s.right}>
       {order.status === 'InProcess' && (
-        <Button styleType="outlined" alertType="success" className="btn big">
+        <Button
+          styleType="outlined"
+          alertType="success"
+          className="btn big"
+          onClick={() => onOrderConfirmClick(order.id)}
+        >
           Подтвердить доставку
         </Button>
       )}

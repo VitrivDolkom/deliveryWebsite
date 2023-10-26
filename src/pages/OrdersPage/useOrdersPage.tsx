@@ -15,7 +15,8 @@ export const useOrdersPage = () => {
   const {
     data: orders,
     isLoading,
-    error
+    error,
+    requestHandler: fetchOrders
   } = useRequest<OrderInfoDto[]>({
     onMount: true,
     config: getOrdersConfig({ token: { token } }),
@@ -30,6 +31,7 @@ export const useOrdersPage = () => {
 
   const onOrderConfirmClick = (orderId: string) => {
     confirmOrder(postOrderStatusConfig({ id: orderId, token: { token } }))
+    fetchOrders(getOrdersConfig({ token: { token } }))
   }
 
   const onPurchaseClick = () => {

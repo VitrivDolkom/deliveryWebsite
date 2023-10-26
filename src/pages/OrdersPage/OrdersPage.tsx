@@ -8,7 +8,7 @@ import s from './styles.module.css'
 const cx = classNames.bind(s)
 
 export const OrdersPage = () => {
-  const { orders, onPurchaseClick, isBasketEmpty, isLoading } = useOrdersPage()
+  const { orders, onPurchaseClick, isBasketEmpty, isLoading, onOrderConfirmClick } = useOrdersPage()
 
   return (
     <div className={s.wrapper}>
@@ -27,9 +27,11 @@ export const OrdersPage = () => {
           Последние заказы
         </Typography>
         {isLoading && <SearchLoader />}
-        {!isLoading && (
-          <div className="block">{orders?.map((order) => <OrderCard order={order} />)}</div>
-        )}
+        <div className="block">
+          {orders?.map((order) => (
+            <OrderCard key={order.id} order={order} onOrderConfirmClick={onOrderConfirmClick} />
+          ))}
+        </div>
       </div>
     </div>
   )
