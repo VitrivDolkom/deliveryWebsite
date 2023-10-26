@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useNavigate } from 'react-router-dom'
 import { getOrdersConfig, postOrderStatusConfig } from '@/shared/api'
 import { routes } from '@/shared/const'
-import { useBasketContext, useUserContext } from '@/shared/lib/contexts'
+import { useBasketContext, useBasketSwitcherContext, useUserContext } from '@/shared/lib/contexts'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const useOrdersPage = () => {
   const navigate = useNavigate()
 
   const { isEmpty: isBasketEmpty } = useBasketContext()
+  const { fetchBasket } = useBasketSwitcherContext()
   const {
     user: { token }
   } = useUserContext()
@@ -31,7 +33,9 @@ export const useOrdersPage = () => {
 
   const onOrderConfirmClick = (orderId: string) => {
     confirmOrder(postOrderStatusConfig({ id: orderId, token: { token } }))
-    fetchOrders(getOrdersConfig({ token: { token } }))
+    // todo on success
+    // fetchOrders(getOrdersConfig({ token: { token } }))
+    // fetchBasket()
   }
 
   const onPurchaseClick = () => {

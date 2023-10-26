@@ -23,7 +23,6 @@ export const useRequest = <T, D = never>({
     setIsSuccess(false)
     setIsLoading(true)
     setError('')
-    setIsSuccess(false)
 
     try {
       const response = await axios(config)
