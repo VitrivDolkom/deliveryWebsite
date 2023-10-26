@@ -4,9 +4,9 @@ import s from './style.module.css'
 const cx = classNames.bind(s)
 
 interface ButtonLoaderProps {
-  color?: 'white'
+  color?: 'white' | 'default'
 }
 
-export const ButtonLoader = ({ color = 'white' }: ButtonLoaderProps) => (
+export const ButtonLoader = ({ color = 'default' }: ButtonLoaderProps) => (
   <div className={cx({ loader: true, [`${color}`]: true })}></div>
 )

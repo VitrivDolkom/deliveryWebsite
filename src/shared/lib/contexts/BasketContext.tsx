@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react'
 
 interface IBasketContext {
+  isEmpty: boolean
   basket: DishBasketDto[] | null
   basketError: string
   basketLoading: boolean
@@ -11,6 +12,7 @@ interface IBasketContext {
 }
 
 export const BasketContext = createContext<IBasketContext>({
+  isEmpty: true,
   basket: [],
   basketError: '',
   basketLoading: false,
