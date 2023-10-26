@@ -1,4 +1,4 @@
-import { BasketPage, LoginPage, MenuDishPage, MenuPage, RegistrationPage } from '@/pages'
+import { BasketPage, LoginPage, MenuDishPage, MenuPage, OrdersPage, RegistrationPage } from '@/pages'
 import { createBrowserRouter } from 'react-router-dom'
 import { ProfilePage } from '@/pages/ProfilePage'
 import { routes } from '@/shared/const'
@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
       },
       {
         path: routes.orders(),
-        element: null
+        element: <OrdersPage />
       },
       {
         path: routes.order(),
