@@ -1,5 +1,5 @@
 import { authHeaders } from '../../authHeaders'
-import { request } from '../../request'
+import { config } from '../../config'
 
 interface DeleteDishParams {
   dishId: string
@@ -8,7 +8,7 @@ interface DeleteDishParams {
 }
 
 export const deleteDishConfig = ({ dishId, token, increase = true }: DeleteDishParams) =>
-  request<never>({
+  config<never>({
     config: { method: 'delete', headers: { ...authHeaders(token) } },
     url: `/basket/dish/${dishId}?increase=${increase}`
   })

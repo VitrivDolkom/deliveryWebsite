@@ -1,5 +1,5 @@
 import { authHeaders } from '../../authHeaders'
-import { request } from '../../request'
+import { config } from '../../config'
 
 interface GetRatingCheckParams {
   id: string
@@ -7,7 +7,7 @@ interface GetRatingCheckParams {
 }
 
 export const getRatingCheckConfig = ({ id, token }: GetRatingCheckParams) =>
-  request<never>({
+  config<never>({
     config: { method: 'post', headers: { ...authHeaders(token) } },
     url: `/dish/${id}/rating/check`
   })

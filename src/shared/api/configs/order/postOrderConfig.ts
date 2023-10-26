@@ -1,5 +1,5 @@
 import { authHeaders } from '../../authHeaders'
-import { request } from '../../request'
+import { config } from '../../config'
 
 interface PostOrderParams {
   dto: OrderCreateDto
@@ -7,7 +7,7 @@ interface PostOrderParams {
 }
 
 export const postOrderConfig = ({ token, dto }: PostOrderParams) =>
-  request<OrderCreateDto>({
+  config<OrderCreateDto>({
     config: { method: 'post', data: dto, headers: { ...authHeaders(token) } },
     url: '/order'
   })

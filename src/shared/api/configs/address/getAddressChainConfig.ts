@@ -1,11 +1,11 @@
-import { request } from '../../request'
+import { config } from '../../config'
 
 interface GetAddressChainParams {
   objectGuid: string
 }
 
 export const getAddressChainConfig = ({ objectGuid }: GetAddressChainParams) =>
-  request<never>({
+  config<never>({
     config: { method: 'get' },
     url: `/address/getaddresschain?objectGuid=${objectGuid}`
   })

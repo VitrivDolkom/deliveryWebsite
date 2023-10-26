@@ -1,5 +1,5 @@
 import { authHeaders } from '../../authHeaders'
-import { request } from '../../request'
+import { config } from '../../config'
 
 interface PostOrderStatusParams {
   token: TokenResponse
@@ -7,7 +7,7 @@ interface PostOrderStatusParams {
 }
 
 export const postOrderStatusConfig = ({ token, id }: PostOrderStatusParams) =>
-  request<never>({
+  config<never>({
     config: { method: 'post', headers: { ...authHeaders(token) } },
     url: `/order/${id}/status`
   })

@@ -1,5 +1,5 @@
 import { authHeaders } from '../../authHeaders'
-import { request } from '../../request'
+import { config } from '../../config'
 
 interface GetOrderParams {
   token: TokenResponse
@@ -7,7 +7,7 @@ interface GetOrderParams {
 }
 
 export const getOrderConfig = ({ token, id }: GetOrderParams) =>
-  request<never>({
+  config<never>({
     config: { method: 'get', headers: { ...authHeaders(token) } },
     url: `/order/${id}`
   })

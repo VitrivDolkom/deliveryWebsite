@@ -1,12 +1,12 @@
 import { authHeaders } from '../../authHeaders'
-import { request } from '../../request'
+import { config } from '../../config'
 
 interface GetOrdersParams {
   token: TokenResponse
 }
 
 export const getOrdersConfig = ({ token }: GetOrdersParams) =>
-  request<never>({
+  config<never>({
     config: { method: 'get', headers: { ...authHeaders(token) } },
     url: '/order'
   })

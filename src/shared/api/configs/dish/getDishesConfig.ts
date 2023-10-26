@@ -1,4 +1,4 @@
-import { request } from '../../request'
+import { config } from '../../config'
 
 export interface GetDishesParams {
   categories?: string[]
@@ -8,7 +8,7 @@ export interface GetDishesParams {
 }
 
 export const getDishesConfig = ({ categories = [], page, sorting, vegetarian }: GetDishesParams) =>
-  request<never>({
+  config<never>({
     config: { method: 'get' },
     url: `/dish?${categories
       .map((category) => `categories=${category}&`)

@@ -1,4 +1,4 @@
-import { request } from '../../request'
+import { config } from '../../config'
 
 export const postLoginConfig = (dto: LoginCredentials) =>
-  request<LoginCredentials>({ config: { method: 'post', data: dto }, url: '/account/login' })
+  config<LoginCredentials>({ config: { method: 'post', data: dto }, url: '/account/login' })

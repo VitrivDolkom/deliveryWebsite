@@ -1,8 +1,8 @@
-import { request } from '../../request'
+import { config } from '../../config'
 
 interface GetDishParams {
   id: string
 }
 
 export const getDishConfig = ({ id }: GetDishParams) =>
-  request<never>({ config: { method: 'get' }, url: `/dish/${id}` })
+  config<never>({ config: { method: 'get' }, url: `/dish/${id}` })
