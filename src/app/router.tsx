@@ -3,6 +3,7 @@ import {
   LoginPage,
   MenuDishPage,
   MenuPage,
+  OrderPage,
   OrdersPage,
   PurchasePage,
   RegistrationPage
@@ -46,7 +47,7 @@ export const router = createBrowserRouter([
       },
       {
         path: routes.order(),
-        element: null
+        element: <OrderPage />
       },
       {
         path: routes.purchase(),
