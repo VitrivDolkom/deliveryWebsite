@@ -41,8 +41,8 @@ export const useOrderPage = () => {
     }
   }, [order])
 
-  const onOrderConfirmClick = (orderId: string) => {
-    confirmOrder(postOrderStatusConfig({ id: orderId, token: { token } }))
+  const onOrderConfirmClick = () => {
+    confirmOrder(postOrderStatusConfig({ id: id || '', token: { token } }))
     // todo on success
     // fetchOrder(getOrderConfig({ id: orderId, token: { token } }))
   }

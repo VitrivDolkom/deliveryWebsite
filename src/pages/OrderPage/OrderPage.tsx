@@ -9,7 +9,7 @@ import s from './styles.module.css'
 const cx = classNames.bind(s)
 
 export const OrderPage = () => {
-  const { order, isLoading, addressLoading, addressChain } = useOrderPage()
+  const { order, isLoading, addressLoading, addressChain, onOrderConfirmClick } = useOrderPage()
 
   if (!order) {
     return null
@@ -25,9 +25,16 @@ export const OrderPage = () => {
         <Typography tag="h1" variant="t6">
           Заказ #3234
         </Typography>
-        <Button styleType="outlined" alertType="success" className="btn big">
-          Подтвердить доставку
-        </Button>
+        {order.status === 'InProcess' && (
+          <Button
+            styleType="outlined"
+            alertType="success"
+            className="btn big"
+            onClick={onOrderConfirmClick}
+          >
+            Подтвердить доставку
+          </Button>
+        )}
       </div>
       <div className={cx({ block: true, info: true })}>
         <Typography tag="p" variant="t1">
