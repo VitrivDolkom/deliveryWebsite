@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import React from 'react'
 import { useParams } from 'react-router-dom'
-import { getOrderConfig, postOrderStatusConfig } from '@/shared/api'
+import { getAddressChainConfig, getOrderConfig, postOrderStatusConfig } from '@/shared/api'
 import { useUserContext } from '@/shared/lib/contexts'
 import { useRequest } from '@/shared/lib/hooks'
 
@@ -12,6 +13,7 @@ export const useOrderPage = () => {
   } = useUserContext()
 
   const {
+    data: order,
     isLoading,
     error,
     requestHandler: fetchOrder
@@ -21,10 +23,23 @@ export const useOrderPage = () => {
   })
 
   const {
+    data: addressChain,
+    isLoading: addressLoading,
+    error: addressError,
+    requestHandler: fetchAddressChain
+  } = useRequest<SearchAddressModel[]>({})
+
+  const {
     isLoading: confirmLoading,
     error: confirmError,
     requestHandler: confirmOrder
   } = useRequest<never>({})
+
+  React.useEffect(() => {
+    if (!!order) {
+      fetchAddressChain(getAddressChainConfig({ objectGuid: order.address }))
+    }
+  }, [order])
 
   const onOrderConfirmClick = (orderId: string) => {
     confirmOrder(postOrderStatusConfig({ id: orderId, token: { token } }))
@@ -32,5 +47,14 @@ export const useOrderPage = () => {
     // fetchOrder(getOrderConfig({ id: orderId, token: { token } }))
   }
 
-  return { confirmLoading, confirmError, onOrderConfirmClick, isLoading, error }
+  return {
+    order,
+    confirmLoading,
+    confirmError,
+    onOrderConfirmClick,
+    isLoading,
+    error,
+    addressChain,
+    addressLoading
+  }
 }
