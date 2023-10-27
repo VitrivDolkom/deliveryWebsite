@@ -11,7 +11,7 @@ export const BasketPage = () => {
     <div className={s.wrapper}>
       <ToastContainer />
       <Typography tag="h1" variant="h1">
-        Товары в корзине
+        {!basket?.length ? 'Корзина пуста' : 'Товары в корзине'}
       </Typography>
       {!!basket && (
         <BasketDishesList basket={basket} onDishDelete={onDishDelete} onDishAdd={onDishAdd} />

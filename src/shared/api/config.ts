@@ -1,4 +1,5 @@
-import { AxiosRequestConfig } from 'axios'
+import { router } from '@/app/router'
+import axios, { AxiosRequestConfig } from 'axios'
 
 interface RequestParams<T> {
   config: AxiosRequestConfig<T>
@@ -9,3 +10,15 @@ export const config = <T>({ config, url }: RequestParams<T>): AxiosRequestConfig
   ...config,
   url: `${import.meta.env.VITE_BACKEND_URL}${url}`
 })
+
+axios.interceptors.response.use(
+  (response) => response,
+  function (error) {
+    if (error.response.status === 401) {
+      router.navigate('/login')
+      return Promise.reject(error)
+    }
+
+    return Promise.reject(error)
+  }
+)

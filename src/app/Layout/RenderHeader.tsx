@@ -1,7 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom'
+import { postLogoutConfig } from '@/shared/api'
 import { Header } from '@/shared/components'
 import { routes } from '@/shared/const'
 import { useBasketContext, useUserContext, useUserSwitcherContext } from '@/shared/lib/contexts'
+import { toastOnErrorRequest } from '@/shared/lib/helpers'
+import { useRequest } from '@/shared/lib/hooks'
 import { Button, Typography } from '@/shared/uikit'
 
 export const RenderHeader = () => {
@@ -9,6 +12,16 @@ export const RenderHeader = () => {
   const { isAuth, user } = useUserContext()
   const { logout } = useUserSwitcherContext()
   const { basket } = useBasketContext()
+
+  const { requestHandler: logoutRequest } = useRequest<never>({
+    onSuccess: () => {
+      logout()
+      navigate(routes.login())
+    },
+    onError: () => {
+      toastOnErrorRequest('Ошибка выхода')
+    }
+  })
 
   const onLoginClick = () => {
     navigate(routes.login())
@@ -19,8 +32,7 @@ export const RenderHeader = () => {
   }
 
   const onLogoutClick = () => {
-    logout()
-    navigate(routes.login())
+    logoutRequest(postLogoutConfig({ token: user.token }))
   }
 
   return (
