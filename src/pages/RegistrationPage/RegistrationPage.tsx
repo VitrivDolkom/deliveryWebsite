@@ -13,12 +13,11 @@ export const RegistrationPage = () => {
     addressObjects,
     error,
     errors,
-    handleSubmit,
     isLoading,
-    onFormSubmit,
     register,
     setValue,
-    watch
+    watch,
+    onFormSubmitWrapper
   } = useRegistrationPage()
 
   return (
@@ -26,7 +25,7 @@ export const RegistrationPage = () => {
       <Typography tag="h1" variant="h1">
         Регистрация
       </Typography>
-      <form className="form" onSubmit={handleSubmit(onFormSubmit)}>
+      <form className="form" onSubmit={onFormSubmitWrapper}>
         <InputBlock
           label="ФИО"
           error={errors.fullName?.message}

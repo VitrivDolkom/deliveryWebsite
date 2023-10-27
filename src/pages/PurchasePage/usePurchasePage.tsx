@@ -1,11 +1,15 @@
 import { SelectAddressObject } from '@/features'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { getProfileConfig, postOrderConfig } from '@/shared/api'
+import { routes } from '@/shared/const'
 import { useBasketContext, useUserContext } from '@/shared/lib/contexts'
+import { toastOnSuccessRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const usePurchasePage = () => {
+  const navigate = useNavigate()
   const {
     register,
     formState: { errors },
@@ -26,15 +30,13 @@ export const usePurchasePage = () => {
   const {
     isLoading: createOrderLoading,
     error: createOrderError,
-    requestHandler: createOrder,
-    isSuccess: successCreateOrder
-  } = useRequest<never, OrderCreateDto>({})
-
-  React.useEffect(() => {
-    if (successCreateOrder) {
-      // navigate(routes.orders())
+    requestHandler: createOrder
+  } = useRequest<never, OrderCreateDto>({
+    onSuccess: () => {
+      navigate(routes.orders())
+      toastOnSuccessRequest()
     }
-  }, [successCreateOrder])
+  })
 
   const checkLocation = () => {
     const addressId = addressObjects[addressObjects.length - 1]?.object?.address.objectGuid

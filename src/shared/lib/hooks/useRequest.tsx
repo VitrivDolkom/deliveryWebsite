@@ -2,17 +2,19 @@ import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import React from 'react'
 import { statusCodeErrors } from '../const'
 
-interface UseRequestParams<D> {
+interface UseRequestParams<T, D> {
   onMount?: boolean
   config?: AxiosRequestConfig<D>
   duration?: number
+  onSuccess?: (data?: T) => void
 }
 
 export const useRequest = <T, D = never>({
   onMount = false,
   config = {},
-  duration = 0
-}: UseRequestParams<D>) => {
+  duration = 0,
+  onSuccess
+}: UseRequestParams<T, D>) => {
   const [data, setData] = React.useState<T | null>(null)
   const [error, setError] = React.useState('')
   const [isLoading, setIsLoading] = React.useState(false)
@@ -39,6 +41,9 @@ export const useRequest = <T, D = never>({
       }
 
       setIsSuccess(true)
+      if (!!onSuccess) {
+        onSuccess(response.data)
+      }
     } catch (catchReason: unknown) {
       const reason = catchReason as AxiosError<Response>
       const errorMessage = reason.response?.data.message

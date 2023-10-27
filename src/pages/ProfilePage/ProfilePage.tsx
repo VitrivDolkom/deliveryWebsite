@@ -1,4 +1,5 @@
 import { SelectLocation } from '@/features'
+import { ToastContainer } from 'react-toastify'
 import { ButtonLoader, InputBlock } from '@/shared/components'
 import { validations } from '@/shared/const'
 import { GenderEnum } from '@/shared/lib/const'
@@ -14,19 +15,19 @@ export const ProfilePage = () => {
     addressObjects,
     error,
     errors,
-    handleSubmit,
     isLoading,
     userInfo,
-    onFormSubmit,
-    register
+    register,
+    onFormSubmitWrapper
   } = useProfilePage()
 
   return (
     <div>
+      <ToastContainer />
       <Typography tag="h1" variant="h1">
         Профиль
       </Typography>
-      <form className="form" onSubmit={handleSubmit(onFormSubmit)}>
+      <form className="form" onSubmit={onFormSubmitWrapper}>
         <InputBlock
           label="ФИО"
           blockType="row"

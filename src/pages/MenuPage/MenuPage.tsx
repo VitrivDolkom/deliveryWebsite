@@ -1,5 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
+import { ToastContainer } from 'react-toastify'
 import { InputBlock } from '@/shared/components'
 import {
   DishCategoryEnum,
@@ -33,6 +34,7 @@ export const MenuPage = () => {
 
   return (
     <div className={s.wrapper}>
+      <ToastContainer />
       <div className={s.top}>
         <Select
           options={dishCategoryOptions}

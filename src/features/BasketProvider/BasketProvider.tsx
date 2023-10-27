@@ -2,6 +2,7 @@
 import React from 'react'
 import { deleteDishConfig, getBasketConfig, postDishConfig } from '@/shared/api'
 import { BasketContext, useUserContext } from '@/shared/lib/contexts'
+import { toastOnSuccessRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
@@ -19,14 +20,14 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
     error: deleteDishError,
     requestHandler: fetchDeleteDish,
     isSuccess: deleteDishSuccess
-  } = useRequest<DishBasketDto[]>({})
+  } = useRequest<DishBasketDto[]>({ onSuccess: toastOnSuccessRequest })
 
   const {
     isLoading: addDishLoading,
     error: addDishError,
     requestHandler: fetchAddDish,
     isSuccess: addDishSuccess
-  } = useRequest<DishBasketDto[]>({})
+  } = useRequest<DishBasketDto[]>({ onSuccess: toastOnSuccessRequest })
 
   const actionLoading = addDishLoading || deleteDishLoading
 

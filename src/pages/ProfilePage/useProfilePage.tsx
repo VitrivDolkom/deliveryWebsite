@@ -3,7 +3,7 @@ import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { getAddressChainConfig, getProfileConfig, putProfileConfig } from '@/shared/api'
 import { useUserContext } from '@/shared/lib/contexts'
-import { getDateFromDateTime } from '@/shared/lib/helpers'
+import { getDateFromDateTime, toastOnSuccessRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const useProfilePage = () => {
@@ -14,7 +14,8 @@ export const useProfilePage = () => {
     formState: { errors },
     watch,
     reset,
-    setError
+    setError,
+    clearErrors
   } = useForm<UserEditModel>()
 
   const { user } = useUserContext()
@@ -29,13 +30,18 @@ export const useProfilePage = () => {
     data: addressChain,
     isLoading: addressLoading,
     requestHandler: fetchAddressChain
-  } = useRequest<SearchAddressModel[]>({})
+  } = useRequest<SearchAddressModel[]>({
+    onSuccess: (addressChain) =>
+      setAddressObjects(
+        addressChain!.map((address) => selectAddressObjectFromSearchModel([address], true))
+      )
+  })
 
   const {
     isLoading: updateProfileLoading,
     error: updateProfileError,
     requestHandler: updateProfile
-  } = useRequest<Response, UserEditModel>({})
+  } = useRequest<Response, UserEditModel>({ onSuccess: toastOnSuccessRequest })
 
   React.useEffect(() => {
     if (!userInfo) return
@@ -48,29 +54,38 @@ export const useProfilePage = () => {
       addressId: userInfo.address
     }
 
+    // если пришли данные о пользователе из профиля, то запрашиваем адрес
+    // и заполняем форму данными о пользователе
     fetchAddressChain(getAddressChainConfig({ objectGuid: userInfo.address }))
     reset({ ...formUserInfo, birthDate: getDateFromDateTime(userInfo.birthDate) })
   }, [userInfo])
 
-  React.useEffect(() => {
-    if (!addressChain) return
+  const checkLocation = () => {
+    const addressId = addressObjects[addressObjects.length - 1]?.object?.address.objectGuid
 
-    setAddressObjects(addressChain.map((address) => selectAddressObjectFromSearchModel([address], true)))
-  }, [addressChain])
-
-  const onFormSubmit: SubmitHandler<UserEditModel> = async (userInfo) => {
-    const objectId = addressObjects.at(addressObjects.length - 1)?.object?.address.objectGuid
-    if (!objectId) {
+    if (!addressId) {
       setError('addressId', { message: 'Выберите адрес' })
       return
     }
+
+    clearErrors('addressId')
+  }
+
+  const onFormSubmitWrapper = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    checkLocation()
+    handleSubmit(onFormSubmit)()
+  }
+
+  const onFormSubmit: SubmitHandler<UserEditModel> = async (userInfo) => {
+    const objectId = addressObjects.at(addressObjects.length - 1)?.object?.address.objectGuid
+    if (!objectId) return
 
     userInfo.addressId = objectId
     updateProfile(putProfileConfig(userInfo, { token: user.token }))
   }
 
   return {
-    handleSubmit,
     addressChain,
     addressLoading,
     updateProfileLoading,
@@ -80,9 +95,9 @@ export const useProfilePage = () => {
     error,
     register,
     watch,
-    onFormSubmit,
     errors,
     addressObjects,
-    setAddressObjects
+    setAddressObjects,
+    onFormSubmitWrapper
   }
 }
