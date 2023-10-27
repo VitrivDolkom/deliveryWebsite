@@ -1,3 +1,4 @@
+import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { postLoginConfig } from '@/shared/api'
 import { useUserSwitcherContext } from '@/shared/lib/contexts'
@@ -12,7 +13,7 @@ export const useLoginPage = () => {
     watch
   } = useForm<LoginCredentials>()
 
-  const { login } = useUserSwitcherContext()
+  const { login, logout } = useUserSwitcherContext()
 
   const { isLoading, requestHandler } = useRequest<TokenResponse, LoginCredentials>({
     onSuccess: (tokenResponse) => login({ email: watch('email'), token: tokenResponse!.token }),
@@ -20,6 +21,10 @@ export const useLoginPage = () => {
       toastOnErrorRequest(error || 'Ошибка входа в аккаунт')
     }
   })
+
+  React.useEffect(() => {
+    logout()
+  }, [])
 
   const onFormSubmit: SubmitHandler<LoginCredentials> = async (userInfo) => {
     requestHandler(postLoginConfig(userInfo))

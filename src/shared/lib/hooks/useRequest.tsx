@@ -1,5 +1,6 @@
-import axios, { AxiosError, AxiosRequestConfig } from 'axios'
+import { AxiosError, AxiosRequestConfig } from 'axios'
 import React from 'react'
+import { apiInstance } from '@/shared/api'
 import { statusCodeErrors } from '../const'
 
 interface UseRequestParams<T, D> {
@@ -29,7 +30,7 @@ export const useRequest = <T, D = never>({
     setError('')
 
     try {
-      const response = await axios(config)
+      const response = await apiInstance(config)
       setStatusCode(response.status)
 
       if (response.status >= 300) {

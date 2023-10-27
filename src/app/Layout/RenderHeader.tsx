@@ -14,10 +14,7 @@ export const RenderHeader = () => {
   const { basket } = useBasketContext()
 
   const { requestHandler: logoutRequest } = useRequest<never>({
-    onSuccess: () => {
-      logout()
-      navigate(routes.login())
-    },
+    onSuccess: () => logout(),
     onError: () => {
       toastOnErrorRequest('Ошибка выхода')
     }
