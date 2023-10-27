@@ -2,7 +2,7 @@
 import React from 'react'
 import { deleteDishConfig, getBasketConfig, postDishConfig } from '@/shared/api'
 import { BasketContext, useUserContext } from '@/shared/lib/contexts'
-import { toastOnSuccessRequest } from '@/shared/lib/helpers'
+import { toastOnErrorRequest, toastOnSuccessRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
@@ -15,37 +15,27 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
     requestHandler: getBasket
   } = useRequest<DishBasketDto[]>({})
 
-  const {
-    isLoading: deleteDishLoading,
-    error: deleteDishError,
-    requestHandler: fetchDeleteDish,
-    isSuccess: deleteDishSuccess
-  } = useRequest<DishBasketDto[]>({ onSuccess: toastOnSuccessRequest })
+  const { isLoading: deleteDishLoading, requestHandler: fetchDeleteDish } = useRequest<DishBasketDto[]>({
+    onSuccess: () => {
+      fetchBasket()
+      toastOnSuccessRequest()
+    },
+    onError: () => toastOnErrorRequest('Ошибка при удалении из корзины')
+  })
 
-  const {
-    isLoading: addDishLoading,
-    error: addDishError,
-    requestHandler: fetchAddDish,
-    isSuccess: addDishSuccess
-  } = useRequest<DishBasketDto[]>({ onSuccess: toastOnSuccessRequest })
+  const { isLoading: addDishLoading, requestHandler: fetchAddDish } = useRequest<DishBasketDto[]>({
+    onSuccess: () => {
+      toastOnSuccessRequest()
+      fetchBasket()
+    },
+    onError: () => toastOnErrorRequest('Ошибка при добавлении в корзину')
+  })
 
   const actionLoading = addDishLoading || deleteDishLoading
 
   React.useEffect(() => {
     fetchBasket()
   }, [])
-
-  React.useEffect(() => {
-    if (deleteDishSuccess) {
-      fetchBasket()
-    }
-  }, [deleteDishSuccess])
-
-  React.useEffect(() => {
-    if (addDishSuccess) {
-      fetchBasket()
-    }
-  }, [addDishSuccess])
 
   const fetchBasket = () => {
     getBasket(getBasketConfig({ token: { token: user.token } }))

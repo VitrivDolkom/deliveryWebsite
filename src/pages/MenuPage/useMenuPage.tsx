@@ -4,6 +4,7 @@ import { MultiValue, SingleValue } from 'react-select'
 import { getDishesConfig } from '@/shared/api'
 import { DishCategoryOption, DishSortingOption } from '@/shared/lib/const'
 import { useBasketContext, useBasketSwitcherContext, useUserContext } from '@/shared/lib/contexts'
+import { toastOnErrorRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const useMenuPage = () => {
@@ -31,7 +32,8 @@ export const useMenuPage = () => {
   } = useRequest<DishPagedListDto>({
     onMount: true,
     config: getDishesConfig({ categories, page, sorting, vegetarian }),
-    duration: 800
+    duration: 800,
+    onError: (error) => toastOnErrorRequest(error || 'Ошибка при получении меню')
   })
 
   React.useEffect(() => {

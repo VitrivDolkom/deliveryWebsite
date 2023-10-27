@@ -61,7 +61,11 @@ export const RegistrationPage = () => {
 
         <div className="addressBlock">
           <Typography>Адрес проживания</Typography>
-          <SelectLocation addressObjects={addressObjects} setAddressObjects={setAddressObjects} />
+          <SelectLocation
+            addressObjects={addressObjects}
+            setAddressObjects={setAddressObjects}
+            error={errors.addressId?.message}
+          />
         </div>
 
         <InputBlock

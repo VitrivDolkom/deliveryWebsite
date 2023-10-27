@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import { postRegisterConfig } from '@/shared/api'
 import { routes } from '@/shared/const'
 import { useUserSwitcherContext } from '@/shared/lib/contexts'
+import { toastOnErrorRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const useRegistrationPage = () => {
   const navigate = useNavigate()
   const [addressObjects, setAddressObjects] = React.useState<SelectAddressObject[]>([])
+
   const {
     handleSubmit,
     register,
@@ -20,14 +22,19 @@ export const useRegistrationPage = () => {
     clearErrors
   } = useForm<UserRegisterModel>()
 
+  const { login } = useUserSwitcherContext()
+
   const {
-    data: tokenResponse,
     isLoading,
     error,
     requestHandler: registration
-  } = useRequest<TokenResponse, UserRegisterModel>({ onSuccess: () => navigate(routes.root()) })
-
-  const { login } = useUserSwitcherContext()
+  } = useRequest<TokenResponse, UserRegisterModel>({
+    onSuccess: (tokenResponse) => {
+      login({ email: watch('email'), token: tokenResponse!.token })
+      navigate(routes.root())
+    },
+    onError: (error) => toastOnErrorRequest(error || 'Ошибка регистрации')
+  })
 
   const checkLocation = () => {
     const addressId = addressObjects[addressObjects.length - 1]?.object?.address.objectGuid
@@ -47,19 +54,13 @@ export const useRegistrationPage = () => {
   }
 
   const onFormSubmit: SubmitHandler<UserRegisterModel> = async (userInfo) => {
-    const objectId = addressObjects.at(addressObjects.length - 1)?.object?.address.objectGuid
+    const objectId = addressObjects[addressObjects.length - 1]?.object?.address.objectGuid
 
     if (!objectId) return
 
     userInfo.addressId = objectId
     registration(postRegisterConfig(userInfo))
   }
-
-  React.useEffect(() => {
-    if (!tokenResponse) return
-
-    login({ email: watch('email'), token: tokenResponse.token })
-  }, [tokenResponse])
 
   return {
     setAddressObjects,

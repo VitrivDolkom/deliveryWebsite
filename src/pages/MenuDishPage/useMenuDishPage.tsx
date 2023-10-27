@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { getDishConfig, getRatingCheckConfig, postRatingConfig } from '@/shared/api'
 import { useUserContext } from '@/shared/lib/contexts'
+import { toastOnErrorRequest, toastOnSuccessRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const useMenuDishPage = () => {
@@ -17,12 +18,10 @@ export const useMenuDishPage = () => {
     config: getRatingCheckConfig({ id: id || '', token: { token: user.token } })
   })
 
-  const {
-    isLoading: ratingLoading,
-    error: ratingError,
-    isSuccess: successRating,
-    requestHandler: postRating
-  } = useRequest<never>({})
+  const { isLoading: ratingLoading, requestHandler: postRating } = useRequest<never>({
+    onSuccess: () => toastOnSuccessRequest('Спасибо за оценку'),
+    onError: (error) => toastOnErrorRequest(error || 'Ошибка оценки блюда')
+  })
 
   const onRatingClick = (ratingScore: number) => {
     postRating(postRatingConfig({ id: id || '', token: { token: user.token }, ratingScore }))
@@ -33,8 +32,6 @@ export const useMenuDishPage = () => {
     isLoading,
     availableRating,
     ratingLoading,
-    ratingError,
-    onRatingClick,
-    successRating
+    onRatingClick
   }
 }

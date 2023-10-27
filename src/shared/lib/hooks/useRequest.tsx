@@ -7,13 +7,15 @@ interface UseRequestParams<T, D> {
   config?: AxiosRequestConfig<D>
   duration?: number
   onSuccess?: (data?: T) => void
+  onError?: (error?: string) => void
 }
 
 export const useRequest = <T, D = never>({
   onMount = false,
   config = {},
   duration = 0,
-  onSuccess
+  onSuccess,
+  onError
 }: UseRequestParams<T, D>) => {
   const [data, setData] = React.useState<T | null>(null)
   const [error, setError] = React.useState('')
@@ -46,15 +48,17 @@ export const useRequest = <T, D = never>({
       }
     } catch (catchReason: unknown) {
       const reason = catchReason as AxiosError<Response>
-      const errorMessage = reason.response?.data.message
+      let errorMessage = reason.response?.data.message
 
-      if (!!errorMessage) {
-        setError(errorMessage)
-        return
+      if (!errorMessage) {
+        const statusCode = reason.response?.status || ''
+        errorMessage = statusCodeErrors[statusCode]
       }
 
-      const statusCode = reason.response?.status || ''
-      setError(statusCodeErrors[statusCode])
+      setError(errorMessage)
+      if (!!onError) {
+        onError(errorMessage)
+      }
     }
 
     setTimeout(() => {

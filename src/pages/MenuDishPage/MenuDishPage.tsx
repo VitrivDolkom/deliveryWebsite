@@ -1,11 +1,12 @@
 import { DishRating } from '@/features'
+import { ToastContainer } from 'react-toastify'
 import { MenuItemImage } from '@/shared/components'
 import { Typography } from '@/shared/uikit'
 import { useMenuDishPage } from './useMenuDishPage'
 import s from './styles.module.css'
 
 export const MenuDishPage = () => {
-  const { dish, onRatingClick, successRating, ratingError, availableRating } = useMenuDishPage()
+  const { dish, onRatingClick, availableRating } = useMenuDishPage()
 
   if (!dish) {
     return null
@@ -13,6 +14,7 @@ export const MenuDishPage = () => {
 
   return (
     <div className={s.wrapper}>
+      <ToastContainer />
       <div className={s.img}>
         <MenuItemImage image={dish.image} vegetarian={dish.vegetarian} />
       </div>
@@ -23,9 +25,7 @@ export const MenuDishPage = () => {
         Категория блюда - {dish.category}
       </Typography>
       {availableRating && <Typography variant="t2">Вы можете оценить блюдо</Typography>}
-      {(!!ratingError || !availableRating) && <Typography variant="err1">{ratingError}</Typography>}
       <DishRating rating={dish.rating} size="s" onRatingClick={onRatingClick} />
-      {successRating && <Typography>Спасибо за оценку</Typography>}
       <Typography tag="p" variant="t1" className={s.description}>
         {dish.description}
       </Typography>

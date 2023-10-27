@@ -3,7 +3,7 @@ import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { getAddressChainConfig, getProfileConfig, putProfileConfig } from '@/shared/api'
 import { useUserContext } from '@/shared/lib/contexts'
-import { getDateFromDateTime, toastOnSuccessRequest } from '@/shared/lib/helpers'
+import { getDateFromDateTime, toastOnErrorRequest, toastOnSuccessRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const useProfilePage = () => {
@@ -41,7 +41,10 @@ export const useProfilePage = () => {
     isLoading: updateProfileLoading,
     error: updateProfileError,
     requestHandler: updateProfile
-  } = useRequest<Response, UserEditModel>({ onSuccess: toastOnSuccessRequest })
+  } = useRequest<Response, UserEditModel>({
+    onSuccess: () => toastOnSuccessRequest(),
+    onError: (error) => toastOnErrorRequest(error || 'Ошибка обновления профиля')
+  })
 
   React.useEffect(() => {
     if (!userInfo) return
@@ -78,7 +81,7 @@ export const useProfilePage = () => {
   }
 
   const onFormSubmit: SubmitHandler<UserEditModel> = async (userInfo) => {
-    const objectId = addressObjects.at(addressObjects.length - 1)?.object?.address.objectGuid
+    const objectId = addressObjects[addressObjects.length - 1]?.object?.address.objectGuid
     if (!objectId) return
 
     userInfo.addressId = objectId

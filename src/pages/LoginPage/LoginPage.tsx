@@ -1,3 +1,4 @@
+import { ToastContainer } from 'react-toastify'
 import { ButtonLoader, InputBlock } from '@/shared/components'
 import { validations } from '@/shared/const'
 import { Button } from '@/shared/uikit'
@@ -8,6 +9,7 @@ export const LoginPage = () => {
 
   return (
     <div>
+      <ToastContainer />
       <form onSubmit={handleSubmit(onFormSubmit)}>
         <InputBlock
           label="Email"

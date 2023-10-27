@@ -4,8 +4,8 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { getProfileConfig, postOrderConfig } from '@/shared/api'
 import { routes } from '@/shared/const'
-import { useBasketContext, useUserContext } from '@/shared/lib/contexts'
-import { toastOnSuccessRequest } from '@/shared/lib/helpers'
+import { useBasketContext, useBasketSwitcherContext, useUserContext } from '@/shared/lib/contexts'
+import { toastOnErrorRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const usePurchasePage = () => {
@@ -21,21 +21,22 @@ export const usePurchasePage = () => {
   const [addressObjects, setAddressObjects] = React.useState<SelectAddressObject[]>([])
   const { user } = useUserContext()
   const { basket } = useBasketContext()
+  const { fetchBasket } = useBasketSwitcherContext()
 
   const { data: profile, isLoading } = useRequest<UserDto>({
     onMount: true,
     config: getProfileConfig({ token: user.token })
   })
 
-  const {
-    isLoading: createOrderLoading,
-    error: createOrderError,
-    requestHandler: createOrder
-  } = useRequest<never, OrderCreateDto>({
+  const { isLoading: createOrderLoading, requestHandler: createOrder } = useRequest<
+    never,
+    OrderCreateDto
+  >({
     onSuccess: () => {
+      fetchBasket()
       navigate(routes.orders())
-      toastOnSuccessRequest()
-    }
+    },
+    onError: () => toastOnErrorRequest('Ошибка создания заказа')
   })
 
   const checkLocation = () => {
@@ -47,6 +48,11 @@ export const usePurchasePage = () => {
     }
 
     clearErrors('addressId')
+  }
+
+  const onFormSubmitWrapper = () => {
+    checkLocation()
+    handleSubmit(onFormSubmit)()
   }
 
   const onFormSubmit: SubmitHandler<OrderCreateDto> = async (deliveryInfo) => {
@@ -61,15 +67,13 @@ export const usePurchasePage = () => {
   return {
     profile,
     isLoading,
-    onFormSubmit,
     register,
-    handleSubmit,
     errors,
     addressObjects,
     setAddressObjects,
     basket,
     checkLocation,
     createOrderLoading,
-    createOrderError
+    onFormSubmitWrapper
   }
 }
