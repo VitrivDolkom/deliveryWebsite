@@ -1,4 +1,3 @@
-import { Link, useNavigate } from 'react-router-dom'
 import { postLogoutConfig } from '@/shared/api'
 import { Header } from '@/shared/components'
 import { routes } from '@/shared/const'
@@ -6,6 +5,7 @@ import { useBasketContext, useUserContext, useUserSwitcherContext } from '@/shar
 import { toastOnErrorRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 import { Button, Typography } from '@/shared/uikit'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const RenderHeader = () => {
   const navigate = useNavigate()
@@ -14,7 +14,10 @@ export const RenderHeader = () => {
   const { basket } = useBasketContext()
 
   const { requestHandler: logoutRequest } = useRequest<never>({
-    onSuccess: () => logout(),
+    onSuccess: () => {
+      logout()
+      navigate(routes.root())
+    },
     onError: () => {
       toastOnErrorRequest('Ошибка выхода')
     }

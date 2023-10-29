@@ -1,11 +1,15 @@
-import React from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
 import { postLoginConfig } from '@/shared/api'
-import { useUserSwitcherContext } from '@/shared/lib/contexts'
+import { routes } from '@/shared/const'
+import { useUserContext, useUserSwitcherContext } from '@/shared/lib/contexts'
 import { toastOnErrorRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
+import React from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export const useLoginPage = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
   const {
     handleSubmit,
     register,
@@ -13,6 +17,7 @@ export const useLoginPage = () => {
     watch
   } = useForm<LoginCredentials>()
 
+  const { isAuth } = useUserContext()
   const { login, logout } = useUserSwitcherContext()
 
   const { isLoading, requestHandler } = useRequest<TokenResponse, LoginCredentials>({
@@ -25,6 +30,17 @@ export const useLoginPage = () => {
   React.useEffect(() => {
     logout()
   }, [])
+
+  React.useEffect(() => {
+    if(!isAuth) return;
+
+    if (!!location.state?.from) {
+      navigate(location.state.from)
+    } else {
+      navigate(routes.root())
+    }
+
+  }, [isAuth])
 
   const onFormSubmit: SubmitHandler<LoginCredentials> = async (userInfo) => {
     requestHandler(postLoginConfig(userInfo))

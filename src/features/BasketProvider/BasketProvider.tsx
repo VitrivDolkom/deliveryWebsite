@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import { deleteDishConfig, getBasketConfig, postDishConfig } from '@/shared/api'
 import { BasketContext, useUserContext } from '@/shared/lib/contexts'
@@ -6,7 +5,7 @@ import { toastOnErrorRequest, toastOnSuccessRequest } from '@/shared/lib/helpers
 import { useRequest } from '@/shared/lib/hooks'
 
 export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useUserContext()
+  const { user, isAuth } = useUserContext()
 
   const {
     data: basket,
@@ -34,7 +33,9 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
   const actionLoading = addDishLoading || deleteDishLoading
 
   React.useEffect(() => {
-    fetchBasket()
+    if (isAuth) {
+      fetchBasket()
+    }
   }, [])
 
   const fetchBasket = () => {
