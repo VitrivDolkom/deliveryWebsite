@@ -62,7 +62,7 @@ export const OrderPage = () => {
         </Typography>
         <div className="block">
           {order.dishes.map((dish) => (
-            <DishBasketCard dish={dish} />
+            <DishBasketCard key={dish.id} dish={dish} />
           ))}
         </div>
       </div>

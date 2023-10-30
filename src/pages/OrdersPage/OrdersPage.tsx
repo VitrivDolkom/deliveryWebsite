@@ -15,7 +15,7 @@ export const OrdersPage = () => {
     <div className={s.wrapper}>
       <ToastContainer />
       {!isBasketEmpty && (
-        <div className={cx({ block: true, top: true })}>
+        <div className={cx({ top: true })}>
           <Typography tag="p" variant="t1">
             В корзине есть блюда, можно оформить заказ
           </Typography>
