@@ -1,6 +1,6 @@
+import { Navigate, useLocation } from 'react-router-dom'
 import { routes } from '@/shared/const'
 import { useUserContext } from '@/shared/lib/contexts'
-import { Navigate, useLocation } from 'react-router-dom'
 
 export const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const location = useLocation()

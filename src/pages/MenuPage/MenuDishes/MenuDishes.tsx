@@ -92,7 +92,9 @@ export const MenuDishes = (props: MenuDishesProps) => {
           </div>
         )}
         {!!dishPagedList && !isLoading && (
-          <Pagination pagination={dishPagedList.pagination} onPageChange={onPageChange} />
+          <div className={s.pagination}>
+            <Pagination pagination={dishPagedList.pagination} onPageChange={onPageChange} />
+          </div>
         )}
       </div>
     </div>

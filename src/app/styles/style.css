@@ -52,3 +52,9 @@ img {
 .block {
   margin-top: 20px;
 }
+
+@media screen and (max-width: 768px) {
+  .box {
+    padding: 0 10px;
+  }
+}

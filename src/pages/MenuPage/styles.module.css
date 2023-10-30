@@ -12,3 +12,14 @@
 .select {
   width: 250px;
 }
+
+@media screen and (max-width: 768px) {
+  .top {
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .select:first-child {
+    margin-bottom: 20px;
+  }
+}

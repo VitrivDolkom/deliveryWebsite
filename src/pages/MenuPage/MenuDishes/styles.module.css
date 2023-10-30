@@ -7,8 +7,14 @@
 .list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 40px;
   margin-top: 20px;
+}
+
+.pagination div {
+  display: flex;
+  justify-content: center;
 }
 
 .card {
@@ -58,4 +64,10 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    flex-basis: 270px;
+  }
 }
