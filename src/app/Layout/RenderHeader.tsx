@@ -1,3 +1,5 @@
+import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { postLogoutConfig } from '@/shared/api'
 import { Header } from '@/shared/components'
 import { routes } from '@/shared/const'
@@ -5,10 +7,10 @@ import { useBasketContext, useUserContext, useUserSwitcherContext } from '@/shar
 import { toastOnErrorRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 import { Button, Typography } from '@/shared/uikit'
-import { Link, useNavigate } from 'react-router-dom'
 
 export const RenderHeader = () => {
   const navigate = useNavigate()
+  const [activeNav, setActiveNav] = React.useState(false)
   const { isAuth, user } = useUserContext()
   const { logout } = useUserSwitcherContext()
   const { basket } = useBasketContext()
@@ -23,23 +25,33 @@ export const RenderHeader = () => {
     }
   })
 
+  const toggleActiveNav = () => {
+    setActiveNav((prev) => !prev)
+    document.querySelector('body')?.classList.toggle('lock')
+  }
+
   const onLoginClick = () => {
     navigate(routes.login())
+    toggleActiveNav()
   }
 
   const onRegisterClick = () => {
     navigate(routes.registration())
+    toggleActiveNav()
   }
 
   const onLogoutClick = () => {
     logoutRequest(postLogoutConfig({ token: user.token }))
+    toggleActiveNav()
   }
 
   return (
     <Header
+      activeNav={activeNav}
+      toggleActiveNav={toggleActiveNav}
       renderNavbar={() => (
         <>
-          <Typography tag="div" variant="t3">
+          <Typography tag="span" variant="t3">
             Delievery.Кушац
           </Typography>
 
@@ -68,7 +80,7 @@ export const RenderHeader = () => {
       renderUserActions={() => (
         <>
           {!!user.email && (
-            <Link to={routes.profile()}>
+            <Link to={routes.profile()} className="ellipsis">
               <Typography tag="span" variant="t2">
                 {user.email}
               </Typography>

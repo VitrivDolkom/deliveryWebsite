@@ -3,6 +3,10 @@
 @import './theme.css';
 
 
+body.lock {
+  overflow: hidden;
+}
+
 .wrapper {
   min-height: calc(100vh - 3px);
   width: 100%;

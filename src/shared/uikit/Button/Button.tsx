@@ -25,7 +25,7 @@ export const Button = ({
   <button
     {...props}
     disabled={isLoading || props.disabled}
-    className={`${props.className} ${cx({
+    className={`${props.className || ''} ${cx({
       btn: true,
       [`${styleType}`]: true,
       [`${alertType}`]: true
