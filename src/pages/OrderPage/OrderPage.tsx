@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind'
+import { ToastContainer } from 'react-toastify'
 import { DishBasketCard, SearchLoader } from '@/shared/components'
 import { OrderStatusEnum } from '@/shared/const'
 import { getDateFromDateTime, getTimeFromDateTime } from '@/shared/lib/helpers'
@@ -21,6 +22,7 @@ export const OrderPage = () => {
 
   return (
     <div>
+      <ToastContainer />
       <div className={s.top}>
         <Typography tag="h1" variant="t6">
           Заказ #3234
@@ -60,7 +62,7 @@ export const OrderPage = () => {
         </Typography>
         <div className="block">
           {order.dishes.map((dish) => (
-            <DishBasketCard dish={dish} />
+            <DishBasketCard key={dish.id} dish={dish} />
           ))}
         </div>
       </div>

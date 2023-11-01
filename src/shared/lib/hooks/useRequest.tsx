@@ -1,18 +1,23 @@
-import axios, { AxiosError, AxiosRequestConfig } from 'axios'
+import { AxiosError, AxiosRequestConfig } from 'axios'
 import React from 'react'
+import { apiInstance } from '@/shared/api'
 import { statusCodeErrors } from '../const'
 
-interface UseRequestParams<D> {
+interface UseRequestParams<T, D> {
   onMount?: boolean
   config?: AxiosRequestConfig<D>
   duration?: number
+  onSuccess?: (data?: T) => void
+  onError?: (error?: string) => void
 }
 
 export const useRequest = <T, D = never>({
   onMount = false,
   config = {},
-  duration = 0
-}: UseRequestParams<D>) => {
+  duration = 0,
+  onSuccess,
+  onError
+}: UseRequestParams<T, D>) => {
   const [data, setData] = React.useState<T | null>(null)
   const [error, setError] = React.useState('')
   const [isLoading, setIsLoading] = React.useState(false)
@@ -25,7 +30,7 @@ export const useRequest = <T, D = never>({
     setError('')
 
     try {
-      const response = await axios(config)
+      const response = await apiInstance(config)
       setStatusCode(response.status)
 
       if (response.status >= 300) {
@@ -39,17 +44,22 @@ export const useRequest = <T, D = never>({
       }
 
       setIsSuccess(true)
+      if (!!onSuccess) {
+        onSuccess(response.data)
+      }
     } catch (catchReason: unknown) {
       const reason = catchReason as AxiosError<Response>
-      const errorMessage = reason.response?.data.message
+      let errorMessage = reason.response?.data.message
 
-      if (!!errorMessage) {
-        setError(errorMessage)
-        return
+      if (!errorMessage) {
+        const statusCode = reason.response?.status || ''
+        errorMessage = statusCodeErrors[statusCode]
       }
 
-      const statusCode = reason.response?.status || ''
-      setError(statusCodeErrors[statusCode])
+      setError(errorMessage)
+      if (!!onError) {
+        onError(errorMessage)
+      }
     }
 
     setTimeout(() => {

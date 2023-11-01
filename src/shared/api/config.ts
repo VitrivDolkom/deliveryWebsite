@@ -7,5 +7,5 @@ interface RequestParams<T> {
 
 export const config = <T>({ config, url }: RequestParams<T>): AxiosRequestConfig<T> => ({
   ...config,
-  url: `${import.meta.env.VITE_BACKEND_URL}${url}`
+  url: url
 })

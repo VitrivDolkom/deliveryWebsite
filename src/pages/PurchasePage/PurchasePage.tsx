@@ -1,4 +1,5 @@
 import { SelectLocation } from '@/features'
+import { ToastContainer } from 'react-toastify'
 import { ButtonLoader, DishBasketCard, InputBlock } from '@/shared/components'
 import { validations } from '@/shared/const'
 import { Button, Typography } from '@/shared/uikit'
@@ -9,18 +10,17 @@ export const PurchasePage = () => {
   const {
     profile,
     register,
-    handleSubmit,
-    onFormSubmit,
     errors,
     addressObjects,
     setAddressObjects,
     basket,
-    checkLocation,
-    createOrderLoading
+    createOrderLoading,
+    onFormSubmitWrapper
   } = usePurchasePage()
 
   return (
     <div className={s.wrapper}>
+      <ToastContainer />
       <Typography tag="h1" variant="h1">
         Оформление заказа
       </Typography>
@@ -76,10 +76,7 @@ export const PurchasePage = () => {
           styleType="solid"
           alertType="success"
           className="btn big block"
-          onClick={() => {
-            checkLocation()
-            handleSubmit(onFormSubmit)()
-          }}
+          onClick={onFormSubmitWrapper}
           isLoading={createOrderLoading}
           loader={<ButtonLoader />}
         >

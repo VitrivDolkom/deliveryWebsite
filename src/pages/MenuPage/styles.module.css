@@ -3,12 +3,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
+  padding-bottom: 15px;
   gap: 20px;
   border-bottom: 1px solid var(--neutral-50);
-  margin: 15px 0;
 }
 
 .select {
   width: 250px;
+}
+
+@media screen and (max-width: 768px) {
+  .top {
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .select:first-child {
+    margin-bottom: 20px;
+  }
 }

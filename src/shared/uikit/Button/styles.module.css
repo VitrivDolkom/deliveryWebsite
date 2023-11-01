@@ -41,7 +41,18 @@
 
 .outlined.danger:hover:enabled {
   color: var(--neutral-10, #fff);
-  background-color: var(--danger-hover, #E1676C);
+  background-color: var(--danger-hover);
+}
+
+.outlined.primary {
+  color: var(--primary-main);
+  border: 1px solid var(--primary-main);
+  background-color: var(--primary-focus);
+}
+
+.outlined.primary:hover:enabled {
+  color: var(--neutral-10, #fff);
+  background-color: var(--primary-hover);
 }
 
 .solid.success {
@@ -73,4 +84,15 @@
 
 .solid.danger:hover:enabled {
   background-color: var(--danger-hover, #E1676C);
+}
+
+.solid.primary {
+  color: var(--neutral-10, #fff);
+  border: 2px solid var(--primary-hover, #E1676C);
+  background-color: var(--primary-main, #DC3545);
+
+}
+
+.solid.primary:hover:enabled {
+  background-color: var(--primary-hover, #E1676C);
 }

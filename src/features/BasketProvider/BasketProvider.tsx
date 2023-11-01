@@ -1,11 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import { deleteDishConfig, getBasketConfig, postDishConfig } from '@/shared/api'
 import { BasketContext, useUserContext } from '@/shared/lib/contexts'
+import { toastOnErrorRequest, toastOnSuccessRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 
 export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useUserContext()
+  const { user, isAuth } = useUserContext()
 
   const {
     data: basket,
@@ -14,37 +14,29 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
     requestHandler: getBasket
   } = useRequest<DishBasketDto[]>({})
 
-  const {
-    isLoading: deleteDishLoading,
-    error: deleteDishError,
-    requestHandler: fetchDeleteDish,
-    isSuccess: deleteDishSuccess
-  } = useRequest<DishBasketDto[]>({})
+  const { isLoading: deleteDishLoading, requestHandler: fetchDeleteDish } = useRequest<DishBasketDto[]>({
+    onSuccess: () => {
+      fetchBasket()
+      toastOnSuccessRequest()
+    },
+    onError: () => toastOnErrorRequest('Ошибка при удалении из корзины')
+  })
 
-  const {
-    isLoading: addDishLoading,
-    error: addDishError,
-    requestHandler: fetchAddDish,
-    isSuccess: addDishSuccess
-  } = useRequest<DishBasketDto[]>({})
+  const { isLoading: addDishLoading, requestHandler: fetchAddDish } = useRequest<DishBasketDto[]>({
+    onSuccess: () => {
+      toastOnSuccessRequest()
+      fetchBasket()
+    },
+    onError: () => toastOnErrorRequest('Ошибка при добавлении в корзину')
+  })
 
   const actionLoading = addDishLoading || deleteDishLoading
 
   React.useEffect(() => {
-    fetchBasket()
+    if (isAuth) {
+      fetchBasket()
+    }
   }, [])
-
-  React.useEffect(() => {
-    if (deleteDishSuccess) {
-      fetchBasket()
-    }
-  }, [deleteDishSuccess])
-
-  React.useEffect(() => {
-    if (addDishSuccess) {
-      fetchBasket()
-    }
-  }, [addDishSuccess])
 
   const fetchBasket = () => {
     getBasket(getBasketConfig({ token: { token: user.token } }))

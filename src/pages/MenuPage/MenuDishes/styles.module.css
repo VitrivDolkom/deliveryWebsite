@@ -7,8 +7,14 @@
 .list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 40px;
   margin-top: 20px;
+}
+
+.pagination div {
+  display: flex;
+  justify-content: center;
 }
 
 .card {
@@ -29,7 +35,7 @@
 
 .content {
   flex: 1 1 auto;
-  margin: 20px 0;
+  margin: 20px;
   padding: 0 10px;
 }
 
@@ -46,16 +52,18 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: var(--neutral-40);
+  background-color: var(--primary-focus);
   padding: 10px 0;
-}
-
-.content {
-  flex: 1 1 auto;
 }
 
 .actionLoader {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    flex-basis: 270px;
+  }
 }

@@ -12,7 +12,7 @@ interface BasketDishesListProps {
 }
 
 export const BasketDishesList = ({ basket, onDishDelete, onDishAdd }: BasketDishesListProps) => (
-  <div className={s.list}>
+  <div className="block">
     {basket.map((dish, index) => (
       <div key={dish.id} className={s.dish}>
         <Typography tag="p" variant="t1">

@@ -23,7 +23,7 @@ export const Pagination = ({ pagination, onPageChange }: PaginationProps) => (
     {pagination.current > 2 && (
       <Button
         className={s.btn}
-        styleType={pagination.current === pagination.count ? 'solid' : 'outlined'}
+        styleType={pagination.current === 1 ? 'solid' : 'outlined'}
         alertType="info"
         onClick={() => onPageChange(1)}
       >

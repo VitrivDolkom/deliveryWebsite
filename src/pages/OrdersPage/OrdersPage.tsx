@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind'
+import { ToastContainer } from 'react-toastify'
 import { SearchLoader } from '@/shared/components'
 import { Button, Typography } from '@/shared/uikit'
 import { OrderCard } from './OrderCard/OrderCard'
@@ -12,8 +13,9 @@ export const OrdersPage = () => {
 
   return (
     <div className={s.wrapper}>
+      <ToastContainer />
       {!isBasketEmpty && (
-        <div className={cx({ block: true, top: true })}>
+        <div className={cx({ top: true })}>
           <Typography tag="p" variant="t1">
             В корзине есть блюда, можно оформить заказ
           </Typography>
