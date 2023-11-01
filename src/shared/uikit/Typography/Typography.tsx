@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 import s from './styles.module.css'
 
 type TypographyVariant =
+  | 'empty'
   | 't1'
   | 't2'
   | 't3'

@@ -70,7 +70,8 @@ export const RenderHeader = () => {
               </Link>
               <Link to={routes.cart()}>
                 <Typography tag="span" variant="t1" isLink={true}>
-                  Корзина{!!basket?.length && ` (${basket.length})`}
+                  Корзина
+                  {!!basket?.length && ` (${basket.reduce((acc, dish) => acc + dish.amount, 0)})`}
                 </Typography>
               </Link>
             </>
@@ -80,8 +81,10 @@ export const RenderHeader = () => {
       renderUserActions={() => (
         <>
           {!!user.email && (
-            <Button styleType="outlined" alertType="primary">
-              {user.email}
+            <Button styleType="outlined" alertType="primary" onClick={() => navigate(routes.profile())}>
+              <Typography tag="span" className="ellipsis" variant="empty">
+                {user.email}
+              </Typography>
             </Button>
           )}
           {isAuth && (
