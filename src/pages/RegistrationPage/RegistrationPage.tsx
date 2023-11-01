@@ -48,6 +48,7 @@ export const RegistrationPage = () => {
           {...register('phoneNumber', validations.phone)}
           type="tel"
           label="Номер телефона"
+          placeholder="+7 (xxx) xxx-xx-xx"
           ref={register('phoneNumber', validations.phone).ref}
         />
 

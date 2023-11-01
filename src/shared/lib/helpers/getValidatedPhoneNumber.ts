@@ -16,13 +16,13 @@ export const getValidatedPhoneNumber = (inputText: string, selectionStart: numbe
   if (numbersFromText[0] === '7' || numbersFromText[0] === '8') {
     formattedInputText += '+7'
   } else if (numbersFromText[0] === '9') {
-    formattedInputText += '+7 9'
+    formattedInputText += '+7 (9'
   } else {
     return inputText
   }
 
   if (numbersFromText.length > 1) {
-    formattedInputText += ' ' + numbersFromText.substring(1, 4)
+    formattedInputText += ' (' + numbersFromText.substring(1, 4) + ')'
   }
 
   if (numbersFromText.length > 4) {
@@ -30,11 +30,11 @@ export const getValidatedPhoneNumber = (inputText: string, selectionStart: numbe
   }
 
   if (numbersFromText.length > 7) {
-    formattedInputText += ' ' + numbersFromText.substring(7, 9)
+    formattedInputText += '-' + numbersFromText.substring(7, 9)
   }
 
   if (numbersFromText.length > 9) {
-    formattedInputText += ' ' + numbersFromText.substring(9, 11)
+    formattedInputText += '-' + numbersFromText.substring(9, 11)
   }
 
   return formattedInputText
