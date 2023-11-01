@@ -1,0 +1,39 @@
+.card {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--neutral-40);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.left {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.link {
+  transition: all .3s linear;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width:768px) {
+  .card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .right {
+    margin-top: 20px;
+  }
+}

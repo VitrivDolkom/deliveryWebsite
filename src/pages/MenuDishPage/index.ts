@@ -1,0 +1,1 @@
+export { MenuDishPage } from './MenuDishPage'

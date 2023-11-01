@@ -1,0 +1,86 @@
+.link {
+  transition: all .3s linear;
+}
+
+.link:hover {
+  color: var(--neutral-80, #000);
+}
+
+.t1 {
+  color: var(--neutral-100, #000);
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.t2 {
+  color: var(--neutral-100, #000);
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.t3 {
+  color: var(--neutral-100, #000);
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.t4 {
+  color: var(--neutral-100, #000);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.t5 {
+  color: var(--neutral-100, #000);
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.t6 {
+  color: var(--neutral-100, #000);
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.h1 {
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.h2 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.err1 {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--danger-primary, #DC3545)
+}
+
+.err2 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--danger-primary, #DC3545)
+}
+
+@media screen and (max-width: 992px) {
+  .h1 {
+    font-size: 30px;
+  }
+
+  .h2 {
+    font-size: 24px;
+  }
+
+}

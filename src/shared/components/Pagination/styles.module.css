@@ -1,0 +1,9 @@
+.wrapper {
+  display: flex;
+  margin-top: 40px;
+}
+
+.btn {
+  width: 35px;
+  border-radius: 0;
+}

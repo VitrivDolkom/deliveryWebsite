@@ -1,0 +1,117 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+}
+
+.block.row {
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.block.column {}
+
+.label {
+  flex: 1 0 20%;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background-color: var(--neutral-10);
+  border-radius: 4px;
+  border: 1px solid var(--neutral-50);
+  transition: all .3s linear;
+}
+
+.input:hover {
+  border-color: var(--neutral-60);
+}
+
+.input:focus {
+  border-color: var(--info-primary);
+  box-shadow: 0 0 0 1px var(--info-hover);
+}
+
+.label {
+  color: var(--brown-second);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.errorMessage {
+  margin: 2px 0px 0px 5px;
+}
+
+.constValue {
+  flex: 1 1 80%;
+}
+
+/* custom checkbox */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--neutral-50);
+  transition: all 0.3s linear;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--neutral-10);
+  transition: all 0.3s linear;
+}
+
+input:checked+.slider {
+  background-color: var(--info-primary);
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px var(--info-hover);
+}
+
+input:checked+.slider:before {
+  transform: translateX(13px);
+}
+
+.slider.round {
+  border-radius: 27px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.textOfLength {
+  display: flex;
+}

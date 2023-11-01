@@ -1,0 +1,69 @@
+.wrapper {
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.pagination div {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  cursor: pointer;
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--neutral-50);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.top {
+  width: 100%;
+  padding: 0 10px;
+}
+
+.content {
+  flex: 1 1 auto;
+  margin: 20px;
+  padding: 0 10px;
+}
+
+.description {
+  margin-top: 8px;
+}
+
+.name {
+  margin-top: 5px;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--primary-focus);
+  padding: 10px 0;
+}
+
+.actionLoader {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    flex-basis: 270px;
+  }
+}

@@ -1,0 +1,10 @@
+.change {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  width: 40px;
+  border-radius: 0;
+  font-size: 15px;
+}

@@ -1,0 +1,98 @@
+.btn {
+  transition: all .3s linear;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 0px 8px;
+}
+
+.outlined.success {
+  color: var(--success-primary, #198754);
+  border: 1px solid var(--success-primary, #198754);
+  background-color: var(--success-bg, #F1FAF0);
+}
+
+.outlined.success:hover:enabled {
+  color: var(--neutral-10, #fff);
+  background-color: var(--success-hover, #568F55);
+}
+
+
+.outlined.info {
+  color: var(--info-primary, #0150C8);
+  border: 1px solid var(--info-primary, #0150C8);
+  background-color: var(--info-bg, #E7EDF6);
+}
+
+.outlined.info:hover:enabled {
+  color: var(--neutral-10, #fff);
+  background-color: var(--info-hover, #2B6DD1);
+}
+
+.outlined.danger {
+  color: var(--danger-primary, #DC3545);
+  border: 1px solid var(--danger-primary, #DC3545);
+  background-color: var(--danger-bg, #FEEDEE);
+}
+
+.outlined.danger:hover:enabled {
+  color: var(--neutral-10, #fff);
+  background-color: var(--danger-hover);
+}
+
+.outlined.primary {
+  color: var(--primary-main);
+  border: 1px solid var(--primary-main);
+  background-color: var(--primary-focus);
+}
+
+.outlined.primary:hover:enabled {
+  color: var(--neutral-10, #fff);
+  background-color: var(--primary-hover);
+}
+
+.solid.success {
+  color: var(--neutral-10, #fff);
+  border: 2px solid var(--success-hover, #568F55);
+  background-color: var(--success-hover, #568F55);
+}
+
+.solid.success:hover:enabled {
+  background-color: var(--success-primary, #198754);
+}
+
+.solid.info {
+  color: var(--neutral-10, #fff);
+  border: 2px solid var(--info-hover, #2B6DD1);
+  background-color: var(--info-hover, #2B6DD1);
+}
+
+.solid.info:hover:enabled {
+  background-color: var(--info-primary, #0150C8);
+}
+
+.solid.danger {
+  color: var(--neutral-10, #fff);
+  border: 2px solid var(--danger-hover, #E1676C);
+  background-color: var(--danger-primary, #DC3545);
+
+}
+
+.solid.danger:hover:enabled {
+  background-color: var(--danger-hover, #E1676C);
+}
+
+.solid.primary {
+  color: var(--neutral-10, #fff);
+  border: 2px solid var(--primary-hover, #E1676C);
+  background-color: var(--primary-main, #DC3545);
+
+}
+
+.solid.primary:hover:enabled {
+  background-color: var(--primary-hover, #E1676C);
+}
