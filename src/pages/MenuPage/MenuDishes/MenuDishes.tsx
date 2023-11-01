@@ -48,7 +48,7 @@ export const MenuDishes = (props: MenuDishesProps) => {
     userActions = !foundDish ? (
       <Button
         styleType="solid"
-        alertType="success"
+        alertType="primary"
         className="btn"
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           e.stopPropagation()

@@ -32,17 +32,17 @@ export const RenderHeader = () => {
 
   const onLoginClick = () => {
     navigate(routes.login())
-    toggleActiveNav()
+    if (activeNav) toggleActiveNav()
   }
 
   const onRegisterClick = () => {
     navigate(routes.registration())
-    toggleActiveNav()
+    if (activeNav) toggleActiveNav()
   }
 
   const onLogoutClick = () => {
     logoutRequest(postLogoutConfig({ token: user.token }))
-    toggleActiveNav()
+    if (activeNav) toggleActiveNav()
   }
 
   return (
@@ -80,11 +80,9 @@ export const RenderHeader = () => {
       renderUserActions={() => (
         <>
           {!!user.email && (
-            <Link to={routes.profile()} className="ellipsis">
-              <Typography tag="span" variant="t2">
-                {user.email}
-              </Typography>
-            </Link>
+            <Button styleType="outlined" alertType="primary">
+              {user.email}
+            </Button>
           )}
           {isAuth && (
             <Button styleType="outlined" alertType="danger" onClick={onLogoutClick}>

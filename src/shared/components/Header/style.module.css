@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--neutral-60);
+  color: var(--primary-focus);
 }
 
 .header a {

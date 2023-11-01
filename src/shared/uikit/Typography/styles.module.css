@@ -73,3 +73,14 @@
   font-weight: 500;
   color: var(--danger-primary, #DC3545)
 }
+
+@media screen and (max-width: 992px) {
+  .h1 {
+    font-size: 30px;
+  }
+
+  .h2 {
+    font-size: 24px;
+  }
+
+}

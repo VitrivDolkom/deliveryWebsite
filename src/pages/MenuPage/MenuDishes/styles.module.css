@@ -52,7 +52,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: var(--neutral-40);
+  background-color: var(--primary-focus);
   padding: 10px 0;
 }
 

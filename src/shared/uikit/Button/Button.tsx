@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes } from 'react'
 import s from './styles.module.css'
 
 type ButtonStyleType = 'outlined' | 'solid'
-type ButtonAlertType = 'success' | 'info' | 'danger'
+type ButtonAlertType = 'success' | 'info' | 'danger' | 'primary'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean

@@ -15,7 +15,7 @@ export const ChangeBasketDishAmount = ({
   <div className={s.change}>
     <Button
       styleType="outlined"
-      alertType="info"
+      alertType="primary"
       disabled={dish.amount === 1}
       className={s.btn}
       onClick={(e) => {
@@ -25,12 +25,12 @@ export const ChangeBasketDishAmount = ({
     >
       -
     </Button>
-    <Button styleType="outlined" alertType="info" disabled={true} className={s.btn}>
+    <Button styleType="outlined" alertType="primary" disabled={true} className={s.btn}>
       {dish.amount}
     </Button>
     <Button
       styleType="outlined"
-      alertType="info"
+      alertType="primary"
       className={s.btn}
       onClick={(e) => {
         e.stopPropagation()
