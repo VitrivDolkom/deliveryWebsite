@@ -28,8 +28,8 @@ export const PurchasePage = () => {
         <Typography tag="h2" variant="t6">
           Данные покупателя
         </Typography>
-        <InputBlock label="Телефон" type="tel" blockType="row" constValue={profile?.email} />
-        <InputBlock label="Email" blockType="row" constValue={profile?.phoneNumber} />
+        <InputBlock label="Телефон" type="tel" blockType="row" constValue={profile?.phoneNumber} />
+        <InputBlock label="Email" blockType="row" constValue={profile?.email} />
       </div>
       <div className="block">
         <Typography tag="h2" variant="t6">

@@ -24,8 +24,8 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
 
   const { isLoading: addDishLoading, requestHandler: fetchAddDish } = useRequest<DishBasketDto[]>({
     onSuccess: () => {
-      toastOnSuccessRequest()
       fetchBasket()
+      toastOnSuccessRequest()
     },
     onError: () => toastOnErrorRequest('Ошибка при добавлении в корзину')
   })
@@ -39,6 +39,7 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
   }, [])
 
   const fetchBasket = () => {
+    debugger
     getBasket(getBasketConfig({ token: { token: user.token } }))
   }
 
@@ -49,6 +50,7 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const addDish = (dishId: string) => {
+    debugger
     fetchAddDish(postDishConfig({ token: { token: user.token }, dishId: dishId }))
   }
 
