@@ -2,15 +2,15 @@ import React from 'react'
 import Select from 'react-select'
 import { ToastContainer } from 'react-toastify'
 import { InputBlock } from '@/shared/components'
-import { selectStyles } from '@/shared/const'
 import {
   DishCategoryEnum,
   DishCategoryOption,
   dishCategoryOptions,
   DishSortingEnum,
   DishSortingOption,
-  dishSortingOptions
-} from '@/shared/lib/const'
+  dishSortingOptions,
+  selectStyles
+} from '@/shared/const'
 import { Button } from '@/shared/uikit'
 import { MenuDishes } from './MenuDishes/MenuDishes'
 import { useMenuPage } from './useMenuPage'

@@ -1,7 +1,7 @@
-import { IS_AUTH_KEY, USER_INFO_KEY } from '@/shared/lib/const'
+import React from 'react'
+import { IS_AUTH_KEY, USER_INFO_KEY } from '@/shared/const'
 import { UserContext, type UserContextInfo } from '@/shared/lib/contexts'
 import { useLocalStorage } from '@/shared/lib/hooks'
-import React from 'react'
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const { value: isAuth, setValue: setIsAuth } = useLocalStorage(IS_AUTH_KEY, false)
@@ -9,7 +9,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     token: '',
     email: ''
   })
-
 
   const login = (userInfo: UserContextInfo) => {
     setIsAuth(true)

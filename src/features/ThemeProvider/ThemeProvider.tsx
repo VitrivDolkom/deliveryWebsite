@@ -1,5 +1,5 @@
 import React from 'react'
-import { THEME_KEY } from '@/shared/lib/const'
+import { THEME_KEY } from '@/shared/const'
 import { Theme, ThemeContext } from '@/shared/lib/contexts'
 import { useLocalStorage } from '@/shared/lib/hooks'
 

@@ -1,8 +1,7 @@
 import { SelectLocation } from '@/features'
 import { ToastContainer } from 'react-toastify'
 import { ButtonLoader, InputBlock } from '@/shared/components'
-import { validations } from '@/shared/const'
-import { GenderEnum } from '@/shared/lib/const'
+import { GenderEnum, validations } from '@/shared/const'
 import { Button, Typography } from '@/shared/uikit'
 import { useProfilePage } from './useProfilePage'
 
