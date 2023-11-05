@@ -33,7 +33,13 @@ export const useRegistrationPage = () => {
       login({ email: watch('email'), token: tokenResponse!.token })
       navigate(routes.root())
     },
-    onError: (error) => toastOnErrorRequest(error || 'Ошибка регистрации')
+    onError: (error) => {
+      if (!!error) toastOnErrorRequest(error)
+    },
+    onFormError: (errors) =>
+      errors.forEach((error) => {
+        setError(error.field, { message: error.message })
+      })
   })
 
   const checkLocation = () => {

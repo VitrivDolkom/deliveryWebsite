@@ -36,7 +36,11 @@ export const usePurchasePage = () => {
       fetchBasket()
       navigate(routes.orders())
     },
-    onError: () => toastOnErrorRequest('Ошибка создания заказа')
+    onError: (error) => toastOnErrorRequest(error || 'Ошибка создания заказа'),
+    onFormError: (errors) =>
+      errors.forEach((error) => {
+        setError(error.field, { message: error.message })
+      })
   })
 
   const checkLocation = () => {
