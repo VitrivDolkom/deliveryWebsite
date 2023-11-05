@@ -1,8 +1,8 @@
 import { SelectLocation } from '@/features'
 import Select from 'react-select'
 import { ButtonLoader, InputBlock } from '@/shared/components'
-import { validations } from '@/shared/const'
-import { GenderEnum, genderOptions } from '@/shared/lib/const'
+import { selectStyles, validations } from '@/shared/const'
+import { GenderEnum, GenderOption, genderOptions } from '@/shared/lib/const'
 import { Button, Typography } from '@/shared/uikit'
 import { useRegistrationPage } from './useRegistrationPage'
 import './styles.css'
@@ -41,6 +41,7 @@ export const RegistrationPage = () => {
           value={{ label: GenderEnum[watch('gender')], value: watch('gender') }}
           onChange={(newValue) => setValue('gender', newValue?.value || 'Male')}
           className="item"
+          styles={selectStyles<GenderOption>()}
         />
 
         <InputBlock

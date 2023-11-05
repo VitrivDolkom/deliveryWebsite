@@ -2,10 +2,13 @@ import React from 'react'
 import Select from 'react-select'
 import { ToastContainer } from 'react-toastify'
 import { InputBlock } from '@/shared/components'
+import { selectStyles } from '@/shared/const'
 import {
   DishCategoryEnum,
+  DishCategoryOption,
   dishCategoryOptions,
   DishSortingEnum,
+  DishSortingOption,
   dishSortingOptions
 } from '@/shared/lib/const'
 import { Button } from '@/shared/uikit'
@@ -46,6 +49,7 @@ export const MenuPage = () => {
             value: category
           }))}
           onChange={onCategoriesChange}
+          styles={selectStyles<DishCategoryOption, true>()}
         />
         <Select
           options={dishSortingOptions}
@@ -56,6 +60,7 @@ export const MenuPage = () => {
             !sorting ? undefined : { label: DishSortingEnum[sorting as DishSorting], value: sorting }
           }
           onChange={onSortingChange}
+          styles={selectStyles<DishSortingOption>()}
         />
         <div className="vegan">
           <InputBlock
