@@ -43,7 +43,11 @@ export const useProfilePage = () => {
     requestHandler: updateProfile
   } = useRequest<Response, UserEditModel>({
     onSuccess: () => toastOnSuccessRequest(),
-    onError: (error) => toastOnErrorRequest(error || 'Ошибка обновления профиля')
+    onError: (error) => toastOnErrorRequest(error || 'Ошибка обновления профиля'),
+    onFormError: (errors) =>
+      errors.forEach((error) => {
+        setError(error.field, { message: error.message })
+      })
   })
 
   React.useEffect(() => {
