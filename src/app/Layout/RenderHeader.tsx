@@ -1,14 +1,10 @@
+import { ToggleTheme } from '@/features'
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { postLogoutConfig } from '@/shared/api'
 import { Header } from '@/shared/components'
 import { routes } from '@/shared/const'
-import {
-  useBasketContext,
-  useThemeSwitcherContext,
-  useUserContext,
-  useUserSwitcherContext
-} from '@/shared/lib/contexts'
+import { useBasketContext, useUserContext, useUserSwitcherContext } from '@/shared/lib/contexts'
 import { toastOnErrorRequest } from '@/shared/lib/helpers'
 import { useRequest } from '@/shared/lib/hooks'
 import { Button, Typography } from '@/shared/uikit'
@@ -16,7 +12,6 @@ import { Button, Typography } from '@/shared/uikit'
 export const RenderHeader = () => {
   const navigate = useNavigate()
   const [activeNav, setActiveNav] = React.useState(false)
-  const { toggleTheme } = useThemeSwitcherContext()
   const { isAuth, user } = useUserContext()
   const { logout } = useUserSwitcherContext()
   const { basket } = useBasketContext()
@@ -86,15 +81,9 @@ export const RenderHeader = () => {
       )}
       renderUserActions={() => (
         <>
+          <ToggleTheme />
           {!!user.email && (
-            <Button
-              styleType="outlined"
-              alertType="primary"
-              onClick={() => {
-                toggleTheme()
-                navigate(routes.profile())
-              }}
-            >
+            <Button styleType="outlined" alertType="primary" onClick={() => navigate(routes.profile())}>
               <Typography tag="span" className="ellipsis" variant="empty">
                 {user.email}
               </Typography>
