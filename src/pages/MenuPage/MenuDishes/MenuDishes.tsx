@@ -17,16 +17,7 @@ interface MenuDishesProps {
 }
 
 export const MenuDishes = (props: MenuDishesProps) => {
-  const {
-    dishPagedList,
-    error,
-    isLoading,
-    onPageChange,
-    onDishAdd,
-    actionLoading,
-    basket,
-    onDishDelete
-  } = props
+  const { dishPagedList, error, isLoading, onPageChange, onDishAdd, basket, onDishDelete } = props
 
   const navigate = useNavigate()
 
@@ -47,7 +38,7 @@ export const MenuDishes = (props: MenuDishesProps) => {
 
     userActions = !foundDish ? (
       <Button
-        styleType="solid"
+        styleType="outlined"
         alertType="primary"
         className="btn"
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
@@ -74,11 +65,6 @@ export const MenuDishes = (props: MenuDishesProps) => {
     <div className={s.wrapper}>
       <div className={s.content}>
         {isLoading && <SearchLoader />}
-        {actionLoading && (
-          <div className={s.actionLoader}>
-            <ButtonLoader />
-          </div>
-        )}
         {!isLoading && (
           <div className={s.list}>
             {dishPagedList?.dishes.map((dish) => (

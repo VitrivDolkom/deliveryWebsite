@@ -14,19 +14,21 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
     requestHandler: getBasket
   } = useRequest<DishBasketDto[]>({})
 
-  const { isLoading: deleteDishLoading, requestHandler: fetchDeleteDish } = useRequest<DishBasketDto[]>({
-    onSuccess: () => {
-      fetchBasket()
-      toastOnSuccessRequest()
-    },
+  const {
+    isLoading: deleteDishLoading,
+    requestHandler: fetchDeleteDish,
+    isSuccess: isDeleteSuccess
+  } = useRequest<never>({
+    onSuccess: () => toastOnSuccessRequest(),
     onError: () => toastOnErrorRequest('Ошибка при удалении из корзины')
   })
 
-  const { isLoading: addDishLoading, requestHandler: fetchAddDish } = useRequest<DishBasketDto[]>({
-    onSuccess: () => {
-      toastOnSuccessRequest()
-      fetchBasket()
-    },
+  const {
+    isLoading: addDishLoading,
+    requestHandler: fetchAddDish,
+    isSuccess: isAddSuccess
+  } = useRequest<never>({
+    onSuccess: () => toastOnSuccessRequest(),
     onError: () => toastOnErrorRequest('Ошибка при добавлении в корзину')
   })
 
@@ -38,9 +40,15 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [])
 
-  const fetchBasket = () => {
+  React.useEffect(() => {
+    if (isAddSuccess || isDeleteSuccess) {
+      fetchBasket()
+    }
+  }, [isAddSuccess, isDeleteSuccess])
+
+  const fetchBasket = React.useCallback(() => {
     getBasket(getBasketConfig({ token: { token: user.token } }))
-  }
+  }, [user.token])
 
   const deleteDish = (dishId: string, increase?: boolean) => {
     fetchDeleteDish(

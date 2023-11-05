@@ -57,6 +57,10 @@ img {
   margin-top: 20px;
 }
 
+input {
+  color: var(--neutral-100);
+}
+
 @media screen and (max-width: 768px) {
   .box {
     padding: 20px 10px;
