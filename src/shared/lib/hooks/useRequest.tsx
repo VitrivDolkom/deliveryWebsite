@@ -2,6 +2,7 @@ import { AxiosError, AxiosRequestConfig } from 'axios'
 import React from 'react'
 import { apiInstance } from '@/shared/api'
 import { statusCodeErrors } from '@/shared/const'
+import { parseFormResponseErrors } from '../helpers'
 
 interface UseRequestParams<T, D> {
   onMount?: boolean
@@ -9,6 +10,7 @@ interface UseRequestParams<T, D> {
   duration?: number
   onSuccess?: (data?: T) => void
   onError?: (error?: string) => void
+  onFormError?: (errors: FormError<D>[]) => void
 }
 
 export const useRequest = <T, D = never>({
@@ -16,7 +18,8 @@ export const useRequest = <T, D = never>({
   config = {},
   duration = 0,
   onSuccess,
-  onError
+  onError,
+  onFormError
 }: UseRequestParams<T, D>) => {
   const [data, setData] = React.useState<T | null>(null)
   const [error, setError] = React.useState('')
@@ -48,16 +51,27 @@ export const useRequest = <T, D = never>({
         onSuccess(response.data)
       }
     } catch (catchReason: unknown) {
+      debugger
       const reason = catchReason as AxiosError<Response>
+      const formReason = catchReason as AxiosError<FormErrorResponse<D>>
+      const unknownReason = catchReason as AxiosError<Record<string, string>>
+
+      const formErrors = formReason.response?.data.errors
+      const unknownErrors = unknownReason.response?.data
       let errorMessage = reason.response?.data.message
 
-      if (!errorMessage) {
-        const statusCode = reason.response?.status || ''
-        errorMessage = statusCodeErrors[statusCode]
+      if (!!onFormError && !!formErrors) {
+        const normalizedErrors = parseFormResponseErrors<D>(formErrors)
+        onFormError(normalizedErrors)
       }
 
-      setError(errorMessage)
-      if (!!onError) {
+      if (!errorMessage && !formErrors) {
+        const statusCode = reason.response?.status || 0
+        errorMessage = statusCodeErrors[statusCode] || Object.values(unknownErrors || {}).join(', ')
+        setError(errorMessage)
+      }
+
+      if (!!onError && !!errorMessage) {
         onError(errorMessage)
       }
     }

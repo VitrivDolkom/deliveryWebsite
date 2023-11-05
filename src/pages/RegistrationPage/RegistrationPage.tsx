@@ -1,5 +1,6 @@
 import { SelectLocation } from '@/features'
 import Select from 'react-select'
+import { ToastContainer } from 'react-toastify'
 import { ButtonLoader, InputBlock } from '@/shared/components'
 import { GenderEnum, GenderOption, genderOptions, selectStyles, validations } from '@/shared/const'
 import { Button, Typography } from '@/shared/uikit'
@@ -10,7 +11,6 @@ export const RegistrationPage = () => {
   const {
     setAddressObjects,
     addressObjects,
-    error,
     errors,
     isLoading,
     register,
@@ -21,6 +21,7 @@ export const RegistrationPage = () => {
 
   return (
     <div>
+      <ToastContainer />
       <Typography tag="h1" variant="h1">
         Регистрация
       </Typography>
@@ -87,12 +88,6 @@ export const RegistrationPage = () => {
         <Button styleType="solid" alertType="info" isLoading={isLoading} loader={<ButtonLoader />}>
           Зарегестрироваться
         </Button>
-
-        {!!error && (
-          <Typography tag="p" variant="err1">
-            Ошибка создания пользователя
-          </Typography>
-        )}
       </form>
     </div>
   )

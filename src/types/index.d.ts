@@ -93,6 +93,15 @@ declare global {
     message: string
   }
 
+  interface FormErrorResponse<T> {
+    errors: Record<keyof D, string[]>
+  }
+
+  export interface FormError<T> {
+    field: keyof T
+    message: string
+  }
+
   interface SearchAddressModel {
     objectId: number
     objectGuid: Id
