@@ -5,7 +5,7 @@ import { toastOnErrorRequest, toastOnSuccessRequest } from '@/shared/lib/helpers
 import { useRequest } from '@/shared/lib/hooks'
 
 export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
-  const { user, isAuth } = useUserContext()
+  const { user } = useUserContext()
 
   const {
     data: basket,
@@ -35,10 +35,10 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
   const actionLoading = addDishLoading || deleteDishLoading
 
   React.useEffect(() => {
-    if (isAuth) {
+    if (user.token) {
       fetchBasket()
     }
-  }, [])
+  }, [user.token])
 
   React.useEffect(() => {
     if (isAddSuccess || isDeleteSuccess) {
