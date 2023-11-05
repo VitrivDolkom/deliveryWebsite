@@ -4,10 +4,13 @@ import { ToastContainer } from 'react-toastify'
 import { InputBlock } from '@/shared/components'
 import {
   DishCategoryEnum,
+  DishCategoryOption,
   dishCategoryOptions,
   DishSortingEnum,
-  dishSortingOptions
-} from '@/shared/lib/const'
+  DishSortingOption,
+  dishSortingOptions,
+  selectStyles
+} from '@/shared/const'
 import { Button } from '@/shared/uikit'
 import { MenuDishes } from './MenuDishes/MenuDishes'
 import { useMenuPage } from './useMenuPage'
@@ -46,6 +49,7 @@ export const MenuPage = () => {
             value: category
           }))}
           onChange={onCategoriesChange}
+          styles={selectStyles<DishCategoryOption, true>()}
         />
         <Select
           options={dishSortingOptions}
@@ -56,6 +60,7 @@ export const MenuPage = () => {
             !sorting ? undefined : { label: DishSortingEnum[sorting as DishSorting], value: sorting }
           }
           onChange={onSortingChange}
+          styles={selectStyles<DishSortingOption>()}
         />
         <div className="vegan">
           <InputBlock

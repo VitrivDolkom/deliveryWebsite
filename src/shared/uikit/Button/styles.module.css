@@ -17,7 +17,7 @@
 }
 
 .outlined.success:hover:enabled {
-  color: var(--neutral-10, #fff);
+  color: #fff;
   background-color: var(--success-hover, #568F55);
 }
 
@@ -29,7 +29,7 @@
 }
 
 .outlined.info:hover:enabled {
-  color: var(--neutral-10, #fff);
+  color: #fff;
   background-color: var(--info-hover, #2B6DD1);
 }
 
@@ -40,7 +40,7 @@
 }
 
 .outlined.danger:hover:enabled {
-  color: var(--neutral-10, #fff);
+  color: #fff;
   background-color: var(--danger-hover);
 }
 
@@ -51,12 +51,12 @@
 }
 
 .outlined.primary:hover:enabled {
-  color: var(--neutral-10, #fff);
+  color: #fff;
   background-color: var(--primary-hover);
 }
 
 .solid.success {
-  color: var(--neutral-10, #fff);
+  color: #fff;
   border: 2px solid var(--success-hover, #568F55);
   background-color: var(--success-hover, #568F55);
 }
@@ -66,7 +66,7 @@
 }
 
 .solid.info {
-  color: var(--neutral-10, #fff);
+  color: #fff;
   border: 2px solid var(--info-hover, #2B6DD1);
   background-color: var(--info-hover, #2B6DD1);
 }
@@ -76,7 +76,7 @@
 }
 
 .solid.danger {
-  color: var(--neutral-10, #fff);
+  color: #fff;
   border: 2px solid var(--danger-hover, #E1676C);
   background-color: var(--danger-primary, #DC3545);
 
@@ -87,7 +87,7 @@
 }
 
 .solid.primary {
-  color: var(--neutral-10, #fff);
+  color: #fff;
   border: 2px solid var(--primary-hover, #E1676C);
   background-color: var(--primary-main, #DC3545);
 

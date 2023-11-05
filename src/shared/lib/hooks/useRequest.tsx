@@ -1,7 +1,7 @@
 import { AxiosError, AxiosRequestConfig } from 'axios'
 import React from 'react'
 import { apiInstance } from '@/shared/api'
-import { statusCodeErrors } from '../const'
+import { statusCodeErrors } from '@/shared/const'
 
 interface UseRequestParams<T, D> {
   onMount?: boolean

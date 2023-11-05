@@ -29,4 +29,32 @@ body {
 }
 
 
-body.dark {}
+body.dark {
+  --success-hover: #568F55;
+  --success-bg: #F1FAF0;
+  --success-primary: #198754;
+
+  --info-primary: #2B6DD1;
+  --info-bg: #96c0ff;
+  --info-hover: #0150C8;
+
+  --danger-hover: #E1676C;
+  --danger-bg: #FEEDEE;
+  --danger-primary: #DC3545;
+
+  --primary-hover: #9C55F6;
+  --primary-focus: #a586fc;
+  --primary-main: #5632A1;
+  --primary-border: #C0BBF4;
+
+  --neutral-100: #fff;
+  --neutral-90: #F5F5F5;
+  --neutral-80: #EDEDED;
+  --neutral-70: #E0E0E0;
+  --neutral-60: #C2C2C2;
+  --neutral-50: #9E9E9E;
+  --neutral-40: #757575;
+  --neutral-30: #616161;
+  --neutral-20: #424242;
+  --neutral-10: #0A0A0A;
+}

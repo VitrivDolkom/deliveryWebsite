@@ -1,3 +1,4 @@
+import { ToggleTheme } from '@/features'
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { postLogoutConfig } from '@/shared/api'
@@ -80,6 +81,7 @@ export const RenderHeader = () => {
       )}
       renderUserActions={() => (
         <>
+          <ToggleTheme />
           {!!user.email && (
             <Button styleType="outlined" alertType="primary" onClick={() => navigate(routes.profile())}>
               <Typography tag="span" className="ellipsis" variant="empty">

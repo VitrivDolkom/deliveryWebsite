@@ -3,7 +3,12 @@ export enum GenderEnum {
   Female = 'Женщина'
 }
 
-export const genderOptions: { label: GenderEnum; value: Gender }[] = [
+export interface GenderOption {
+  label: GenderEnum
+  value: Gender
+}
+
+export const genderOptions: GenderOption[] = [
   { label: GenderEnum.Male, value: 'Male' },
   { label: GenderEnum.Female, value: 'Female' }
 ]
