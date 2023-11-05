@@ -1,8 +1,8 @@
-import preloader from '@/assets/gifs/search.gif'
+import { ButtonLoader } from '../ButtonLoader/ButtonLoader'
 import s from './styles.module.css'
 
 export const SearchLoader = () => (
   <div className={s.preloader}>
-    <img src={preloader} alt="Загрузка..." />
+    <ButtonLoader />
   </div>
 )
